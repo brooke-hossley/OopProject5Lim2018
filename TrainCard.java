@@ -1,4 +1,4 @@
-
+////////////////////////////////////////////////////////////////////////////////
 /**
  * Write a description of class Card here.
  *
@@ -14,15 +14,6 @@ public class TrainCard
     }
 
     public TrainCard(int x){
-        // if(x == 0){
-        // tColor = TrainColor.YELLOW;   
-        // }
-        // else if(x == 1){
-
-        // }
-        // else if(x == 2){
-
-        // }
         switch(x){
             case 0: tColor = TrainColor.YELLOW;
                     break;
@@ -30,7 +21,7 @@ public class TrainCard
                     break;
             case 2: tColor = TrainColor.GREEN;
                     break;
-            case 3: tColor = TrainColor.PURPLE;
+            case 3: tColor = TrainColor.PINK;
                     break;
             case 4: tColor = TrainColor.RED;
                     break;

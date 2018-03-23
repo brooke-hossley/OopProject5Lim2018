@@ -1,4 +1,4 @@
-
+////////////////////////////////////////////////////////////////////////////////
 /**
  * Enumeration class TrainColor - write a description of the enum class here
  *
@@ -7,5 +7,5 @@
  */
 public enum TrainColor
 {
-    YELLOW, BLUE, GREEN, PURPLE, RED, BLACK, ORANGE, WHITE, RAINBOW
+    YELLOW, BLUE, GREEN, PINK, RED, BLACK, ORANGE, WHITE, RAINBOW
 }
