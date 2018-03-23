@@ -7,27 +7,30 @@
  */
 public class City
 {
-    // instance variables - replace the example below with your own
-    private int x;
-
-    /**
-     * Constructor for objects of class City
-     */
-    public City()
-    {
-        // initialise instance variables
-        x = 0;
+    //Number of routes connecting to the city
+    //Number of meeples on the city w/ each color present
+    CityName name;
+    int routes;
+    int[] meeples = new int[6];
+    public City(CityName name, int numRoutes){
+        this.name = name;
+        routes = numRoutes;
     }
 
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
+    protected void addMeeple(MeepleColor meeple){
+        switch(meeple){
+            case RED: meeples[0] ++;
+            break;
+            case BLACK: meeples[1] ++;
+            break;
+            case GREEN: meeples[2] ++;
+            break;
+            case YELLOW: meeples[3] ++;
+            break;
+            case BLUE: meeples[4] ++;
+            break;
+            case WHITE: meeples[5] ++;
+            break;             
+        }
     }
 }

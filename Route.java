@@ -1,4 +1,4 @@
-
+////////////////////////////////////////////////////////////////////////////////
 /**
  * Write a description of class Route here.
  *
@@ -7,27 +7,32 @@
  */
 public class Route
 {
-    // instance variables - replace the example below with your own
-    private int x;
+    protected int length;
+    protected RouteColor color;
+    protected boolean doubleTrack;
+    protected boolean tripleTrack;
 
-    /**
-     * Constructor for objects of class Route
-     */
-    public Route()
-    {
-        // initialise instance variables
-        x = 0;
+    public Route(int length, RouteColor color, boolean doubleTrack, 
+    boolean tripleTrack){
+        this.length = length;
+        this.color = color;
+        this.doubleTrack = doubleTrack;
+        this.tripleTrack = tripleTrack;
     }
 
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
+    protected int getRouteLength(){
+        return length;   
+    }
+
+    protected RouteColor getRouteColor(){
+        return color;   
+    }
+
+    protected boolean isDouble(){
+        return doubleTrack;   
+    }
+    
+     protected boolean isTriple(){
+        return tripleTrack;   
     }
 }
