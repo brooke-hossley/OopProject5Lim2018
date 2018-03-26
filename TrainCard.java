@@ -12,27 +12,27 @@ public class TrainCard
     public TrainCard(TrainColor color){
         tColor = color;
     }
-
+    //Alissa's idea, assign each color a int so it's easier to assign colors. Need more development 
     public TrainCard(int x){
         switch(x){
             case 0: tColor = TrainColor.YELLOW;
-                    break;
+            break;
             case 1: tColor = TrainColor.BLUE;
-                    break;
+            break;
             case 2: tColor = TrainColor.GREEN;
-                    break;
+            break;
             case 3: tColor = TrainColor.PINK;
-                    break;
+            break;
             case 4: tColor = TrainColor.RED;
-                    break;
+            break;
             case 5: tColor = TrainColor.BLACK;
-                    break;        
+            break;        
             case 6: tColor = TrainColor.ORANGE;
-                    break;  
+            break;  
             case 7: tColor = TrainColor.WHITE;
-                    break;   
+            break;   
             case 8: tColor = TrainColor.RAINBOW;
-                    break;        
+            break;        
         }
     }
 

@@ -13,13 +13,13 @@ public class Player
     String name;
     PlayerColor color;
     int[] trainCards = new int[9];
-    ArrayList<Route> destinations = new ArrayList<Route>();
-    ArrayList<Route> completedDestinations = new ArrayList<Route>();
+    ArrayList<Route> destinations = new ArrayList<Route>(); //An ArrayList to hold the players destination tickets they currently have
+    ArrayList<Route> completedDestinations = new ArrayList<Route>(); //And to hold the completed tickets
     public Player(String name, PlayerColor color){
         this.name = name;
         this.color = color;
     }
-    
+    //Same concept as the Cities meeples
     protected void addTrainCard(TrainColor color){
         switch(color){
             case YELLOW: trainCards[0] ++;
