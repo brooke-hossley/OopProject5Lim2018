@@ -5,29 +5,117 @@
  * @author (your name)
  * @version (a version number or a date)
  */
-public class PlayGame
+public class PlayGame implements MouseListener
 {
-    // instance variables - replace the example below with your own
-    private int x;
-
     /**
      * Constructor for objects of class playGame
      */
     public PlayGame()
     {
-        // initialise instance variables
-        x = 0;
+        createDestinationDeck();
+    }
+
+    public static void main(String[] args) {
+        //Schedule a job for the event-dispatching thread:
+        //creating and showing this application's GUI.
+        javax.swing.SwingUtilities.invokeLater(new Runnable() {
+                public void run() {
+                    new PlayGame();
+                }
+            });
     }
 
     /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * Create all the TrainCarCards
      */
-    public int sampleMethod(int y)
+    private void createTrainDeck()
     {
-        // put your code here
-        return x + y;
+
+    }
+
+    /**
+     * Create all the destination cards
+     */
+    private void createDestinationDeck()
+    {
+
+    }
+
+    /**
+     * creates the game board
+     */
+    private void createGameBoard() 
+    {
+        gameBoard = new Board();
+    }
+
+    /**
+     * @param e an event that indicates a mouse action has occured.
+     */
+    public void mouseEntered( MouseEvent e ) { }
+
+    /**
+     * @param e an event that indicates a mouse action has occured.
+     */
+    public void mouseExited( MouseEvent e ) { }
+
+    /**
+     * @param e an event that indicates a mouse action has occured.
+     */
+    public void mousePressed( MouseEvent e ) { }
+
+    /**
+     * @param e an event that indicates a mouse action has occured.
+     */
+    public void mouseReleased( MouseEvent e ) { }
+
+    /**
+     * @param e an event that indicates a mouse action has occured.
+     */
+    public void mouseClicked( MouseEvent e ) {
+        clickX = e.getX();
+        clickY = e.getY();
+        click = true;
+        repaint();
+        e.consume();
+    }
+
+    public void paintComponent(Graphics g) 
+    {
+
+    }
+
+    /**
+     * Gets user input to set up the game (number of players, etc)
+     */
+    private void getGameOptions() 
+    {
+
+    }
+
+    /**
+     * Gives players train cards, gives them destination cards to choose from
+     * lets them choose
+     * @param g The graphics object 
+     */
+    private void setUpGame(Graphics g) 
+    {
+
+    }
+
+    /**
+     * Adds the bonus points to each player
+     */
+    public void addBonusPoints() 
+    {
+
+    }
+
+    /**
+     * ends the game and shows the scores
+     */
+    private void endGame() 
+    {
+
     }
 }
