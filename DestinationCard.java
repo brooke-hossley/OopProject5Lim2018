@@ -1,4 +1,5 @@
-
+import java.nio.file.Path;
+import java.io.File;
 /**
  * Write a description of class DestinationCard here.
  *
@@ -7,27 +8,61 @@
  */
 public class DestinationCard extends Card
 {
-    // instance variables - replace the example below with your own
-    private int x;
+    protected final String cities[] = new String[2];
+    protected final int value;
 
     /**
-     * Constructor for objects of class DestinationCard
+     * Constructor for DestinationCard Class 
+     * @param c[] 2 element  array of cities
      */
-    public DestinationCard()
-    {
-        // initialise instance variables
-        x = 0;
+    public DestinationCard(String c[], int v) {
+        type = "DestinationCard";
+        cities[0] = c[0]; cities[1] = c[1];
+        value = v;
+    }
+    
+    /**
+     * Constructor for DestinationCard class with path
+     * @param c[] 2 element  array of cities
+     * @param p image path
+     */
+    public DestinationCard(String c[], int v, Path p) {
+        this(c,v);
+        imagePath = p;
     }
 
     /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * Constructor for DestinationCard class with String path
+     * @param c[] 2 element  array of cities
+     * @param p image path (String)
      */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
+    public DestinationCard(String c[], int v, String p) {
+        this(c,v);
+        imagePath = (new File(p)).toPath();
+    }
+
+    /**
+     * Returns this Card's value
+     * @return this.value
+     */
+    public int getValue() {
+        return value;
+    }
+
+    /**
+     * Returns string representation of this DestinationCard
+     * @return  string representation of this DestinationCard
+     *
+     */
+    public String toString() {
+        return cities[0] + "-" + cities[1];
+    }
+
+    /**
+     * gets a copy of this.cities
+     * @return a copy of this.cities
+     */
+    public String[] getCities() {
+        return new String[] { cities[0], cities[1] };
     }
 }
