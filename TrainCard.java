@@ -5,10 +5,10 @@
  * @author (your name)
  * @version (a version number or a date)
  */
-public class TrainCard
+public class TrainCard extends Card
 {
     protected TrainColor tColor;
-
+    
     public TrainCard(TrainColor color){
         tColor = color;
     }

@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=City
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ City\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=name\ numRoutes
+comment1.target=City(CityName,\ int)
+comment2.params=meeple
+comment2.target=void\ addMeeple(MeepleColor)
+comment3.params=meeple
+comment3.target=void\ removeMeeple(MeepleColor)
+numComments=4

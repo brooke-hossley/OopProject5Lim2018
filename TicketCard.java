@@ -5,7 +5,7 @@
  * @author (your name)
  * @version (a version number or a date)
  */
-public class TicketCard
+public class TicketCard extends Card
 {
     protected CityName city1; //The two cities that are listed on the desination tickets
     protected CityName city2;
