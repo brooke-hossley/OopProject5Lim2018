@@ -14,7 +14,9 @@ public class CityList
      */
     public CityList()
     {
-       //construct array list with all city names
+        //construct array list with all city names
+        cityArrayList = new ArrayList<City>();
+        cityArrayList.add(new City ("test"));
     }
 
     /**
@@ -23,8 +25,15 @@ public class CityList
      * @param  y  a sample parameter for a method
      * @return    the sum of x and y
      */
-    public City getCity(int y)
+    public City getCity(int i)
     {
-        return city
+        if (i > -1 && i < cityArrayList.size())
+        {
+            return cityArrayList.get(i);
+        }
+        else 
+        {
+            return null;
+        }
     }
 }
