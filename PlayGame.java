@@ -10,7 +10,7 @@ import javax.imageio.*;
  * @author (your name)
  * @version (a version number or a date)
  */
-public class PlayGame implements MouseListener
+public class PlayGame extends JPanel implements MouseListener
 {
     private Image sdest, sdest2, sdest3, sdest4, sdest5, sdest6, sdest7, sdest8;
     private Image sdest9, sdest10, sdest11, sdest12, sdest13, sdest14, sdest15, sdest16;
@@ -19,27 +19,27 @@ public class PlayGame implements MouseListener
     private Image sdest33, sdest34, sdest35, sdest36, sdest37, sdest38, sdest39, sdest40;
     private Image sdest41, sdest42, sdest43, sdest44, sdest45, sdest46, sdest47, sdest48;
     private Image sdest49, sdest50, sdest51, sdest52, sdest53, sdest54, sdest55;
-    
+
     private Image ldest, ldest2, ldest3, ldest4, ldest5, ldest6, ldest7, ldest8, ldest9;
     private Image ldest10, ldest11, ldest12, ldest13, ldest14, ldest15, ldest16, ldest17, ldest18;
     private Image ldest19, ldest20, ldest21, ldest22, ldest23, ldest24, ldest25, ldest26, ldest27;
     private Image ldest28, ldest29, ldest30, ldest31, ldest32, ldest33, ldest34;
-    
+
     private Image traincol, traincol2, traincol3, traincol4, traincol5, traincol6;
     private Image traincol7, traincol8, traincol9;
-    
-    private Image board;
-    
+
+    private static Image board;
+
     private Image misc, misc2, misc3, misc4;
     /**
      * Constructor for objects of class playGame
      */
     public PlayGame()
     {
-        createDestinationDeck();
         
+        addMouseListener(this);
+        //createDestinationDeck();
         String dir = "Images\\";
-                
         sdest = new ImageIcon(dir + "BerlChem.JPG").getImage();
         sdest2 = new ImageIcon(dir + "BerlErfu.JPG").getImage();
         sdest3 = new ImageIcon(dir + "BerlLeip.JPG").getImage();
@@ -95,7 +95,7 @@ public class PlayGame implements MouseListener
         sdest53 = new ImageIcon(dir + "NiedFran.JPG").getImage();
         sdest54 = new ImageIcon(dir + "Nied Karl.JPG").getImage();
         sdest55 = new ImageIcon(dir + "Nurn Stut.JPG").getImage();
-        
+
         ldest = new ImageIcon(dir + "BerlDuss.JPG").getImage();
         ldest2 = new ImageIcon(dir + "BerlFran.JPG").getImage();
         ldest3 = new ImageIcon(dir + "BerlKoln.JPG").getImage();
@@ -130,7 +130,7 @@ public class PlayGame implements MouseListener
         ldest32 = new ImageIcon(dir + "RostOste.JPG").getImage();
         ldest33 = new ImageIcon(dir + "SchKob.JPG").getImage();
         ldest34 = new ImageIcon(dir + "SchwFran.JPG").getImage();
-        
+
         traincol = new ImageIcon(dir + "BlackCard.JPG").getImage();
         traincol2 = new ImageIcon(dir + "BlueCard.JPG").getImage();
         traincol3 = new ImageIcon(dir + "GreenCard.JPG").getImage();
@@ -140,13 +140,34 @@ public class PlayGame implements MouseListener
         traincol7 = new ImageIcon(dir + "RedCard.JPG").getImage();
         traincol8 = new ImageIcon(dir + "WhiteCard.JPG").getImage();
         traincol9 = new ImageIcon(dir + "YellowCard.JPG").getImage();
-        
-        board = new ImageIcon(dir + "Board.JPEG").getImage();
-        
+
+        board = new ImageIcon(dir + "Board.jpeg").getImage();
+
         misc = new ImageIcon(dir + "BlueDest.JPG").getImage();
         misc2 = new ImageIcon(dir + "Globetrotter.JPG").getImage();
         misc3 = new ImageIcon(dir + "OrangeDest.JPG").getImage();
         misc4 = new ImageIcon(dir + "TrainCardBack.JPG").getImage();
+        
+        Dimension size = new Dimension(board.getWidth(null), board.getHeight(null));
+        setPreferredSize(size);
+        setMinimumSize(size);
+        setMaximumSize(size);
+        setSize(size);
+        setLayout(null);
+
+    }
+    
+    private static void createAndShowGUI() {
+        //Create and set up the window.
+        JFrame frame = new JFrame("Ticket To Ride");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        PlayGame panel = new PlayGame();
+        frame.getContentPane().add(panel);
+
+        //Display the window.
+        frame.pack();
+        frame.setVisible(true);
     }
 
     public static void main(String[] args) {
@@ -154,9 +175,15 @@ public class PlayGame implements MouseListener
         //creating and showing this application's GUI.
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
                 public void run() {
-                    new PlayGame();
+                    createAndShowGUI();
                 }
             });
+    }
+
+    public void paintComponent(Graphics g) 
+    {
+        super.paintComponent(g);
+        g.drawImage(board,0,0,null);
     }
 
     /**
@@ -164,7 +191,7 @@ public class PlayGame implements MouseListener
      */
     private void createTrainDeck()
     {
-
+        
     }
 
     /**
@@ -172,7 +199,7 @@ public class PlayGame implements MouseListener
      */
     private void createDestinationDeck()
     {
-
+        
     }
 
     /**
@@ -180,7 +207,7 @@ public class PlayGame implements MouseListener
      */
     private void createGameBoard() 
     {
-        gameBoard = new Board();
+        //gameBoard = new Board();
     }
 
     /**
@@ -207,17 +234,13 @@ public class PlayGame implements MouseListener
      * @param e an event that indicates a mouse action has occured.
      */
     public void mouseClicked( MouseEvent e ) {
-        clickX = e.getX();
-        clickY = e.getY();
-        click = true;
-        repaint();
-        e.consume();
+        //clickX = e.getX();
+        //clickY = e.getY();
+        //click = true;
+        //repaint();
+        //e.consume();
     }
 
-    public void paintComponent(Graphics g) 
-    {
-
-    }
 
     /**
      * Gets user input to set up the game (number of players, etc)
