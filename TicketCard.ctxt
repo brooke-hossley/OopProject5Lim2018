@@ -1,8 +1,0 @@
-#BlueJ class context
-comment0.target=TicketCard
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ TicketCard\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
-comment1.params=city1\ city2\ points\ length
-comment1.target=TicketCard(CityName,\ CityName,\ int,\ java.lang.String)
-comment2.params=
-comment2.target=int\ getPoints()
-numComments=3
