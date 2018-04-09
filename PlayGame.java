@@ -28,7 +28,7 @@ public class PlayGame extends JPanel implements MouseListener
     private Image traincol, traincol2, traincol3, traincol4, traincol5, traincol6;
     private Image traincol7, traincol8, traincol9;
 
-    private static Image board;
+    private static Image board, blackBackground;
 
     private Image misc, misc2, misc3, misc4;
     /**
@@ -39,7 +39,7 @@ public class PlayGame extends JPanel implements MouseListener
         
         addMouseListener(this);
         //createDestinationDeck();
-        String dir = "Images\\";
+        String dir = "";
         sdest = new ImageIcon(dir + "BerlChem.JPG").getImage();
         sdest2 = new ImageIcon(dir + "BerlErfu.JPG").getImage();
         sdest3 = new ImageIcon(dir + "BerlLeip.JPG").getImage();
@@ -141,14 +141,14 @@ public class PlayGame extends JPanel implements MouseListener
         traincol8 = new ImageIcon(dir + "WhiteCard.JPG").getImage();
         traincol9 = new ImageIcon(dir + "YellowCard.JPG").getImage();
 
-        board = new ImageIcon(dir + "Board.jpeg").getImage();
-
+        board = new ImageIcon(dir + "Board.JPG").getImage();
+        blackBackground = new ImageIcon(dir + "blackBackground.JPG").getImage();
         misc = new ImageIcon(dir + "BlueDest.JPG").getImage();
         misc2 = new ImageIcon(dir + "Globetrotter.JPG").getImage();
         misc3 = new ImageIcon(dir + "OrangeDest.JPG").getImage();
         misc4 = new ImageIcon(dir + "TrainCardBack.JPG").getImage();
         
-        Dimension size = new Dimension(board.getWidth(null), board.getHeight(null));
+        Dimension size = new Dimension(blackBackground.getWidth(null), board.getHeight(null));
         setPreferredSize(size);
         setMinimumSize(size);
         setMaximumSize(size);
@@ -183,7 +183,8 @@ public class PlayGame extends JPanel implements MouseListener
     public void paintComponent(Graphics g) 
     {
         super.paintComponent(g);
-        g.drawImage(board,0,0,null);
+        g.drawImage(blackBackground,0,0,null);
+        g.drawImage(board,blackBackground.getWidth(null)/4,0,null);
     }
 
     /**
