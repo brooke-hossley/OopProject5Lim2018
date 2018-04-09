@@ -276,7 +276,7 @@ public class Route
         }
         else if(cityOneName.equals("Augsburg"))
         {
-            
+
         }
         else if(cityOneName.equals("Munchen"))
         {
@@ -488,29 +488,28 @@ public class Route
         }
     }
 
-    // public static StFreiburgring getStringrouteColor(RouteColor col) {
-    // if(col == YELLOW)
-    // {
-    // return "yellow";
-    // }
-    // else if( col == ORANGE)
-    // {
-    // return "orange";
-    // }
-    // return "orange";
-    // return "green";
-    // return "blue";
-    // return "red";
-    // return "gray";
-    // return "white";
-    // return "black";
-    // return "purple";
-    // //else
-    // {
-    // return "nosuchcolor";
-    // }
-
-    // }
+    public static String getStringrouteColor(RouteColor col) {
+        if(col == RouteColor.YELLOW)
+        {
+            return "yellow";
+        }
+        else if(col == RouteColor.ORANGE)
+        {
+            return "orange";
+        }
+        // return "orange";
+        // return "green";
+        // return "blue";
+        // return "red";
+        // return "gray";
+        // return "white";
+        // return "black";
+        // return "purple";
+        //else
+        else {
+            return "nosuchcolor";
+        }
+    }
 
     protected int getRouteLength(){
         return length;   
@@ -528,4 +527,3 @@ public class Route
         return tripleTrack;   
     }
 }
-
