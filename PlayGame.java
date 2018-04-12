@@ -39,7 +39,7 @@ public class PlayGame extends JPanel implements MouseListener
         
         addMouseListener(this);
         //createDestinationDeck();
-        String dir = "";
+        String dir = "Images//";
         sdest = new ImageIcon(dir + "BerlChem.JPG").getImage();
         sdest2 = new ImageIcon(dir + "BerlErfu.JPG").getImage();
         sdest3 = new ImageIcon(dir + "BerlLeip.JPG").getImage();

@@ -1,52 +1,45 @@
-import java.nio.file.Path;
+import java.nio.file.*;
 import java.io.File;
+import java.awt.*;
+import javax.swing.*;
 /**
  * Write a description of class DestinationCard here.
  *
  * @author (your name)
  * @version (a version number or a date)
  */
-public class DestinationCard extends Card
+public class DestinationCard //extends Card
 {
-    protected final String cities[] = new String[2];
-    protected final int value;
-
+    protected String city1;
+    protected String city2;
+    protected int points;
+    protected Image picture;
     /**
      * Constructor for DestinationCard Class 
-     * @param c[] 2 element  array of cities
+     * @param 
      */
-    public DestinationCard(String c[], int v) {
-        type = "DestinationCard";
-        cities[0] = c[0]; cities[1] = c[1];
-        value = v;
+    public DestinationCard(String c1, String c2, int p, String fileName) {
+        city1 = c1; 
+        city2 = c2;
+        points = p;
+        //Path f = Paths.get("." + "Images\\).toAbsolutePath();
+        picture = Toolkit.getDefaultToolkit().getImage("Images\\" + fileName);
+        
     }
     
     /**
-     * Constructor for DestinationCard class with path
-     * @param c[] 2 element  array of cities
-     * @param p image path
+     * Returns this Card's picture
      */
-    public DestinationCard(String c[], int v, Path p) {
-        this(c,v);
-        imagePath = p;
+    public Image getPicture() {
+        return picture;
     }
-
-    /**
-     * Constructor for DestinationCard class with String path
-     * @param c[] 2 element  array of cities
-     * @param p image path (String)
-     */
-    public DestinationCard(String c[], int v, String p) {
-        this(c,v);
-        imagePath = (new File(p)).toPath();
-    }
-
+    
     /**
      * Returns this Card's value
      * @return this.value
      */
-    public int getValue() {
-        return value;
+    public int getPoints() {
+        return points;
     }
 
     /**
@@ -55,14 +48,13 @@ public class DestinationCard extends Card
      *
      */
     public String toString() {
-        return cities[0] + "-" + cities[1];
+        return city1 + "-" + city2;
     }
 
     /**
-     * gets a copy of this.cities
-     * @return a copy of this.cities
+     * gets a copy of citynames
      */
-    public String[] getCities() {
-        return new String[] { cities[0], cities[1] };
+    public String[] getCityNames() {
+        return new String[] {city1, city2};
     }
 }
