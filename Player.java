@@ -1,5 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 import java.util.*;
+import java.awt.*;
+
 /**
  * Write a description of class Player here.
  *
@@ -11,13 +13,15 @@ public class Player
     //Int array of meeples [6] each spot has one of the six colors
     //Int array [9] each spot has a different color tain card with how many the palyer has
     String name;
-    PlayerColor color;
+    Color color;
+    int score = 0;
     int[] trainCards = new int[9];
-    ArrayList<Route> destinations = new ArrayList<Route>(); //An ArrayList to hold the players destination tickets they currently have
-    ArrayList<Route> completedDestinations = new ArrayList<Route>(); //And to hold the completed tickets
-    public Player(String name, PlayerColor color){
-        this.name = name;
-        this.color = color;
+    int[] meeples = new int[6];
+    ArrayList<DestinationCard> destinations = new ArrayList(); //An ArrayList to hold the players destination tickets they currently have
+    ArrayList<DestinationCard> completedDestinations = new ArrayList(); //And to hold the completed tickets
+    public Player(String pname, Color pcolor){
+        name = pname;
+        color = pcolor;
     }
     //Same concept as the Cities meeples
     protected void addTrainCard(TrainColor color){
@@ -66,14 +70,35 @@ public class Player
         }
     }
     
-    protected void addDestinationTeckets(Route route){
-        destinations.add(route);
+    protected void addMeeple(MeepleColor meeple){
+        switch(meeple){
+            case RED: meeples[0] ++;
+            break;
+            case BLACK: meeples[1] ++;
+            break;
+            case GREEN: meeples[2] ++;
+            break;
+            case YELLOW: meeples[3] ++;
+            break;
+            case BLUE: meeples[4] ++;
+            break;
+            case WHITE: meeples[5] ++;
+            break;             
+        }
     }
     
-    protected void addCompletedDestinationTicket(Route route){
-        if(destinations.contains(route)){
-            destinations.remove(route);
+    protected void addMeeple(int index) {
+        meeples[index]++;
+    }
+    
+    protected void addDestinationCard(DestinationCard d){
+        destinations.add(d);
+    }
+    
+    protected void CompleteDestinationTicket(DestinationCard d){
+        if(destinations.contains(d)){
+            destinations.remove(d);
         }
-        completedDestinations.add(route);
+        completedDestinations.add(d);
     }
 }
