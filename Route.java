@@ -1,24 +1,40 @@
 import java.util.ArrayList;
+import java.awt.*;
+
 ////////////////////////////////////////////////////////////////////////////////
 /**
- * Write a description of class Route here.
+ * Idk what I'm doing I'm still figuring this class out
  *
  * @author (your name)
  * @version (a version number or a date)
  */
 public class Route
 {
-    protected int length; //Aka how many trains are needed to claim the route
-    protected RouteColor color; //The color of the route
+    //How many trains needed to claim the route
+    protected int length; 
+    
+    //The color of the route
+    protected RouteColor color; 
+    
+    //if there are two possibilities for this route in different colors
+    protected boolean twoColors; 
+    
+    //polygon to use as bounds for mouse hover and click
+    protected Polygon routeShape;
+    
+    //player's color once occupying the route
+    protected Color occupiedByColor;
+    
+    //holds locations of trains occypying route once it's claimed by a player
+    protected Polygon[] occupyingTrains;
+    
     //protected boolean doubleTrack;//If the route has double or triple capacity
     //protected boolean tripleTrack;
-    protected boolean twoColors; //if there are two possibilities for this route in different colors
-    protected boolean occupied;
-    private ArrayList<String> cities = new ArrayList<String>();
-    private ArrayList<RouteColor> colors = new ArrayList<RouteColor>();
+    private ArrayList<String> cities = new ArrayList<String>(2);
+    //private ArrayList<RouteColor> colors = new ArrayList<RouteColor>();
     public Route(int len, RouteColor rcolor, boolean twoCol){
         length = len;
-        color = color;
+        color = rcolor;
         
     }
 
@@ -35,7 +51,7 @@ public class Route
                 //set length
 
                 //set the color to whatever its supposed to be 
-                colors.add(RouteColor.YELLOW);
+                //colors.add(RouteColor.YELLOW);
                 //set points?
             }
             else if (cityTwoName.equals("Berlin"))
