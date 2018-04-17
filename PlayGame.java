@@ -4,6 +4,8 @@ import java.awt.event.*;
 import java.awt.image.*;
 import java.io.*;
 import javax.imageio.*;
+import java.util.*;
+import java.lang.String;
 /**
  * Write a description of class playGame here.
  *
@@ -28,18 +30,24 @@ public class PlayGame extends JPanel implements MouseListener
     private Image traincol, traincol2, traincol3, traincol4, traincol5, traincol6;
     private Image traincol7, traincol8, traincol9;
 
-    private static Image board, blackBackground;
+    private static Image board, blackBackground, TicketToRidePic;
 
     private Image misc, misc2, misc3, misc4;
+
+    private JButton button1, button2;
+
+    private static boolean playersChosen;
+    private static int numberOfPlayers;
+
+    private static JFrame frame;
     /**
      * Constructor for objects of class playGame
      */
     public PlayGame()
     {
-        
         addMouseListener(this);
         //createDestinationDeck();
-        String dir = "Images//";
+        String dir = "Images/";
         sdest = new ImageIcon(dir + "BerlChem.JPG").getImage();
         sdest2 = new ImageIcon(dir + "BerlErfu.JPG").getImage();
         sdest3 = new ImageIcon(dir + "BerlLeip.JPG").getImage();
@@ -143,31 +151,73 @@ public class PlayGame extends JPanel implements MouseListener
 
         board = new ImageIcon(dir + "Board.JPG").getImage();
         blackBackground = new ImageIcon(dir + "blackBackground.JPG").getImage();
+        TicketToRidePic = new ImageIcon(dir + "TicketToRide.JPG").getImage();
+
         misc = new ImageIcon(dir + "BlueDest.JPG").getImage();
         misc2 = new ImageIcon(dir + "Globetrotter.JPG").getImage();
         misc3 = new ImageIcon(dir + "OrangeDest.JPG").getImage();
         misc4 = new ImageIcon(dir + "TrainCardBack.JPG").getImage();
-        
+
         Dimension size = new Dimension(blackBackground.getWidth(null), board.getHeight(null));
+        //width is 900 pixels
+        //height is 600
         setPreferredSize(size);
         setMinimumSize(size);
         setMaximumSize(size);
         setSize(size);
         setLayout(null);
 
+        button1 = new JButton("Select Route");
+        button1.setBounds(10,10,100,20);
+        add(button1);
+        button1.addActionListener(new ActionListener()
+            {
+                public void actionPerformed(ActionEvent e) 
+                { 
+                    selectionButtonPressed();   
+                }         
+            });
     }
-    
+
     private static void createAndShowGUI() {
         //Create and set up the window.
-        JFrame frame = new JFrame("Ticket To Ride");
+        frame = new JFrame("Ticket To Ride");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
+
         PlayGame panel = new PlayGame();
         frame.getContentPane().add(panel);
 
         //Display the window.
         frame.pack();
         frame.setVisible(true);
+
+        //frame.addWindowListener(this);
+
+        //numberOfPlayers = parseInt(result);
+        //playersChosen = true;
+
+        //         Object[] options = {"1","2","3"};
+        //         int result = JOptionPane.showOptionDialog(frame,"Select number of players","Player Select",
+        //                 JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE,null,//do not use a custom Icon
+        //                 options,null);//the titles of buttons
+        //                 
+        //         if (result == JOptionPane.YES_OPTION)
+        //         {
+        //             numberOfPlayers = 1;
+        //             playersChosen = true;
+        //         }
+        //         if (result == JOptionPane.NO_OPTION)
+        //         {
+        //             numberOfPlayers = 2;
+        //             playersChosen = true;
+        //             //repaint();
+        //         }
+        //         if (result == JOptionPane.CANCEL_OPTION)
+        //         {
+        //             numberOfPlayers = 3;
+        //             playersChosen = true;
+        //             //repaint();
+        //         }
     }
 
     public static void main(String[] args) {
@@ -183,8 +233,36 @@ public class PlayGame extends JPanel implements MouseListener
     public void paintComponent(Graphics g) 
     {
         super.paintComponent(g);
-        g.drawImage(blackBackground,0,0,null);
-        g.drawImage(board,blackBackground.getWidth(null)/4,0,null);
+        drawLoadingScreen(g);
+        if(playersChosen)
+        {
+            g.drawImage(blackBackground,0,0,null);
+            g.drawImage(board,blackBackground.getWidth(null)/4,0,null);
+        }
+
+    }
+
+    public void drawLoadingScreen(Graphics g)
+    {
+        g.drawImage(TicketToRidePic,0,0,null);
+        //String result = JOptionPane.showInputDialog(frame, "Enter number of players: (MINIMUM OF 1 AND MAXIMUM OF 3).");
+        playersChosen=true;
+    }
+
+    public void drawTrainCards(Graphics g)
+    {
+        
+    }
+
+    public static void playersChosen()
+    {
+        playersChosen = true;
+        //repaint();
+    }
+
+    public void selectionButtonPressed()
+    {
+
     }
 
     /**
@@ -192,7 +270,7 @@ public class PlayGame extends JPanel implements MouseListener
      */
     private void createTrainDeck()
     {
-        
+
     }
 
     /**
@@ -200,7 +278,7 @@ public class PlayGame extends JPanel implements MouseListener
      */
     private void createDestinationDeck()
     {
-        
+
     }
 
     /**
@@ -241,7 +319,6 @@ public class PlayGame extends JPanel implements MouseListener
         //repaint();
         //e.consume();
     }
-
 
     /**
      * Gets user input to set up the game (number of players, etc)
