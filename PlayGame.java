@@ -36,8 +36,8 @@ public class PlayGame extends JPanel implements MouseListener
 
     private JButton button1, button2;
 
-    private static boolean playersChosen;
-    private static int numberOfPlayers;
+    private static boolean playerChosen;
+    protected static int numberOfPlayers;
 
     private static JFrame frame;
     /**
@@ -151,7 +151,7 @@ public class PlayGame extends JPanel implements MouseListener
 
         board = new ImageIcon(dir + "Board.JPG").getImage();
         blackBackground = new ImageIcon(dir + "blackBackground.JPG").getImage();
-        TicketToRidePic = new ImageIcon(dir + "TicketToRide.JPG").getImage();
+        TicketToRidePic = new ImageIcon(dir + "HomeScreen.JPG").getImage();
 
         misc = new ImageIcon(dir + "BlueDest.JPG").getImage();
         misc2 = new ImageIcon(dir + "Globetrotter.JPG").getImage();
@@ -179,84 +179,29 @@ public class PlayGame extends JPanel implements MouseListener
             });
     }
 
-    private static void createAndShowGUI() {
-        //Create and set up the window.
-        frame = new JFrame("Ticket To Ride");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        PlayGame panel = new PlayGame();
-        frame.getContentPane().add(panel);
-
-        //Display the window.
-        frame.pack();
-        frame.setVisible(true);
-
-        //frame.addWindowListener(this);
-
-        //numberOfPlayers = parseInt(result);
-        //playersChosen = true;
-
-        //         Object[] options = {"1","2","3"};
-        //         int result = JOptionPane.showOptionDialog(frame,"Select number of players","Player Select",
-        //                 JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE,null,//do not use a custom Icon
-        //                 options,null);//the titles of buttons
-        //                 
-        //         if (result == JOptionPane.YES_OPTION)
-        //         {
-        //             numberOfPlayers = 1;
-        //             playersChosen = true;
-        //         }
-        //         if (result == JOptionPane.NO_OPTION)
-        //         {
-        //             numberOfPlayers = 2;
-        //             playersChosen = true;
-        //             //repaint();
-        //         }
-        //         if (result == JOptionPane.CANCEL_OPTION)
-        //         {
-        //             numberOfPlayers = 3;
-        //             playersChosen = true;
-        //             //repaint();
-        //         }
-    }
-
-    public static void main(String[] args) {
-        //Schedule a job for the event-dispatching thread:
-        //creating and showing this application's GUI.
-        javax.swing.SwingUtilities.invokeLater(new Runnable() {
-                public void run() {
-                    createAndShowGUI();
-                }
-            });
-    }
-
     public void paintComponent(Graphics g) 
     {
         super.paintComponent(g);
-        drawLoadingScreen(g);
-        if(playersChosen)
-        {
+        homeScreen(g);
+        if(playerChosen){
             g.drawImage(blackBackground,0,0,null);
             g.drawImage(board,blackBackground.getWidth(null)/4,0,null);
         }
-
     }
 
-    public void drawLoadingScreen(Graphics g)
+    public void homeScreen(Graphics g)
     {
         g.drawImage(TicketToRidePic,0,0,null);
-        //String result = JOptionPane.showInputDialog(frame, "Enter number of players: (MINIMUM OF 1 AND MAXIMUM OF 3).");
-        playersChosen=true;
+
     }
 
     public void drawTrainCards(Graphics g)
     {
-        
+
     }
 
     public static void playersChosen()
     {
-        playersChosen = true;
         //repaint();
     }
 
@@ -352,5 +297,28 @@ public class PlayGame extends JPanel implements MouseListener
     private void endGame() 
     {
 
+    }
+
+    protected static void createAndShowGUI() {
+        //Create and set up the window.
+        frame = new JFrame("Ticket To Ride");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        PlayGame panel = new PlayGame();
+        frame.getContentPane().add(panel);
+
+        //Display the window.
+        frame.pack();
+        frame.setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        //Schedule a job for the event-dispatching thread:
+        //creating and showing this application's GUI.
+        javax.swing.SwingUtilities.invokeLater(new Runnable() {
+                public void run() {
+                    createAndShowGUI();
+                }
+            });
     }
 }
