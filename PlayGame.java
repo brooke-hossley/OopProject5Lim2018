@@ -40,6 +40,8 @@ public class PlayGame extends JPanel implements MouseListener
     protected static int numberOfPlayers;
 
     private static JFrame frame;
+    
+    private Deck trainCards;
     /**
      * Constructor for objects of class playGame
      */
@@ -167,25 +169,42 @@ public class PlayGame extends JPanel implements MouseListener
         setSize(size);
         setLayout(null);
 
-        button1 = new JButton("Select Route");
-        button1.setBounds(10,10,100,20);
+         button1 = new JButton("Select Short Card");
+        button1.setBounds(1100,590,190,20);
         add(button1);
         button1.addActionListener(new ActionListener()
             {
                 public void actionPerformed(ActionEvent e) 
                 { 
-                    selectionButtonPressed();   
+                  shortButtonPressed();
                 }         
             });
+
+        button2 = new JButton("Select Long Card");
+        button2.setBounds(1100,620,190,20);
+        add(button2);
+        button2.addActionListener(new ActionListener()
+            {
+                public void actionPerformed(ActionEvent e)
+                { 
+                    longButtonPressed();
+                }         
+            });
+
     }
 
     public void paintComponent(Graphics g) 
     {
-        super.paintComponent(g);
-        homeScreen(g);
-        if(playerChosen){
+       super.paintComponent(g);
+        drawLoadingScreen(g);
+        
+        if(playersChosen)
+        {
             g.drawImage(blackBackground,0,0,null);
-            g.drawImage(board,blackBackground.getWidth(null)/4,0,null);
+            g.drawImage(board,270,0,null);
+        }
+        drawTrainCards(g);
+        drawDestinationCards(g);
         }
     }
 
@@ -197,17 +216,30 @@ public class PlayGame extends JPanel implements MouseListener
 
     public void drawTrainCards(Graphics g)
     {
+        //g.drawImage(trainCards.drawTrainCard.getPicture(),0,0,null);        
+        g.drawImage(misc4,930,650,null);
+    }
 
+    public void drawDestinationCards(Graphics g)
+    {
+        g.drawImage(misc,1100,650,null);
+        g.drawImage(misc3,1200,650,null);
     }
 
     public static void playersChosen()
     {
+        playersChosen = true;
         //repaint();
     }
 
-    public void selectionButtonPressed()
+    public void shortButtonPressed()
     {
-
+        
+    }
+    
+    public void longButtonPressed()
+    {
+        
     }
 
     /**
@@ -215,7 +247,7 @@ public class PlayGame extends JPanel implements MouseListener
      */
     private void createTrainDeck()
     {
-
+        trainCards = new Deck();
     }
 
     /**
