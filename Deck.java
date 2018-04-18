@@ -11,16 +11,16 @@ import javax.swing.*;
 public class Deck
 {
     //lists to represent remaining destination cards
-    protected ArrayList<DestinationCard> shortCards = new ArrayList<>(55);
-    protected ArrayList<DestinationCard> longCards = new ArrayList<>(34);
+    protected ArrayList<DestinationCard> shortCards;
+    protected ArrayList<DestinationCard> longCards;
 
     //still trying to figure out how to efficiently store train cards
-    protected ArrayList<TrainCard> trainCards = new ArrayList(110);
-    protected ArrayList<TrainCard> discardedTrainCards = new ArrayList(110);
-    protected ArrayList<TrainCard> faceUpTrains = new ArrayList(5);
+    protected ArrayList<TrainCard> trainCards;
+    protected ArrayList<TrainCard> discardedTrainCards;
+    protected ArrayList<TrainCard> faceUpTrains;
 
     //protected TrainCard[] tCardReferences = new TrainCard[9];
-    protected Image[] trainCardPics= new Image[9];
+    protected Image[] trainCardPics;
 
     protected Random rand = new Random();
 
@@ -30,7 +30,13 @@ public class Deck
      */
     public Deck()
     {
-        //add all the short cards into random locations to simulate shuffle
+        shortCards = new ArrayList<DestinationCard>(55);
+        longCards = new ArrayList<DestinationCard>(34);
+        trainCards = new ArrayList<TrainCard>(110);
+        discardedTrainCards = new ArrayList<TrainCard>(110);
+        faceUpTrains = new ArrayList<TrainCard>(5);
+        trainCardPics = new Image[9];
+        //add all the short cards in order
         shortCards.add(new DestinationCard("Berlin", "Chemnitz", 6, "BerlChem.JPG"));
         shortCards.add(new DestinationCard("Berlin", "Erfurt", 7, "BerlErfu.JPG"));
         shortCards.add(new DestinationCard("Berlin", "Leipzig", 4, "BerlLeip.JPG"));
@@ -86,10 +92,9 @@ public class Deck
         shortCards.add(new DestinationCard("Niederlande", "Frankfurt", 8, "NiedFran.JPG"));
         shortCards.add(new DestinationCard("Niederlande", "Karlsruhe", 9, "NiedKarl.JPG"));
         shortCards.add(new DestinationCard("Nurnberg", "Stuttgart", 7, "NurnStut.JPG"));
-        //Chris: continue with rest of blue destination cards here
+        
         Collections.shuffle(shortCards);
         
-
         //add all the long cards into random locations to simulate shuffle
         longCards.add(new DestinationCard("Berlin", "Dusseldorf", 13, "BerlDuss.JPG"));
         longCards.add(new DestinationCard("Berlin", "Frankfurt", 14, "BerlFran.JPG"));
@@ -128,6 +133,7 @@ public class Deck
         //Chris: continue with rest of orange destination cards here
         Collections.shuffle(longCards);
 
+        
         //will need rest of stuff in constructor if we store train cards differently
         trainCardPics[0] = Toolkit.getDefaultToolkit().getImage("Images\\YellowCard.JPG");
         trainCardPics[1] = Toolkit.getDefaultToolkit().getImage("Images\\BlueCard.JPG");
