@@ -29,6 +29,7 @@ public class PlayGame extends JPanel implements MouseListener
     public PlayGame()
     {
         addMouseListener(this);
+        createDeck();
         String dir = "Images/";
         traincol = new ImageIcon(dir + "BlackCard.JPG").getImage();
         traincol2 = new ImageIcon(dir + "BlueCard.JPG").getImage();
