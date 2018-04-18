@@ -30,8 +30,9 @@ public class Deck
      */
     public Deck()
     {
+        String dir = "Images/";
         //add all the short cards into random locations to simulate shuffle
-        shortCards.add(rand.nextInt(shortCards.size()), new DestinationCard("Berlin", "Chemnitz", 6, "BerlChem.JPG"));
+        shortCards.add(rand.nextInt(shortCards.size()), new DestinationCard("Berlin", "Chemnitz", 6, (dir + "BerlChem.JPG")));
         shortCards.add(rand.nextInt(shortCards.size()), new DestinationCard("Berlin", "Erfurt", 7, "BerlErfu.JPG"));
         shortCards.add(rand.nextInt(shortCards.size()), new DestinationCard("Berlin", "Leipzig", 4, "BerlLeip.JPG"));
         shortCards.add(rand.nextInt(shortCards.size()), new DestinationCard("Bremen", "Berlin", 10, "BremBerl.JPG"));
