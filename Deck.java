@@ -2,6 +2,7 @@ import java.util.*;
 import java.util.Random;
 import java.awt.*;
 import javax.swing.*;
+import java.io.File;
 /**
  * Write a description of class Deck here.
  *
@@ -17,7 +18,7 @@ public class Deck
     //still trying to figure out how to efficiently store train cards
     protected ArrayList<TrainCard> trainCards;
     protected ArrayList<TrainCard> discardedTrainCards;
-    protected ArrayList<TrainCard> faceUpTrains;
+    protected ArrayList<TrainCard> faceUpTrainCards;
 
     //protected TrainCard[] tCardReferences = new TrainCard[9];
     protected Image[] trainCardPics;
@@ -34,7 +35,7 @@ public class Deck
         longCards = new ArrayList<DestinationCard>(34);
         trainCards = new ArrayList<TrainCard>(110);
         discardedTrainCards = new ArrayList<TrainCard>(110);
-        faceUpTrains = new ArrayList<TrainCard>(5);
+        faceUpTrainCards = new ArrayList<TrainCard>(5);
         trainCardPics = new Image[9];
         //add all the short cards in order
         shortCards.add(new DestinationCard("Berlin", "Chemnitz", 6, "BerlChem.JPG"));
@@ -130,20 +131,21 @@ public class Deck
         longCards.add(new DestinationCard("Rostock", "Osterreich", 22, "RostOste.JPG"));
         longCards.add(new DestinationCard("Schwerin", "Koblenz", 12, "SchKob.JPG"));
         longCards.add(new DestinationCard("Schwerin", "Frankfurt", 13, "SchwFran.JPG"));
-        //Chris: continue with rest of orange destination cards here
+        //are we missing one? hamburg Berlin 15? 
+        
         Collections.shuffle(longCards);
 
         
         //will need rest of stuff in constructor if we store train cards differently
-        trainCardPics[0] = Toolkit.getDefaultToolkit().getImage("Images\\YellowCard.JPG");
-        trainCardPics[1] = Toolkit.getDefaultToolkit().getImage("Images\\BlueCard.JPG");
-        trainCardPics[2] = Toolkit.getDefaultToolkit().getImage("Images\\GreenCard.JPG");
-        trainCardPics[3] = Toolkit.getDefaultToolkit().getImage("Images\\PinkCard.JPG");
-        trainCardPics[4] = Toolkit.getDefaultToolkit().getImage("Images\\RedCard.JPG");
-        trainCardPics[5] = Toolkit.getDefaultToolkit().getImage("Images\\BlackCard.JPG");
-        trainCardPics[6] = Toolkit.getDefaultToolkit().getImage("Images\\OrangeCard.JPG");
-        trainCardPics[7] = Toolkit.getDefaultToolkit().getImage("Images\\WhiteCard.JPG");
-        trainCardPics[8] = Toolkit.getDefaultToolkit().getImage("Images\\RainbowCard.JPG");
+        trainCardPics[0] = Toolkit.getDefaultToolkit().getImage("Images" + File.separator + "YellowCard.JPG");
+        trainCardPics[1] = Toolkit.getDefaultToolkit().getImage("Images" + File.separator + "BlueCard.JPG");
+        trainCardPics[2] = Toolkit.getDefaultToolkit().getImage("Images" + File.separator + "GreenCard.JPG");
+        trainCardPics[3] = Toolkit.getDefaultToolkit().getImage("Images" + File.separator + "PinkCard.JPG");
+        trainCardPics[4] = Toolkit.getDefaultToolkit().getImage("Images" + File.separator + "RedCard.JPG");
+        trainCardPics[5] = Toolkit.getDefaultToolkit().getImage("Images" + File.separator + "BlackCard.JPG");
+        trainCardPics[6] = Toolkit.getDefaultToolkit().getImage("Images" + File.separator + "OrangeCard.JPG");
+        trainCardPics[7] = Toolkit.getDefaultToolkit().getImage("Images" + File.separator + "WhiteCard.JPG");
+        trainCardPics[8] = Toolkit.getDefaultToolkit().getImage("Images" + File.separator + "RainbowCard.JPG");
 
         for (int i = 0; i < 12; i++) 
             trainCards.add(new TrainCard(TrainColor.YELLOW, 0, trainCardPics[0]));
@@ -152,26 +154,32 @@ public class Deck
         for (int i = 0; i < 12; i++) 
             trainCards.add(new TrainCard(TrainColor.GREEN, 2, trainCardPics[2]));
         for (int i = 0; i < 12; i++) 
-            trainCards.add(new TrainCard(TrainColor.PINK, 3, trainCardPics[0]));
+            trainCards.add(new TrainCard(TrainColor.PINK, 3, trainCardPics[3]));
         for (int i = 0; i < 12; i++) 
-            trainCards.add(new TrainCard(TrainColor.RED, 4, trainCardPics[0]));
+            trainCards.add(new TrainCard(TrainColor.RED, 4, trainCardPics[4]));
         for (int i = 0; i < 12; i++) 
-            trainCards.add(new TrainCard(TrainColor.BLACK, 5, trainCardPics[0]));
+            trainCards.add(new TrainCard(TrainColor.BLACK, 5, trainCardPics[5]));
         for (int i = 0; i < 12; i++) 
-            trainCards.add(new TrainCard(TrainColor.ORANGE, 6, trainCardPics[0]));
+            trainCards.add(new TrainCard(TrainColor.ORANGE, 6, trainCardPics[6]));
         for (int i = 0; i < 12; i++)
-            trainCards.add(new TrainCard(TrainColor.WHITE, 7, trainCardPics[0]));
+            trainCards.add(new TrainCard(TrainColor.WHITE, 7, trainCardPics[7]));
         for (int i = 0; i < 14; i++)
-            trainCards.add(new TrainCard(TrainColor.RAINBOW, 8, trainCardPics[0]));
+            trainCards.add(new TrainCard(TrainColor.RAINBOW, 8, trainCardPics[8]));
         Collections.shuffle(trainCards);
             
         //put top 5 traincards into faceup deck
         for (int i = 0; i < 5; i++)
-            faceUpTrains.add(trainCards.remove((shortCards.size()-1)));
+            faceUpTrainCards.add(trainCards.remove((shortCards.size()-1)));
 
     }
 
-    //add methods for showing 5 cards
+    //add methods for 5 faceup cards
+    protected TrainCard drawFaceupCard(int index){
+        TrainCard temp = faceUpTrainCards.remove(index);
+        faceUpTrainCards.add(drawTrainCard());
+        return temp;
+    }
+    
 
     protected void discardTrainCard(TrainCard tCard){
         discardedTrainCards.add(tCard);
@@ -180,15 +188,20 @@ public class Deck
     //draw traincard from top of deck
     protected TrainCard drawTrainCard(){
         if (trainCards.isEmpty()) {
+            //return null if train deck and discards are both empty
+            if (discardedTrainCards.isEmpty())
+                return null;
+            //otherwise reshuffle discards into train deck
             reshuffleDiscards();
         }
         return trainCards.remove(rand.nextInt(trainCards.size()));
     }
 
     //method to move all discards to trainCards deck when that's empty
-    protected void reshuffleDiscards() {
+    private void reshuffleDiscards() {
+        Collections.shuffle(discardedTrainCards);
         while (!discardedTrainCards.isEmpty()) {
-            trainCards.add(discardedTrainCards.remove(rand.nextInt(trainCards.size())));
+            trainCards.add(discardedTrainCards.remove(trainCards.size()-1));
         }
     }
 
@@ -209,7 +222,7 @@ public class Deck
 
     protected DestinationCard drawLongCard(){
         //draws from top of pile aka last position in arraylist
-        return longCards.remove(shortCards.size()-1-1);
+        return longCards.remove(longCards.size()-1);
     }
 
     public static void main (String args[]) {
@@ -218,7 +231,7 @@ public class Deck
         System.out.println(d.longCards.size()-1);
         System.out.println(d.trainCards.size());
         System.out.println(d.discardedTrainCards.size());
-        System.out.println(d.faceUpTrains.size());
+        System.out.println(d.faceUpTrainCards.size());
     }
 
 }

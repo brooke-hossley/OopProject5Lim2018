@@ -23,7 +23,7 @@ public class DestinationCard //extends Card
         city2 = c2;
         points = p;
         //Path f = Paths.get("." + "Images\\).toAbsolutePath();
-        picture = Toolkit.getDefaultToolkit().getImage("Images\\" + fileName);
+        picture = Toolkit.getDefaultToolkit().getImage("Images" + File.separator + fileName);
         
     }
     
