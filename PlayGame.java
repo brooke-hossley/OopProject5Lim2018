@@ -30,23 +30,23 @@ public class PlayGame extends JPanel implements MouseListener
     {
         addMouseListener(this);
         createDeck();
-        String dir = "Images/";
-        traincol = new ImageIcon(dir + "BlackCard.JPG").getImage();
-        traincol2 = new ImageIcon(dir + "BlueCard.JPG").getImage();
-        traincol3 = new ImageIcon(dir + "GreenCard.JPG").getImage();
-        traincol4= new ImageIcon(dir + "OrangeCard.JPG").getImage();
-        traincol5 = new ImageIcon(dir + "PurpleCard.JPG").getImage();
-        traincol6 = new ImageIcon(dir + "RainbowCard.JPG").getImage();
-        traincol7 = new ImageIcon(dir + "RedCard.JPG").getImage();
-        traincol8 = new ImageIcon(dir + "WhiteCard.JPG").getImage();
-        traincol9 = new ImageIcon(dir + "YellowCard.JPG").getImage();
-        board = new ImageIcon(dir + "Board.JPG").getImage();
-        blackBackground = new ImageIcon(dir + "blackBackground.JPG").getImage();
-        TicketToRidePic = new ImageIcon(dir + "HomeScreen.JPG").getImage();
-        blueDest = new ImageIcon(dir + "BlueDest.JPG").getImage();
-        globeTrotter = new ImageIcon(dir + "Globetrotter.JPG").getImage();
-        orangeDest = new ImageIcon(dir + "OrangeDest.JPG").getImage();
-        trainCardBack = new ImageIcon(dir + "TrainCardBack.JPG").getImage();
+        //String dir = "Images/";
+        traincol = new ImageIcon("Images" + File.separator + "BlackCard.JPG").getImage();
+        traincol2 = new ImageIcon("Images" + File.separator + "BlueCard.JPG").getImage();
+        traincol3 = new ImageIcon("Images" + File.separator + "GreenCard.JPG").getImage();
+        traincol4= new ImageIcon("Images" + File.separator + "OrangeCard.JPG").getImage();
+        traincol5 = new ImageIcon("Images" + File.separator + "PurpleCard.JPG").getImage();
+        traincol6 = new ImageIcon("Images" + File.separator + "RainbowCard.JPG").getImage();
+        traincol7 = new ImageIcon("Images" + File.separator + "RedCard.JPG").getImage();
+        traincol8 = new ImageIcon("Images" + File.separator + "WhiteCard.JPG").getImage();
+        traincol9 = new ImageIcon("Images" + File.separator + "YellowCard.JPG").getImage();
+        board = new ImageIcon("Images" + File.separator + "Board.JPG").getImage();
+        blackBackground = new ImageIcon("Images" + File.separator + "blackBackground.JPG").getImage();
+        TicketToRidePic = new ImageIcon("Images" + File.separator + "HomeScreen.JPG").getImage();
+        blueDest = new ImageIcon("Images" + File.separator + "BlueDest.JPG").getImage();
+        globeTrotter = new ImageIcon("Images" + File.separator + "Globetrotter.JPG").getImage();
+        orangeDest = new ImageIcon("Images" + File.separator + "OrangeDest.JPG").getImage();
+        trainCardBack = new ImageIcon("Images" + File.separator + "TrainCardBack.JPG").getImage();
 
         Dimension size = new Dimension(blackBackground.getWidth(null), board.getHeight(null));
         //width is ... pixels

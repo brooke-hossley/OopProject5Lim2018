@@ -30,10 +30,10 @@ public class Driver extends JPanel implements ActionListener
     public Driver()
     {
         //Images with paths
-        String dir = "Images\\";
+        //String dir = "Images\\";
         //background = new ImageIcon(dir + "HomeScreen.jpg").getImage();
         //background = background.getScaledInstance();
-        background2 = new ImageIcon(dir + "homescreenbackground.jpg").getImage();
+        background2 = new ImageIcon("Images" + File.separator + "homescreenbackground.jpg").getImage();
         //background2 = background2.getScaledInstance(1200, 700, Image.SCALE_DEFAULT);
         //Set window to correct size
         Dimension size = new Dimension(1200, 700);
