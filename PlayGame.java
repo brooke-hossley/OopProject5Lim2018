@@ -35,7 +35,7 @@ public class PlayGame extends JPanel implements MouseListener
         //         numberOfPlayers = 2;
         //         Player player1 = new Player("Player 1" , "Yellow");
         //         Player player2 = new Player("Player 2" , "Red");
-        
+
         players = Driver.getPlayers();
         addMouseListener(this);
         createDeck();
@@ -128,12 +128,16 @@ public class PlayGame extends JPanel implements MouseListener
     {
         Font font = new Font("Verdana", Font.BOLD, 50);
         g.setFont(font);
-        g.setColor(Color.YELLOW);
-        g.drawString("Player 1" , 10,50);
-        g.drawString("Score: 0" , 10,100);
-        g.setColor(Color.RED);
-        g.drawString("Player 2", 10, 200);
-        g.drawString("Score: 0" , 10,250);
+        int x = 10;
+        int y = 50;
+        for(Player p : players)
+        {
+            g.setColor(p.getColor());
+            g.drawString(p.getName(), x,y);
+            y+=50;
+            g.drawString("Score: "+p.getScore(),x,y);
+            y+=100;
+        }
     }
 
     /**
@@ -178,7 +182,7 @@ public class PlayGame extends JPanel implements MouseListener
             // creates a list of options in a JOption pain
             for(int i = 0; i < 4; i++)
             {
-                boxes[i] = new JCheckBox(cards[i].getPicture() + 
+                boxes[i] = new JCheckBox(cards[i].toString() + 
                     " for " + cards[i].getPoints() + " points");
             }   
 
