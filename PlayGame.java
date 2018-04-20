@@ -71,27 +71,27 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
         setSize(size);
         setLayout(null);
 
-        button1 = new JButton("Select Short Card");
-        button1.setBounds(1100,590,190,20);
-        add(button1);
-        button1.addActionListener(new ActionListener()
-            {
-                public void actionPerformed(ActionEvent e) 
-                { 
-                    shortButtonPressed();
-                }         
-            });
+        // button1 = new JButton("Select Short Card");
+        // button1.setBounds(1100,590,190,20);
+        // add(button1);
+        // button1.addActionListener(new ActionListener()
+        // {
+        // public void actionPerformed(ActionEvent e) 
+        // { 
+        // shortButtonPressed();
+        // }         
+        // });
 
-        button2 = new JButton("Select Long Card");
-        button2.setBounds(1100,620,190,20);
-        add(button2);
-        button2.addActionListener(new ActionListener()
-            {
-                public void actionPerformed(ActionEvent e)
-                { 
-                    longButtonPressed();
-                }         
-            });
+        // button2 = new JButton("Select Long Card");
+        // button2.setBounds(1100,620,190,20);
+        // add(button2);
+        // button2.addActionListener(new ActionListener()
+        // {
+        // public void actionPerformed(ActionEvent e)
+        // { 
+        // longButtonPressed();
+        // }         
+        // });
 
         dealDestinationCards();
         drawFirstFour();
@@ -114,14 +114,19 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
 
     public void drawTrainCards(Graphics g)
     {   
-        g.drawImage(trainCardBack,930,650,null);
-        //g.drawImage(trainCards.drawTrainCard().getPicture(),930,600,null);  
-        g.drawImage(deck.faceUpTrainCards.get(0).getPicture(),930,550,null);
-        g.drawImage(deck.faceUpTrainCards.get(1).getPicture(),930,450,null);
-        g.drawImage(deck.faceUpTrainCards.get(2).getPicture(),930,350,null);
-        g.drawImage(deck.faceUpTrainCards.get(3).getPicture(),930,250,null);
-        g.drawImage(deck.faceUpTrainCards.get(4).getPicture(),930,150,null);
-        
+        int x1 = 905;
+        int y1 = 620;
+        if (!deck.trainCards.isEmpty()) {
+            g.drawImage(trainCardBack,x1,y1, null);
+            y1 -=100;
+        }
+        for (int i=0; i<5; i++) {
+            if (deck.faceUpTrainCards.get(i)!=null) {
+                g.drawImage(deck.faceUpTrainCards.get(i).getPicture(),x1,y1,null);
+                y1 -= 100;
+            }
+        }
+
         //draw the 9 card images on player side
         int x = 10;
         int y = 50;
@@ -130,13 +135,17 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
             y += 55;
             x += 10;
         }
-        
+
     }
 
     public void drawDestinationCards(Graphics g)
     {
-        g.drawImage(blueDest,1100,650,null);
-        g.drawImage(orangeDest,1200,650,null);
+        if (!deck.shortCards.isEmpty()) {
+            g.drawImage(blueDest,1050,620,null);
+        }
+        if (!deck.longCards.isEmpty()) {
+            g.drawImage(orangeDest,1150,620,null);
+        }
     }
 
     public void drawPlayerInfo(Graphics g)
@@ -144,10 +153,10 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
         Font font = new Font("Verdana", Font.BOLD, 20);
         g.setFont(font);
         g.setColor(Color.WHITE);
-        
-        int x = 930;
+
+        int x = 905;
         int y = 50;
-        
+
         g.drawString("Player Scores", x,22);
         for(Player p : players)
         {
@@ -155,12 +164,12 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
             g.drawString(p.getName() + ": "+ p.getScore(), x,y);
             y+=25;
         }
-        
+
         g.setColor(currentPlayer.getColor());
         g.drawString(currentPlayer.getName() + " has " + currentPlayer.getCarsRemaining() + " train pieces", 10,22);
-        
+
         ////to do: display meeple counts and option to see their destination cards
-        
+
         //draw the 9 card images on player side
         int x2 = 73;
         int y2 = 77;
@@ -173,7 +182,7 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
             y2 += 55;
             x2 += 10;
         }
-        
+
     }
 
     /**
@@ -193,6 +202,66 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
         }   
     }
 
+    protected void chooseDestinationCards(Player p, int keep){
+        // if (deck.shortCards.size() + deck.longCards.size() <4) {
+            // JOptionPane.showMessageDialog(null,"There are only " + "shortCards.size()";
+            // return;
+        // }
+        
+        JOptionPane.showMessageDialog(null,"Dealing " +
+            p.getName()+"'s destination tickets!");
+        // players options for their destination cards
+        DestinationCard[] cards = new DestinationCard[4];
+        // adds three destination cards
+        for(int k = 0; k < 3; k++)
+        {
+            cards[k] = deck.drawShortCard();
+        }
+        // adds one long destination card
+        cards[3] = deck.drawLongCard();
+        // check boxes for the players options
+        JCheckBox[] boxes = new JCheckBox[4];
+        // creates a list of options in a JOption pain
+        for(int i = 0; i < 4; i++)
+        {
+            boxes[i] = new JCheckBox(cards[i].toString() + 
+                " for " + cards[i].getPoints() + " points");
+        }   
+
+        int count = 0;
+        // makes sure at least 2 cards are chosen
+        do 
+        {
+            count = 0;
+            JOptionPane.showMessageDialog(null,boxes,"Pick your "
+                +"destinations", JOptionPane.QUESTION_MESSAGE);
+            for(int n = 0; n < 4; n++)
+            {
+                if(boxes[n].isSelected())
+                {
+                    count++;
+                }
+            }
+        } while(count < keep);
+
+        for(int j = 0; j < 4; j++)
+        {
+            if(boxes[j].isSelected())
+            {
+                p.addDestinationCard(cards[j]);
+            }
+            else if(!boxes[j].isSelected() && j != 3)
+            {
+                if(cards[j].getPoints()<=11)
+                {
+                    deck.addShortCard(cards[j]);
+                }
+                else deck.addLongCard(cards[j]);
+            }
+        }
+
+    }
+
     /**
      * Gives players destination cards to choose from 
      */
@@ -202,61 +271,10 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
         // have them pick at least 2
         for(Player p : players)
         {
-            JOptionPane.showMessageDialog(null,"Dealing " +
-                p.getName()+"'s destination tickets!");
-            // players options for their destination cards
-            DestinationCard[] cards = new DestinationCard[4];
-            // adds three destination cards
-            for(int k = 0; k < 3; k++)
-            {
-                cards[k] = deck.drawShortCard();
-            }
-            // adds one long destination card
-            cards[3] = deck.drawLongCard();
-            // check boxes for the players options
-            JCheckBox[] boxes = new JCheckBox[4];
-            // creates a list of options in a JOption pain
-            for(int i = 0; i < 4; i++)
-            {
-                boxes[i] = new JCheckBox(cards[i].toString() + 
-                    " for " + cards[i].getPoints() + " points");
-            }   
-
-            int count = 0;
-            // makes sure at least 2 cards are chosen
-            do 
-            {
-                count = 0;
-                JOptionPane.showMessageDialog(null,boxes,"Pick your "
-                    +"destinations", JOptionPane.QUESTION_MESSAGE);
-                for(int n = 0; n < 4; n++)
-                {
-                    if(boxes[n].isSelected())
-                    {
-                        count++;
-                    }
-                }
-            } while(count <= 1);
-
-            for(int j = 0; j < 4; j++)
-            {
-                if(boxes[j].isSelected())
-                {
-                    p.addDestinationCard(cards[j]);
-                }
-                else if(!boxes[j].isSelected() && j != 3)
-                {
-                    if(cards[j].getPoints()<=11)
-                    {
-                        deck.addShortCard(cards[j]);
-                    }
-                    else deck.addLongCard(cards[j]);
-                }
-            }
-
+            chooseDestinationCards(p, 2);
         }       
     }
-    
+
     protected void claimRoute (Route route) {
         ////////////////To do:///////////////
         //if route already taken then no
@@ -298,7 +316,7 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
         //check if mouse location is within boundaries of a city
         //if so paint a little box for the city info like name and meeples
     }
-    
+
     /**
      * @param e an event that indicates a mouse action has occured.
      */
@@ -323,13 +341,19 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
         //click = true;
         //repaint();
         //e.consume();
-        
+
         ////////////////To do:///////////////
         //check if clicked on a route
         //check if clicked on a train card in deck
         //check if clicked on destination card deck
         //in all these cases after stuff happens we move to next player in list
         //check if trying to see their own destination cards
+        if (e.getX() >= 1050 && e.getX() <=1250 && e.getY() >= 620 && e.getY() <= 770) {
+            chooseDestinationCards(currentPlayer, 1);
+        }
+        
+        nextPlayer();
+        repaint();
     }
 
     protected void nextPlayer() {
@@ -339,7 +363,7 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
         else 
             currentPlayer = players.get(index+1);
     }
-    
+
     /**
      * Adds the bonus points to each player
      */
