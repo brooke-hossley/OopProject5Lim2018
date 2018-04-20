@@ -27,7 +27,7 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
     private static JFrame frame;
     private Deck deck;
     private Board board;
-
+    private int cardsTaken;
     /**
      * Constructor for objects of class playGame
      */
@@ -116,13 +116,17 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
     {   
         int x1 = 905;
         int y1 = 620;
+        //draw face down train card
         if (!deck.trainCards.isEmpty()) {
             g.drawImage(trainCardBack,x1,y1, null);
             y1 -=100;
         }
+        //draw the face up train cards
         for (int i=0; i<5; i++) {
             if (deck.faceUpTrainCards.get(i)!=null) {
+                //x1 y1 to begin is 905,520
                 g.drawImage(deck.faceUpTrainCards.get(i).getPicture(),x1,y1,null);
+                //decrements by 100 for the next card
                 y1 -= 100;
             }
         }
@@ -204,10 +208,10 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
 
     protected void chooseDestinationCards(Player p, int keep){
         // if (deck.shortCards.size() + deck.longCards.size() <4) {
-            // JOptionPane.showMessageDialog(null,"There are only " + "shortCards.size()";
-            // return;
+        // JOptionPane.showMessageDialog(null,"There are only " + "shortCards.size()";
+        // return;
         // }
-        
+
         JOptionPane.showMessageDialog(null,"Dealing " +
             p.getName()+"'s destination tickets!");
         // players options for their destination cards
@@ -344,16 +348,92 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
 
         ////////////////To do:///////////////
         //check if clicked on a route
+
         //check if clicked on a train card in deck
+        cardsTaken = 0;
+
+        if(e.getX() >=905 && e.getX() <= 1055 && e.getY() >= 620 && e.getY() <= 470)
+        {
+            deck.drawTrainCard();
+            cardsTaken++;
+            if(cardsTaken>=2)
+            {
+                nextPlayer();   
+            }
+            repaint();
+        }
+
+        if(e.getX() >=905 && e.getX() <= 1055 && e.getY() >= 520 && e.getY() <= 610)  
+        {
+            //x and y of the bottom most, face up train card
+            deck.drawFaceupCard(0);
+            cardsTaken++;
+            if(cardsTaken>=2)
+            {
+                nextPlayer();   
+            }
+            repaint();
+        }
+
+        if(e.getX() >=905 && e.getX() <= 1055 && e.getY() >= 420 && e.getY() <= 510)  
+        {
+            //x and y of the 2nd, face up train card
+            deck.drawFaceupCard(1);
+            cardsTaken++;
+            if(cardsTaken>=2)
+            {
+                nextPlayer();   
+            }
+            repaint();
+        }
+
+        if(e.getX() >=905 && e.getX() <= 1055 && e.getY() >= 320 && e.getY() <= 410)  
+        {
+            //x and y of the third, face up train card
+            deck.drawFaceupCard(2);
+            cardsTaken++;
+            if(cardsTaken>=2)
+            {
+                nextPlayer();   
+            }
+            repaint();
+        }
+
+        if(e.getX() >=905 && e.getX() <= 1055 && e.getY() >= 220 && e.getY() <= 310)  
+        {
+            //x and y of the fourth, face up train card
+            deck.drawFaceupCard(3);
+            cardsTaken++;
+            if(cardsTaken>=2)
+            {
+                nextPlayer();   
+            }
+            repaint();
+        }
+
+        if(e.getX() >=905 && e.getX() <= 1055 && e.getY() >=120 && e.getY() <= 210)  
+        {
+            //x and y of the fifth, face up train card
+            deck.drawFaceupCard(4);
+            cardsTaken++;
+            if(cardsTaken>=2)
+            {
+                nextPlayer();   
+            }
+            repaint();
+        }
+
         //check if clicked on destination card deck
         //in all these cases after stuff happens we move to next player in list
         //check if trying to see their own destination cards
         if (e.getX() >= 1050 && e.getX() <=1250 && e.getY() >= 620 && e.getY() <= 770) {
             chooseDestinationCards(currentPlayer, 1);
+            nextPlayer();
+            repaint();
         }
-        
-        nextPlayer();
-        repaint();
+
+        //nextPlayer();
+        //repaint();
     }
 
     protected void nextPlayer() {
