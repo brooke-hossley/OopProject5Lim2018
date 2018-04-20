@@ -16,8 +16,10 @@ public class Player
     protected int score;
     protected int carsRemaining;
     protected boolean turn = false;
+    protected boolean isLastTurn = false;
     //Int array [9] each spot has a different color tain card with how many the player has
-    protected int[] trainCards = new int[9];
+    protected int[] trainCounts = new int[9];
+    protected ArrayList<TrainCard> trainCards = new ArrayList();
 
     //Int array of meeples [6] each spot has one of the six colors
     protected int[] meeples = new int[6];
@@ -45,9 +47,9 @@ public class Player
         else if (pColor.equalsIgnoreCase("Red"))
             color = Color.red;
         else if (pColor.equalsIgnoreCase("Black"))
-            color = Color.black;
+            color = new Color(50, 50, 50);
     }
-
+    
     public String getName()
     {
         return name;
@@ -95,9 +97,9 @@ public class Player
         return false;
     }
 
-    protected void addTrainCard(int index){
-        if (index >=0 && index <=8)
-            trainCards[index]++;
+    protected void addTrainCard(TrainCard tcard){
+        trainCards.add(tcard);
+        trainCounts[tcard.getArrIndex()]++;
     }
 
     protected boolean addRoute(Route route){
@@ -110,78 +112,12 @@ public class Player
         return false;
     }
 
-    //Same concept as the Cities meeples
-    protected void addTrainCard(TrainColor tcolor){
-        switch(tcolor){
-            case YELLOW: trainCards[0] ++;
-            break;
-            case BLUE: trainCards[1] ++;
-            break;
-            case GREEN: trainCards[2] ++;
-            break;
-            case PINK: trainCards[3] ++;
-            break;
-            case RED: trainCards[4] ++;
-            break;
-            case BLACK: trainCards[5] ++;
-            break;        
-            case ORANGE: trainCards[6] ++;
-            break;  
-            case WHITE: trainCards[7] ++;
-            break;   
-            case RAINBOW: trainCards[8] ++;
-            break;        
-        }
-    }
-
     protected boolean removeTrainCard(int index){
-        if (index >=0 && index <=8 && trainCards[index] >= 0) {
-            trainCards[index]--;
+        if (index >=0 && index <=8 && trainCounts[index] >= 0) {
+            trainCounts[index]--;
             return true;
         }
         return false;
-    }
-
-    protected boolean removeTrainCard(TrainColor color){
-        switch(color){
-            case YELLOW: trainCards[0] --;
-            break;
-            case BLUE: trainCards[1] --;
-            break;
-            case GREEN: trainCards[2] --;
-            break;
-            case PINK: trainCards[3] --;
-            break;
-            case RED: trainCards[4] --;
-            break;
-            case BLACK: trainCards[5] --;
-            break;        
-            case ORANGE: trainCards[6] --;
-            break;  
-            case WHITE: trainCards[7] --;
-            break;   
-            case RAINBOW: trainCards[8] --;
-            break;        
-            default: return false;
-        }
-        return true;
-    }
-
-    protected void addMeeple(MeepleColor meeple){
-        switch(meeple){
-            case RED: meeples[0] ++;
-            break;
-            case BLACK: meeples[1] ++;
-            break;
-            case GREEN: meeples[2] ++;
-            break;
-            case YELLOW: meeples[3] ++;
-            break;
-            case BLUE: meeples[4] ++;
-            break;
-            case WHITE: meeples[5] ++;
-            break;             
-        }
     }
 
     protected void addMeeple(int index) {
@@ -192,6 +128,8 @@ public class Player
         destinations.add(d);
     }
     
+    //add method to get rid of destination card they don't want anymore
+    
     public ArrayList<DestinationCard> getDest()
     {
         return destinations;
@@ -201,6 +139,7 @@ public class Player
         if(destinations.contains(d)){
             destinations.remove(d);
         }
+        score += d.getPoints();
         completedDestinations.add(d);
     }
 }

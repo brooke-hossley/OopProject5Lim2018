@@ -12,19 +12,21 @@ import java.lang.String;
  * @author (Patrick, Alissa, Chris, Brooke, Hieu)
  * @version (4/18/2018)
  */
-public class PlayGame extends JPanel implements MouseListener
+public class PlayGame extends JPanel implements MouseListener, MouseMotionListener
 {
-    private Image traincol, traincol2, traincol3, traincol4, traincol5, traincol6;
-    private Image traincol7, traincol8, traincol9;
-    private static Image board, blackBackground, TicketToRidePic;
+    //private Image traincol, traincol2, traincol3, traincol4, traincol5, traincol6;
+    //private Image traincol7, traincol8, traincol9;
+    private static Image boardPic, blackBackground, TicketToRidePic;
     private Image blueDest, globeTrotter, orangeDest, trainCardBack;
     private JButton button1, button2;
     private static boolean playerChosen;
     protected static int numberOfPlayers;
     // initializes the players
     private ArrayList<Player> players = new ArrayList<Player>();
+    private Player currentPlayer;
     private static JFrame frame;
     private Deck deck;
+    private Board board;
 
     /**
      * Constructor for objects of class playGame
@@ -37,19 +39,22 @@ public class PlayGame extends JPanel implements MouseListener
         //         Player player2 = new Player("Player 2" , "Red");
 
         players = Driver.getPlayers();
+        currentPlayer = players.get(0);
         addMouseListener(this);
-        createDeck();
+        addMouseMotionListener(this);
+        deck = new Deck();
+        board = new Board();
         //String dir = "Images/";
-        traincol = new ImageIcon("Images" + File.separator + "BlackCard.JPG").getImage();
-        traincol2 = new ImageIcon("Images" + File.separator + "BlueCard.JPG").getImage();
-        traincol3 = new ImageIcon("Images" + File.separator + "GreenCard.JPG").getImage();
-        traincol4= new ImageIcon("Images" + File.separator + "OrangeCard.JPG").getImage();
-        traincol5 = new ImageIcon("Images" + File.separator + "PurpleCard.JPG").getImage();
-        traincol6 = new ImageIcon("Images" + File.separator + "RainbowCard.JPG").getImage();
-        traincol7 = new ImageIcon("Images" + File.separator + "RedCard.JPG").getImage();
-        traincol8 = new ImageIcon("Images" + File.separator + "WhiteCard.JPG").getImage();
-        traincol9 = new ImageIcon("Images" + File.separator + "YellowCard.JPG").getImage();
-        board = new ImageIcon("Images" + File.separator + "Board.JPG").getImage();
+        // traincol = new ImageIcon("Images" + File.separator + "BlackCard.JPG").getImage();
+        // traincol2 = new ImageIcon("Images" + File.separator + "BlueCard.JPG").getImage();
+        // traincol3 = new ImageIcon("Images" + File.separator + "GreenCard.JPG").getImage();
+        // traincol4= new ImageIcon("Images" + File.separator + "OrangeCard.JPG").getImage();
+        // traincol5 = new ImageIcon("Images" + File.separator + "PurpleCard.JPG").getImage();
+        // traincol6 = new ImageIcon("Images" + File.separator + "RainbowCard.JPG").getImage();
+        // traincol7 = new ImageIcon("Images" + File.separator + "RedCard.JPG").getImage();
+        // traincol8 = new ImageIcon("Images" + File.separator + "WhiteCard.JPG").getImage();
+        // traincol9 = new ImageIcon("Images" + File.separator + "YellowCard.JPG").getImage();
+        boardPic = new ImageIcon("Images" + File.separator + "Board.JPG").getImage();
         blackBackground = new ImageIcon("Images" + File.separator + "blackBackground.JPG").getImage();
         TicketToRidePic = new ImageIcon("Images" + File.separator + "HomeScreen.JPG").getImage();
         blueDest = new ImageIcon("Images" + File.separator + "BlueDest.JPG").getImage();
@@ -57,7 +62,7 @@ public class PlayGame extends JPanel implements MouseListener
         orangeDest = new ImageIcon("Images" + File.separator + "OrangeDest.JPG").getImage();
         trainCardBack = new ImageIcon("Images" + File.separator + "TrainCardBack.JPG").getImage();
 
-        Dimension size = new Dimension(blackBackground.getWidth(null), board.getHeight(null));
+        Dimension size = new Dimension(blackBackground.getWidth(null), boardPic.getHeight(null));
         //width is ... pixels
         //height is ...
         setPreferredSize(size);
@@ -96,7 +101,7 @@ public class PlayGame extends JPanel implements MouseListener
     {
         super.paintComponent(g);
         g.drawImage(blackBackground,0,0,null);
-        g.drawImage(board,270,0,null);
+        g.drawImage(boardPic,270,0,null);
         drawTrainCards(g);
         drawDestinationCards(g);
         drawPlayerInfo(g);
@@ -111,11 +116,21 @@ public class PlayGame extends JPanel implements MouseListener
     {   
         g.drawImage(trainCardBack,930,650,null);
         //g.drawImage(trainCards.drawTrainCard().getPicture(),930,600,null);  
-        g.drawImage(traincol,930,550,null);
-        g.drawImage(traincol2,930,450,null);
-        g.drawImage(traincol3,930,350,null);
-        g.drawImage(traincol4,930,250,null);
-        g.drawImage(traincol5,930,150,null);
+        g.drawImage(deck.faceUpTrainCards.get(0).getPicture(),930,550,null);
+        g.drawImage(deck.faceUpTrainCards.get(1).getPicture(),930,450,null);
+        g.drawImage(deck.faceUpTrainCards.get(2).getPicture(),930,350,null);
+        g.drawImage(deck.faceUpTrainCards.get(3).getPicture(),930,250,null);
+        g.drawImage(deck.faceUpTrainCards.get(4).getPicture(),930,150,null);
+        
+        //draw the 9 card images on player side
+        int x = 10;
+        int y = 50;
+        for (Image pic: deck.trainCardPics) {
+            g.drawImage(pic,x,y,null);
+            y += 55;
+            x += 10;
+        }
+        
     }
 
     public void drawDestinationCards(Graphics g)
@@ -126,18 +141,39 @@ public class PlayGame extends JPanel implements MouseListener
 
     public void drawPlayerInfo(Graphics g)
     {
-        Font font = new Font("Verdana", Font.BOLD, 50);
+        Font font = new Font("Verdana", Font.BOLD, 20);
         g.setFont(font);
-        int x = 10;
+        g.setColor(Color.WHITE);
+        
+        int x = 930;
         int y = 50;
+        
+        g.drawString("Player Scores", x,22);
         for(Player p : players)
         {
             g.setColor(p.getColor());
-            g.drawString(p.getName(), x,y);
-            y+=50;
-            g.drawString("Score: "+p.getScore(),x,y);
-            y+=100;
+            g.drawString(p.getName() + ": "+ p.getScore(), x,y);
+            y+=25;
         }
+        
+        g.setColor(currentPlayer.getColor());
+        g.drawString(currentPlayer.getName() + " has " + currentPlayer.getCarsRemaining() + " train pieces", 10,22);
+        
+        ////to do: display meeple counts and option to see their destination cards
+        
+        //draw the 9 card images on player side
+        int x2 = 73;
+        int y2 = 77;
+        for (int count: currentPlayer.trainCounts) {
+            g.setColor(new Color(25, 25, 25));
+            g.fillRect(x2, y2, 24, 24);
+            g.setColor(Color.white);
+            g.drawRect(x2, y2, 24, 24);
+            g.drawString("" + count, x2+6, y2+20);
+            y2 += 55;
+            x2 += 10;
+        }
+        
     }
 
     /**
@@ -152,7 +188,7 @@ public class PlayGame extends JPanel implements MouseListener
             for(int i = 0; i < 4; i++)
             {
                 //add a train card to the players hand
-                //p.addCard(deck.addTrainCard());
+                p.addTrainCard(deck.drawTrainCard());
             }
         }   
     }
@@ -220,6 +256,14 @@ public class PlayGame extends JPanel implements MouseListener
 
         }       
     }
+    
+    protected void claimRoute (Route route) {
+        ////////////////To do:///////////////
+        //if route already taken then no
+        //ask user which cards to use
+        //if valid card combo: claim the route, dispose of the cards, and end player's turn
+        //if invalid combo tell them no and let them try again
+    }
 
     public static void playersChosen()
     {
@@ -237,14 +281,6 @@ public class PlayGame extends JPanel implements MouseListener
     }
 
     /**
-     * Create all the TrainCarCards and destination cards
-     */
-    private void createDeck()
-    {
-        deck = new Deck();
-    }
-
-    /**
      * @param e an event that indicates a mouse action has occured.
      */
     public void mouseEntered( MouseEvent e ) { }
@@ -253,6 +289,20 @@ public class PlayGame extends JPanel implements MouseListener
      * @param e an event that indicates a mouse action has occured.
      */
     public void mouseExited( MouseEvent e ) { }
+
+    /**
+     * @param e an event that indicates a mouse action has occured.
+     */
+    public void mouseMoved( MouseEvent e ) { 
+        ////////////////To do:///////////////
+        //check if mouse location is within boundaries of a city
+        //if so paint a little box for the city info like name and meeples
+    }
+    
+    /**
+     * @param e an event that indicates a mouse action has occured.
+     */
+    public void mouseDragged( MouseEvent e ) { }
 
     /**
      * @param e an event that indicates a mouse action has occured.
@@ -273,8 +323,23 @@ public class PlayGame extends JPanel implements MouseListener
         //click = true;
         //repaint();
         //e.consume();
+        
+        ////////////////To do:///////////////
+        //check if clicked on a route
+        //check if clicked on a train card in deck
+        //check if clicked on destination card deck
+        //in all these cases after stuff happens we move to next player in list
+        //check if trying to see their own destination cards
     }
 
+    protected void nextPlayer() {
+        int index = players.indexOf(currentPlayer);
+        if (index == players.size()-1)
+            currentPlayer = players.get(0);
+        else 
+            currentPlayer = players.get(index+1);
+    }
+    
     /**
      * Adds the bonus points to each player
      */

@@ -1,36 +1,31 @@
+import java.util.*;
 ////////////////////////////////////////////////////////////////////////////////
 /**
- * Write a description of class City here.
+ * This class needs work
  *
  * @author (your name)
  * @version (a version number or a date)
  */
 public class City
 {
-    
-    //CityName cityName;
-    
     //Name of the city
-    String name;
+    protected String name;
+    protected boolean isCountry;
     
     //Number of routes connecting to the city
-    int numRoutes; 
+    //protected int numRoutes;
+    protected ArrayList<Route> connectedRoutes;
     
     //Number of meeples on the city w/ each color present
-    int[] meeples = new int[6]; 
+    protected int[] meeples = new int[6]; 
+    protected int meepleCount;
     //This array hold each of the 6 colored meeples. Each time a meeple is add/subtracted, the
     //location of that specific color in the array is incremented or decremented 
     
-    public City(String nameIn)
+    public City(String nameIn, int[] meeplesIn)
     {
         name = nameIn;
     }
-    
-    //meh
-    // public City(CityName n, int numRoutes){
-        // cityName = n;
-        // routes = numRoutes;
-    // }
     
     protected void addMeeple(MeepleColor meeple){
         switch(meeple){

@@ -1,4 +1,4 @@
-
+import java.util.*;
 /**
  * Write a description of class Board here.
  *
@@ -8,26 +8,16 @@
 public class Board
 {
     // instance variables - replace the example below with your own
-    private int x;
+    protected ArrayList<Route> routes;
+    protected ArrayList<City> cities;
 
     /**
      * Constructor for objects of class Board
      */
     public Board()
     {
-        // initialise instance variables
-        x = 0;
+        
     }
 
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
-    }
+    
 }

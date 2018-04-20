@@ -140,7 +140,7 @@ public class Deck
         trainCardPics[0] = Toolkit.getDefaultToolkit().getImage("Images" + File.separator + "YellowCard.JPG");
         trainCardPics[1] = Toolkit.getDefaultToolkit().getImage("Images" + File.separator + "BlueCard.JPG");
         trainCardPics[2] = Toolkit.getDefaultToolkit().getImage("Images" + File.separator + "GreenCard.JPG");
-        trainCardPics[3] = Toolkit.getDefaultToolkit().getImage("Images" + File.separator + "PinkCard.JPG");
+        trainCardPics[3] = Toolkit.getDefaultToolkit().getImage("Images" + File.separator + "PurpleCard.JPG");
         trainCardPics[4] = Toolkit.getDefaultToolkit().getImage("Images" + File.separator + "RedCard.JPG");
         trainCardPics[5] = Toolkit.getDefaultToolkit().getImage("Images" + File.separator + "BlackCard.JPG");
         trainCardPics[6] = Toolkit.getDefaultToolkit().getImage("Images" + File.separator + "OrangeCard.JPG");
@@ -173,13 +173,12 @@ public class Deck
 
     }
 
-    //add methods for 5 faceup cards
+    ///////////to do: need to check if 3 or more are rainbow////////////////
     protected TrainCard drawFaceupCard(int index){
         TrainCard temp = faceUpTrainCards.remove(index);
         faceUpTrainCards.add(drawTrainCard());
         return temp;
     }
-    
 
     protected void discardTrainCard(TrainCard tCard){
         discardedTrainCards.add(tCard);

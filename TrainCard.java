@@ -45,6 +45,10 @@ public class TrainCard //extends Card
     public int getArrIndex(){
         return arrIndex;
     }
+    
+    protected boolean isRainbow() {
+        return tColor == TrainColor.RAINBOW;
+    }
 
     // //Alissa's idea, assign each color a int so it's easier to assign colors. Need more development 
     // public TrainCard(int x){

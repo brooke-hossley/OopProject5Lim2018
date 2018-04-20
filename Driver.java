@@ -32,10 +32,10 @@ public class Driver extends JPanel implements ActionListener
     public Driver()
     {
         //Images with paths
-        String dir = "Images\\";
-        background = new ImageIcon(dir + "HomeScreen.jpg").getImage();
-        background2 = new ImageIcon(dir + "homescreenbackground.jpg").getImage();
-        train = new ImageIcon(dir + "Traingif.gif").getImage();
+        //String dir = "Images\\";
+        background = new ImageIcon("Images" + File.separator + "HomeScreen.jpg").getImage();
+        background2 = new ImageIcon("Images" + File.separator + "homescreenbackground.jpg").getImage();
+        train = new ImageIcon("Images" + File.separator + "Traingif.gif").getImage();
         train = train.getScaledInstance(500, 300, Image.SCALE_DEFAULT);
         //Set window to correct size
         Dimension size = new Dimension(1500, 800);
@@ -132,11 +132,31 @@ public class Driver extends JPanel implements ActionListener
         if(action.equals("Two")) 
         {
             PlayGame.numberOfPlayers = 2;
+            String[] possibleValues = { "Purple", "Yellow", "Red", "White", "Black" };
+            ArrayList<String> possibleVals = new ArrayList(5);
+            possibleVals.add("Purple");
+            possibleVals.add("Yellow");
+            possibleVals.add("Red");
+            possibleVals.add("White");
+            possibleVals.add("Black");
+            
             while(count < 3){
                 String name = JOptionPane.showInputDialog(frame, "Enter in Player " + count + 
                         " name:");
-                String color = JOptionPane.showInputDialog(frame, "Enter in Player " + count + 
-                        " color:(Purple, Yellow, White, Red, or Black)");
+                Object colors = JOptionPane.showInputDialog(null,
+                        "Choose one", "Input",
+                        JOptionPane.INFORMATION_MESSAGE, null,
+                        possibleValues, possibleValues[0]);
+                        
+                String color = (String) colors;
+                possibleVals.remove(color);
+                
+                String temp[] = new String[possibleValues.length - 1];
+                for (int i = 0; i < possibleVals.size(); i++) {
+                    temp[i] = possibleVals.get(i);
+                }
+                possibleValues = temp;
+                
                 Player x = new Player(name, color);
                 list.add(x);
                 count++;
@@ -147,11 +167,31 @@ public class Driver extends JPanel implements ActionListener
         else if(action.equals("Three"))
         {
             PlayGame.numberOfPlayers = 3;
+            String[] possibleValues = { "Purple", "Yellow", "Red", "White", "Black" };
+            ArrayList<String> possibleVals = new ArrayList(5);
+            possibleVals.add("Purple");
+            possibleVals.add("Yellow");
+            possibleVals.add("Red");
+            possibleVals.add("White");
+            possibleVals.add("Black");
+            
             while(count < 4){
                 String name = JOptionPane.showInputDialog(frame, "Enter in Player " + count + 
                         " name:");
-                String color = JOptionPane.showInputDialog(frame, "Enter in Player " + count + 
-                        " color:(Purple, Yellow, White, Red, or Black)");
+                Object colors = JOptionPane.showInputDialog(null,
+                        "Choose one", "Input",
+                        JOptionPane.INFORMATION_MESSAGE, null,
+                        possibleValues, possibleValues[0]);
+                        
+                String color = (String) colors;
+                possibleVals.remove(color);
+                
+                String temp[] = new String[possibleValues.length - 1];
+                for (int i = 0; i < possibleVals.size(); i++) {
+                    temp[i] = possibleVals.get(i);
+                }
+                possibleValues = temp;
+                
                 Player x = new Player(name, color);
                 list.add(x);
                 count++;
@@ -164,13 +204,13 @@ public class Driver extends JPanel implements ActionListener
 
         }
     }
-    
+
     //Make a getPlayers() to return arraylist
     public static ArrayList<Player> getPlayers()
     {
         return list;
     }
-    
+
     /**
      * Creates the JFrame for the menu
      */
