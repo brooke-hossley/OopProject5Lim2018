@@ -16,6 +16,9 @@ public class Board
      */
     public Board()
     {
+        routes = new ArrayList<Route>();
+        cities = new ArrayList<City>();
+        routes.add(new Route("Bremen","Bremerhaven"));
         
     }
 
