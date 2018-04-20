@@ -140,6 +140,8 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
             x += 10;
         }
 
+        
+        //when deck is empty bad things happen
     }
 
     public void drawDestinationCards(Graphics g)
@@ -366,7 +368,7 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
         if(e.getX() >=905 && e.getX() <= 1055 && e.getY() >= 520 && e.getY() <= 610)  
         {
             //x and y of the bottom most, face up train card
-            deck.drawFaceupCard(0);
+            currentPlayer.addTrainCard(deck.drawFaceupCard(0));
             cardsTaken++;
             if(cardsTaken>=2)
             {
@@ -378,7 +380,7 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
         if(e.getX() >=905 && e.getX() <= 1055 && e.getY() >= 420 && e.getY() <= 510)  
         {
             //x and y of the 2nd, face up train card
-            deck.drawFaceupCard(1);
+            currentPlayer.addTrainCard(deck.drawFaceupCard(1));
             cardsTaken++;
             if(cardsTaken>=2)
             {
@@ -390,7 +392,7 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
         if(e.getX() >=905 && e.getX() <= 1055 && e.getY() >= 320 && e.getY() <= 410)  
         {
             //x and y of the third, face up train card
-            deck.drawFaceupCard(2);
+            currentPlayer.addTrainCard(deck.drawFaceupCard(2));
             cardsTaken++;
             if(cardsTaken>=2)
             {
@@ -402,7 +404,7 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
         if(e.getX() >=905 && e.getX() <= 1055 && e.getY() >= 220 && e.getY() <= 310)  
         {
             //x and y of the fourth, face up train card
-            deck.drawFaceupCard(3);
+            currentPlayer.addTrainCard(deck.drawFaceupCard(3));
             cardsTaken++;
             if(cardsTaken>=2)
             {
@@ -414,7 +416,7 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
         if(e.getX() >=905 && e.getX() <= 1055 && e.getY() >=120 && e.getY() <= 210)  
         {
             //x and y of the fifth, face up train card
-            deck.drawFaceupCard(4);
+            currentPlayer.addTrainCard(deck.drawFaceupCard(4));
             cardsTaken++;
             if(cardsTaken>=2)
             {
