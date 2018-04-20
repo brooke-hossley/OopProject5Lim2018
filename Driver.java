@@ -34,11 +34,12 @@ public class Driver extends JPanel implements ActionListener
         //Images with paths
         //String dir = "Images\\";
         background = new ImageIcon("Images" + File.separator + "HomeScreen.jpg").getImage();
+        background = background.getScaledInstance(900, 500, Image.SCALE_DEFAULT);
         background2 = new ImageIcon("Images" + File.separator + "homescreenbackground.jpg").getImage();
         train = new ImageIcon("Images" + File.separator + "Traingif.gif").getImage();
-        train = train.getScaledInstance(500, 300, Image.SCALE_DEFAULT);
+        train = train.getScaledInstance(400, 200, Image.SCALE_DEFAULT);
         //Set window to correct size
-        Dimension size = new Dimension(1500, 800);
+        Dimension size = new Dimension(1250, 800);
         setPreferredSize(size);
         setMinimumSize(size);
         setMaximumSize(size);
@@ -67,7 +68,7 @@ public class Driver extends JPanel implements ActionListener
         rules.setFont(new Font("Arial", Font.BOLD, 20));
         rules.setBackground(Color.RED);
         rules.setBorder(BorderFactory.createLineBorder(Color.black));
-        rules.setBounds(850,630,100,50);
+        rules.setBounds(830,630,100,50);
         add(rules);
         rules.addActionListener(this);
         rules.setActionCommand("Rules");
@@ -80,17 +81,17 @@ public class Driver extends JPanel implements ActionListener
      */
     public void paintComponent(Graphics g) 
     {
-         super.paintComponent(g);
+        super.paintComponent(g);
         //Draw the images for the homescreen
         g.drawImage(background2, 0, 0, null);
         g.drawImage(background, 0, 0, null);
-        g.drawImage(train, 1000, 500, this);
+        g.drawImage(train, 950, 550, this);
         //Writing on the homescreen
         g.setColor(Color.BLACK);
         g.setFont(new Font("Arial", Font.BOLD, 80));
 
         String text = "Germany";
-        int x = 600; int y = 490;
+        int x = 500; int y = 490;
         g.drawString(text, ShiftWest(x, 1), ShiftNorth(y, 1));
         g.drawString(text, ShiftWest(x, 1), ShiftSouth(y, 1));
         g.drawString(text, ShiftEast(x, 1), ShiftNorth(y, 1));
@@ -128,10 +129,10 @@ public class Driver extends JPanel implements ActionListener
         g.setColor(new Color(102, 255, 102));
         g.drawString(text3, x, y);
 
-        g.setFont(new Font("Arial", Font.BOLD, 28));
+        g.setFont(new Font("Arial", Font.BOLD, 25));
         String text4A = "Welcome to";
         g.setColor(Color.BLACK);
-        x = 1170; y = 100;
+        x = 1000; y = 100;
         g.drawString(text4A, ShiftWest(x, 1), ShiftNorth(y, 1));
         g.drawString(text4A, ShiftWest(x, 1), ShiftSouth(y, 1));
         g.drawString(text4A, ShiftEast(x, 1), ShiftNorth(y, 1));
@@ -140,7 +141,7 @@ public class Driver extends JPanel implements ActionListener
         g.drawString(text4A, x, y);
         String text4B = "Ticket to Ride: Germany!";
         g.setColor(Color.BLACK);
-        x = 1090; y = 130;
+        x = 930; y = 130;
         g.drawString(text4B, ShiftWest(x, 1), ShiftNorth(y, 1));
         g.drawString(text4B, ShiftWest(x, 1), ShiftSouth(y, 1));
         g.drawString(text4B, ShiftEast(x, 1), ShiftNorth(y, 1));
@@ -149,7 +150,7 @@ public class Driver extends JPanel implements ActionListener
         g.drawString(text4B, x, y);
         String text4C = "A fun family game";
         g.setColor(Color.BLACK);
-        x = 1130; y = 200;
+        x = 970; y = 200;
         g.drawString(text4C, ShiftWest(x, 1), ShiftNorth(y, 1));
         g.drawString(text4C, ShiftWest(x, 1), ShiftSouth(y, 1));
         g.drawString(text4C, ShiftEast(x, 1), ShiftNorth(y, 1));
@@ -158,7 +159,7 @@ public class Driver extends JPanel implements ActionListener
         g.drawString(text4C, x, y);
         String text4D = "for all ages!";
         g.setColor(Color.BLACK);
-        x = 1170; y = 230;
+        x = 1000; y = 230;
         g.drawString(text4D, ShiftWest(x, 1), ShiftNorth(y, 1));
         g.drawString(text4D, ShiftWest(x, 1), ShiftSouth(y, 1));
         g.drawString(text4D, ShiftEast(x, 1), ShiftNorth(y, 1));
@@ -167,7 +168,7 @@ public class Driver extends JPanel implements ActionListener
         g.drawString(text4D, x, y);
         String text4E = "Please play responsibly";
         g.setColor(Color.BLACK);
-        x = 1100; y = 400;
+        x = 935; y = 300;
         g.drawString(text4E, ShiftWest(x, 1), ShiftNorth(y, 1));
         g.drawString(text4E, ShiftWest(x, 1), ShiftSouth(y, 1));
         g.drawString(text4E, ShiftEast(x, 1), ShiftNorth(y, 1));
@@ -178,11 +179,11 @@ public class Driver extends JPanel implements ActionListener
         g.setColor(Color.BLACK);
         Graphics2D g2 = (Graphics2D) g;
         g2.setStroke(new BasicStroke(3));
-        g.drawRect(1050, 50, 400, 430);
+        g.drawRect(920, 50, 310, 300);
         g.setColor(Color.RED);
-        g.drawRect(1055, 55, 390, 420);
+        g.drawRect(925, 55, 300, 290);
         g.setColor(Color.YELLOW);
-        g.drawRect(1060, 60, 380, 410);
+        g.drawRect(930, 60, 290, 280);
     }
 
     int ShiftNorth(int p, int distance) {
@@ -220,7 +221,7 @@ public class Driver extends JPanel implements ActionListener
             possibleVals.add("Red");
             possibleVals.add("White");
             possibleVals.add("Black");
-            
+
             while(count < 3){
                 String name = JOptionPane.showInputDialog(frame, "Enter in Player " + count + 
                         " name:");
@@ -228,16 +229,16 @@ public class Driver extends JPanel implements ActionListener
                         "Choose one", "Input",
                         JOptionPane.INFORMATION_MESSAGE, null,
                         possibleValues, possibleValues[0]);
-                        
+
                 String color = (String) colors;
                 possibleVals.remove(color);
-                
+
                 String temp[] = new String[possibleValues.length - 1];
                 for (int i = 0; i < possibleVals.size(); i++) {
                     temp[i] = possibleVals.get(i);
                 }
                 possibleValues = temp;
-                
+
                 Player x = new Player(name, color);
                 list.add(x);
                 count++;
@@ -255,7 +256,7 @@ public class Driver extends JPanel implements ActionListener
             possibleVals.add("Red");
             possibleVals.add("White");
             possibleVals.add("Black");
-            
+
             while(count < 4){
                 String name = JOptionPane.showInputDialog(frame, "Enter in Player " + count + 
                         " name:");
@@ -263,16 +264,16 @@ public class Driver extends JPanel implements ActionListener
                         "Choose one", "Input",
                         JOptionPane.INFORMATION_MESSAGE, null,
                         possibleValues, possibleValues[0]);
-                        
+
                 String color = (String) colors;
                 possibleVals.remove(color);
-                
+
                 String temp[] = new String[possibleValues.length - 1];
                 for (int i = 0; i < possibleVals.size(); i++) {
                     temp[i] = possibleVals.get(i);
                 }
                 possibleValues = temp;
-                
+
                 Player x = new Player(name, color);
                 list.add(x);
                 count++;
