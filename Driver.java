@@ -80,12 +80,15 @@ public class Driver extends JPanel implements ActionListener
      */
     public void paintComponent(Graphics g) 
     {
-        super.paintComponent(g);
+         super.paintComponent(g);
+        //Draw the images for the homescreen
         g.drawImage(background2, 0, 0, null);
         g.drawImage(background, 0, 0, null);
         g.drawImage(train, 1000, 500, this);
+        //Writing on the homescreen
         g.setColor(Color.BLACK);
         g.setFont(new Font("Arial", Font.BOLD, 80));
+
         String text = "Germany";
         int x = 600; int y = 490;
         g.drawString(text, ShiftWest(x, 1), ShiftNorth(y, 1));
@@ -94,14 +97,92 @@ public class Driver extends JPanel implements ActionListener
         g.drawString(text, ShiftEast(x, 1), ShiftSouth(y, 1));
         g.setColor(new Color(204, 0, 0));
         g.drawString(text, x, y);
+
+        g.setFont(new Font("Arial", Font.BOLD, 35));
         String text2A = "Select the number";
-        String text2B = "of players to begin!";
-        g.setColor(Color.WHITE);
-        g.fillRect(50, 600, 300, 100);
-        g.setFont(new Font("Arial", Font.BOLD, 30));
         g.setColor(Color.BLACK);
-        g.drawString(text2A, 70, 650);
-        g.drawString(text2B, 60, 680);
+        x = 70; y = 650;
+        g.drawString(text2A, ShiftWest(x, 1), ShiftNorth(y, 1));
+        g.drawString(text2A, ShiftWest(x, 1), ShiftSouth(y, 1));
+        g.drawString(text2A, ShiftEast(x, 1), ShiftNorth(y, 1));
+        g.drawString(text2A, ShiftEast(x, 1), ShiftSouth(y, 1));
+        g.setColor(Color.WHITE);
+        g.drawString(text2A, x, y);
+        String text2B = "of players to begin!";
+        g.setColor(Color.BLACK);
+        x = 60; y = 680;
+        g.drawString(text2B, ShiftWest(x, 1), ShiftNorth(y, 1));
+        g.drawString(text2B, ShiftWest(x, 1), ShiftSouth(y, 1));
+        g.drawString(text2B, ShiftEast(x, 1), ShiftNorth(y, 1));
+        g.drawString(text2B, ShiftEast(x, 1), ShiftSouth(y, 1));
+        g.setColor(Color.WHITE);
+        g.drawString(text2B, x, y);
+
+        String text3 = "A project by Alissa, Brooke, Pat, Hieu, and Chris";
+        g.setColor(Color.BLACK);
+        x = 60; y = 540;
+        g.drawString(text3, ShiftWest(x, 1), ShiftNorth(y, 1));
+        g.drawString(text3, ShiftWest(x, 1), ShiftSouth(y, 1));
+        g.drawString(text3, ShiftEast(x, 1), ShiftNorth(y, 1));
+        g.drawString(text3, ShiftEast(x, 1), ShiftSouth(y, 1));
+        g.setColor(new Color(102, 255, 102));
+        g.drawString(text3, x, y);
+
+        g.setFont(new Font("Arial", Font.BOLD, 28));
+        String text4A = "Welcome to";
+        g.setColor(Color.BLACK);
+        x = 1170; y = 100;
+        g.drawString(text4A, ShiftWest(x, 1), ShiftNorth(y, 1));
+        g.drawString(text4A, ShiftWest(x, 1), ShiftSouth(y, 1));
+        g.drawString(text4A, ShiftEast(x, 1), ShiftNorth(y, 1));
+        g.drawString(text4A, ShiftEast(x, 1), ShiftSouth(y, 1));
+        g.setColor(Color.WHITE);
+        g.drawString(text4A, x, y);
+        String text4B = "Ticket to Ride: Germany!";
+        g.setColor(Color.BLACK);
+        x = 1090; y = 130;
+        g.drawString(text4B, ShiftWest(x, 1), ShiftNorth(y, 1));
+        g.drawString(text4B, ShiftWest(x, 1), ShiftSouth(y, 1));
+        g.drawString(text4B, ShiftEast(x, 1), ShiftNorth(y, 1));
+        g.drawString(text4B, ShiftEast(x, 1), ShiftSouth(y, 1));
+        g.setColor(Color.WHITE);
+        g.drawString(text4B, x, y);
+        String text4C = "A fun family game";
+        g.setColor(Color.BLACK);
+        x = 1130; y = 200;
+        g.drawString(text4C, ShiftWest(x, 1), ShiftNorth(y, 1));
+        g.drawString(text4C, ShiftWest(x, 1), ShiftSouth(y, 1));
+        g.drawString(text4C, ShiftEast(x, 1), ShiftNorth(y, 1));
+        g.drawString(text4C, ShiftEast(x, 1), ShiftSouth(y, 1));
+        g.setColor(Color.WHITE);
+        g.drawString(text4C, x, y);
+        String text4D = "for all ages!";
+        g.setColor(Color.BLACK);
+        x = 1170; y = 230;
+        g.drawString(text4D, ShiftWest(x, 1), ShiftNorth(y, 1));
+        g.drawString(text4D, ShiftWest(x, 1), ShiftSouth(y, 1));
+        g.drawString(text4D, ShiftEast(x, 1), ShiftNorth(y, 1));
+        g.drawString(text4D, ShiftEast(x, 1), ShiftSouth(y, 1));
+        g.setColor(Color.WHITE);
+        g.drawString(text4D, x, y);
+        String text4E = "Please play responsibly";
+        g.setColor(Color.BLACK);
+        x = 1100; y = 400;
+        g.drawString(text4E, ShiftWest(x, 1), ShiftNorth(y, 1));
+        g.drawString(text4E, ShiftWest(x, 1), ShiftSouth(y, 1));
+        g.drawString(text4E, ShiftEast(x, 1), ShiftNorth(y, 1));
+        g.drawString(text4E, ShiftEast(x, 1), ShiftSouth(y, 1));
+        g.setColor(Color.WHITE);
+        g.drawString(text4E, x, y);
+        //Draw box border
+        g.setColor(Color.BLACK);
+        Graphics2D g2 = (Graphics2D) g;
+        g2.setStroke(new BasicStroke(3));
+        g.drawRect(1050, 50, 400, 430);
+        g.setColor(Color.RED);
+        g.drawRect(1055, 55, 390, 420);
+        g.setColor(Color.YELLOW);
+        g.drawRect(1060, 60, 380, 410);
     }
 
     int ShiftNorth(int p, int distance) {
