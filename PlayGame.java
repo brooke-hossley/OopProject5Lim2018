@@ -27,37 +27,25 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
     private static JFrame frame;
     private Deck deck;
     private Board board;
-    private int cardsTaken;
+    private int cardsTaken = 0;
+    private JLabel viewDestCards;
+    private ImageIcon destCard;
     /**
      * Constructor for objects of class playGame
      */
     public PlayGame()
     {
-        //hard code in player info
-        //         numberOfPlayers = 2;
-        //         Player player1 = new Player("Player 1" , "Yellow");
-        //         Player player2 = new Player("Player 2" , "Red");
-
         players = Driver.getPlayers();
         currentPlayer = players.get(0);
         addMouseListener(this);
         addMouseMotionListener(this);
         deck = new Deck();
         board = new Board();
-        //String dir = "Images/";
-        // traincol = new ImageIcon("Images" + File.separator + "BlackCard.JPG").getImage();
-        // traincol2 = new ImageIcon("Images" + File.separator + "BlueCard.JPG").getImage();
-        // traincol3 = new ImageIcon("Images" + File.separator + "GreenCard.JPG").getImage();
-        // traincol4= new ImageIcon("Images" + File.separator + "OrangeCard.JPG").getImage();
-        // traincol5 = new ImageIcon("Images" + File.separator + "PurpleCard.JPG").getImage();
-        // traincol6 = new ImageIcon("Images" + File.separator + "RainbowCard.JPG").getImage();
-        // traincol7 = new ImageIcon("Images" + File.separator + "RedCard.JPG").getImage();
-        // traincol8 = new ImageIcon("Images" + File.separator + "WhiteCard.JPG").getImage();
-        // traincol9 = new ImageIcon("Images" + File.separator + "YellowCard.JPG").getImage();
         boardPic = new ImageIcon("Images" + File.separator + "Board.JPG").getImage();
         blackBackground = new ImageIcon("Images" + File.separator + "blackBackground.JPG").getImage();
         TicketToRidePic = new ImageIcon("Images" + File.separator + "HomeScreen.JPG").getImage();
-        blueDest = new ImageIcon("Images" + File.separator + "BlueDest.JPG").getImage();
+        destCard =  new ImageIcon("Images" + File.separator + "BlueDest.JPG");
+        blueDest = destCard.getImage();
         globeTrotter = new ImageIcon("Images" + File.separator + "Globetrotter.JPG").getImage();
         orangeDest = new ImageIcon("Images" + File.separator + "OrangeDest.JPG").getImage();
         trainCardBack = new ImageIcon("Images" + File.separator + "TrainCardBack.JPG").getImage();
@@ -71,27 +59,18 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
         setSize(size);
         setLayout(null);
 
-        // button1 = new JButton("Select Short Card");
-        // button1.setBounds(1100,590,190,20);
-        // add(button1);
-        // button1.addActionListener(new ActionListener()
-        // {
-        // public void actionPerformed(ActionEvent e) 
-        // { 
-        // shortButtonPressed();
-        // }         
-        // });
-
-        // button2 = new JButton("Select Long Card");
-        // button2.setBounds(1100,620,190,20);
-        // add(button2);
-        // button2.addActionListener(new ActionListener()
-        // {
-        // public void actionPerformed(ActionEvent e)
-        // { 
-        // longButtonPressed();
-        // }         
-        // });
+        viewDestCards = new JLabel("View destination cards",destCard,JLabel.CENTER);
+        viewDestCards.setBounds(50,620, 150,90);
+        viewDestCards.addMouseListener(new MouseAdapter() 
+            {
+                @Override
+                public void mouseClicked(MouseEvent e) 
+                {
+                    
+                }
+            }
+        );
+        frame.add(viewDestCards);
 
         dealDestinationCards();
         drawFirstFour();
@@ -119,8 +98,8 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
         //draw face down train card
         if (!deck.trainCards.isEmpty()) {
             g.drawImage(trainCardBack,x1,y1, null);
-            y1 -=100;
         }
+        y1 -=100;
         //draw the face up train cards
         for (int i=0; i<5; i++) {
             if (deck.faceUpTrainCards.get(i)!=null) {
@@ -140,17 +119,16 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
             x += 10;
         }
 
-        
         //when deck is empty bad things happen
     }
 
     public void drawDestinationCards(Graphics g)
     {
         if (!deck.shortCards.isEmpty()) {
-            g.drawImage(blueDest,1050,620,null);
+            g.drawImage(blueDest,905,720,null);
         }
         if (!deck.longCards.isEmpty()) {
-            g.drawImage(orangeDest,1150,620,null);
+            g.drawImage(orangeDest,905,820,null);
         }
     }
 
@@ -342,27 +320,21 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
      * @param e an event that indicates a mouse action has occured.
      */
     public void mouseClicked( MouseEvent e ) {
-        //clickX = e.getX();
-        //clickY = e.getY();
-        //click = true;
-        //repaint();
-        //e.consume();
-
         ////////////////To do:///////////////
         //check if clicked on a route
 
         //check if clicked on a train card in deck
-        cardsTaken = 0;
-
-        if(e.getX() >=905 && e.getX() <= 1055 && e.getY() >= 620 && e.getY() <= 470)
+        if(e.getX() >=905 && e.getX() <= 1055 && e.getY() >= 620 && e.getY() <= 710)
         {
-            deck.drawTrainCard();
+            currentPlayer.addTrainCard(deck.drawTrainCard());
             cardsTaken++;
             if(cardsTaken>=2)
             {
-                nextPlayer();   
+                nextPlayer();
+                cardsTaken = 0;
             }
             repaint();
+            return;
         }
 
         if(e.getX() >=905 && e.getX() <= 1055 && e.getY() >= 520 && e.getY() <= 610)  
@@ -373,8 +345,10 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
             if(cardsTaken>=2)
             {
                 nextPlayer();   
+                cardsTaken = 0;
             }
             repaint();
+            return;
         }
 
         if(e.getX() >=905 && e.getX() <= 1055 && e.getY() >= 420 && e.getY() <= 510)  
@@ -385,8 +359,10 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
             if(cardsTaken>=2)
             {
                 nextPlayer();   
+                cardsTaken = 0;
             }
             repaint();
+            return;
         }
 
         if(e.getX() >=905 && e.getX() <= 1055 && e.getY() >= 320 && e.getY() <= 410)  
@@ -396,9 +372,11 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
             cardsTaken++;
             if(cardsTaken>=2)
             {
-                nextPlayer();   
+                nextPlayer();  
+                cardsTaken = 0;
             }
             repaint();
+            return;
         }
 
         if(e.getX() >=905 && e.getX() <= 1055 && e.getY() >= 220 && e.getY() <= 310)  
@@ -409,8 +387,10 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
             if(cardsTaken>=2)
             {
                 nextPlayer();   
+                cardsTaken = 0;
             }
             repaint();
+            return;
         }
 
         if(e.getX() >=905 && e.getX() <= 1055 && e.getY() >=120 && e.getY() <= 210)  
@@ -421,17 +401,23 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
             if(cardsTaken>=2)
             {
                 nextPlayer();   
+                cardsTaken = 0;
             }
             repaint();
+            return;
         }
 
         //check if clicked on destination card deck
         //in all these cases after stuff happens we move to next player in list
         //check if trying to see their own destination cards
-        if (e.getX() >= 1050 && e.getX() <=1250 && e.getY() >= 620 && e.getY() <= 770) {
-            chooseDestinationCards(currentPlayer, 1);
-            nextPlayer();
-            repaint();
+
+        if (e.getX() >= 905 && e.getX() <=1055 && e.getY() >= 720 && e.getY() <= 910 ) {
+            if(cardsTaken==0)
+            {
+                chooseDestinationCards(currentPlayer, 1);
+                nextPlayer();
+                repaint();
+            }
         }
 
         //nextPlayer();
