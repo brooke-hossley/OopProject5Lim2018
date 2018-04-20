@@ -22,7 +22,7 @@ public class Driver extends JPanel implements ActionListener
     private JButton threePlayers;
     private JButton rules;
     //Player ArrayList
-    private ArrayList<Player> list = new ArrayList<Player>();;
+    private static ArrayList<Player> list = new ArrayList<Player>();;
 
     //The frame to display the menu on
     protected static JFrame frame;
@@ -164,8 +164,13 @@ public class Driver extends JPanel implements ActionListener
 
         }
     }
+    
     //Make a getPlayers() to return arraylist
-
+    public static ArrayList<Player> getPlayers()
+    {
+        return list;
+    }
+    
     /**
      * Creates the JFrame for the menu
      */
