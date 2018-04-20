@@ -66,7 +66,7 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
                 @Override
                 public void mouseClicked(MouseEvent e) 
                 {
-                    
+                    DestinationCardPanel.createAndShowGUI();
                 }
             }
         );
