@@ -16,7 +16,7 @@ public class Route extends JPanel
     protected int length; 
 
     //hold the two cities
-    protected ArrayList<City> twoCities = new ArrayList(2);
+    protected ArrayList<City> twoCities;
 
     //The possible colors of the route
     protected ArrayList<RouteColor> color; 
@@ -34,367 +34,235 @@ public class Route extends JPanel
 
     public Route(String cityOneName, String cityTwoName, HashMap<String, City> map)
     {
+        twoCities = new ArrayList(2);
+        color = new ArrayList<RouteColor>();
+        ArrayList<String> cityNames = new ArrayList<String>(2);
+        
+        cityNames.add(cityOneName);
+        cityNames.add(cityTwoName);
         twoCities.add(map.get(cityOneName));
         twoCities.add(map.get(cityTwoName));
 
-        if (cityOneName.equals("Danemark"))
+        if (cityNames.contains("Danemark"))
         {
-            if(cityTwoName.equals("Kiel"))
+            if(cityNames.contains("Kiel"))
             {
                 length = 2;
                 color.add(RouteColor.GRAY);
             }
-            else if(cityTwoName.equals("Bremerhaven"))
+            else if(cityNames.contains("Bremerhaven"))
             {
                 length = 5;
                 color.add(RouteColor.GREEN);
             }
         }
-        else if (cityOneName.equals("Kiel"))
+        else if (cityNames.contains("Kiel"))
         {
-            if(cityTwoName.equals("Rostock"))
+            if(cityNames.contains("Rostock"))
             {
                 length = 5;
                 color.add(RouteColor.ORANGE);
             }
-            else if (cityTwoName.equals("Scwerin"))
+            else if (cityNames.contains("Schwerin"))
             {
                 length = 5;
                 color.add(RouteColor.YELLOW);
             }
-            else if (cityTwoName.equals("Hamburg"))
+            else if (cityNames.contains("Hamburg"))
             {
                 length = 5;
                 color.add(RouteColor.BLACK);
                 color.add(RouteColor.PINK);
             }
-            else if (cityTwoName.equals("Bremerhaven"))
+            else if (cityNames.contains("Bremerhaven"))
             {
                 length = 3;
                 color.add(RouteColor.GRAY);
             }
-            else if (cityTwoName.equals("Danemark"))
-            {
-                length = 2;
-                color.add(RouteColor.GRAY);
-            }
         }
-        else if (cityOneName.equals("Rostock"))
+        else if (cityNames.contains("Rostock"))
         {
-            if(cityTwoName.equals("Kiel"))
-            {
-                length = 4;
-                color.add(RouteColor.ORANGE);
-            }
-            else if (cityTwoName.equals("Schwerin"))
+            if (cityNames.contains("Schwerin"))
             {
                 length = 2;
                 color.add(RouteColor.RED);
             }
-            else if (cityTwoName.equals("Berlin"))
+            else if (cityNames.contains("Berlin"))
             {
                 length = 6;
                 color.add(RouteColor.PINK);
             }
         }
-        else if (cityOneName.equals("Schwerin"))
+        else if (cityNames.contains("Schwerin"))
         {
-            if(cityTwoName.equals("Kiel"))
-            {
-                length = 3;
-                color.add(RouteColor.YELLOW);
-            }
-            else if (cityTwoName.equals("Rostock"))
-            {
-                length = 2;
-                color.add(RouteColor.RED);
-            }
-            else if (cityTwoName.equals("Hamburg"))
+            if (cityNames.contains("Hamburg"))
             {
                 length = 2;
                 color.add(RouteColor.GREEN);
             }
-            else if (cityTwoName.equals("Berlin"))
+            else if (cityNames.contains("Berlin"))
             {
                 length = 5;
                 color.add(RouteColor.WHITE);
             }
         }
-        else if (cityOneName.equals("Hamburg"))
+        else if (cityNames.contains("Hamburg"))
         {
-            if(cityTwoName.equals("Berlin"))
+            if(cityNames.contains("Berlin"))
             {
                 length = 7;
                 color.add(RouteColor.BLUE);
                 color.add(RouteColor.YELLOW);
             }
-            else if (cityTwoName.equals("Schwerin"))
-            {
-                length = 2;
-                color.add(RouteColor.GREEN);
-            }
-            else if (cityTwoName.equals("Hannover"))
+            else if (cityNames.contains("Hannover"))
             {
                 length = 4;
                 color.add(RouteColor.RED);
                 color.add(RouteColor.WHITE);
             }
-            else if (cityTwoName.equals("Kiel"))
-            {
-                length = 2;
-                color.add(RouteColor.PINK);
-                color.add(RouteColor.BLACK);
-            }
-            else if (cityTwoName.equals("Bremen"))
+            else if (cityNames.contains("Bremen"))
             {
                 length = 3;
                 color.add(RouteColor.ORANGE);
             }
-            else if (cityTwoName.equals("Bremerhaven"))
+            else if (cityNames.contains("Bremerhaven"))
             {
                 length = 3;
                 color.add(RouteColor.GRAY);
             }
         }
-        else if (cityOneName.equals("Bremerhaven"))
+        else if (cityNames.contains("Bremerhaven"))
         {
-            if(cityTwoName.equals("Danemark"))
-            {
-                length = 5;
-                color.add(RouteColor.GREEN);
-            }
-            else if (cityTwoName.equals("Kiel"))
-            {
-                length = 3;
-                color.add(RouteColor.GRAY);
-            }
-            else if (cityTwoName.equals("Hamburg"))
-            {
-                length = 3;
-                color.add(RouteColor.GRAY);
-            }
-            else if (cityTwoName.equals("Bremen"))
+            if (cityNames.contains("Bremen"))
             {
                 length = 1;
                 color.add(RouteColor.WHITE);
             }
-            else if (cityTwoName.equals("Emden"))
+            else if (cityNames.contains("Emden"))
             {
                 length = 3;
                 color.add(RouteColor.GRAY);
             }
         }
-        else if (cityOneName.equals("Emden"))
+        else if (cityNames.contains("Emden"))
         {
-            if(cityTwoName.equals("Bremerhaven"))
-            {
-                length = 3;
-                color.add(RouteColor.GRAY);
-            }
-            else if (cityTwoName.equals("Bremen"))
+            if (cityNames.contains("Bremen"))
             {
                 length = 3;
                 color.add(RouteColor.BLUE);
             }
-            else if (cityTwoName.equals("Munster"))
+            else if (cityNames.contains("Munster"))
             {
                 length = 4;
                 color.add(RouteColor.RED);
             }
-            else if (cityTwoName.equals("Niederlande"))
+            else if (cityNames.contains("Niederlande"))
             {
                 length = 2;
                 color.add(RouteColor.WHITE);
             }
         }
-        else if (cityOneName.equals("Bremen"))
+        else if (cityNames.contains("Bremen"))
         {
-            if(cityTwoName.equals("Bremerhaven"))
-            {
-                length = 1;
-                color.add(RouteColor.WHITE);
-            }
-            else if (cityTwoName.equals("Emden"))
-            {
-                length = 3;
-                color.add(RouteColor.BLUE);
-            }
-            else if (cityTwoName.equals("Munster"))
+            if (cityNames.contains("Munster"))
             {
                 length = 3;
                 color.add(RouteColor.BLACK);
             }
-            else if (cityTwoName.equals("Hannover"))
+            else if (cityNames.contains("Hannover"))
             {
                 length = 3;
                 color.add(RouteColor.YELLOW);
             }
-            else if (cityTwoName.equals("Hamburg"))
-            {
-                length = 3;
-                color.add(RouteColor.ORANGE);
-            }
         }
-        else if (cityOneName.equals("Niederlande"))
+        else if (cityNames.contains("Niederlande"))
         {
-            if(cityTwoName.equals("Emden"))
-            {
-                length = 2;
-                color.add(RouteColor.WHITE);
-            }
-            else if (cityTwoName.equals("Munster"))
+            if (cityNames.contains("Munster"))
             {
                 length = 2;
                 color.add(RouteColor.ORANGE);
             }
-            else if (cityTwoName.equals("Dusseldorf"))
+            else if (cityNames.contains("Dusseldorf"))
             {
                 length = 3;
                 color.add(RouteColor.PINK);
             }
         }
-        else if (cityOneName.equals("Munster"))
+        else if (cityNames.contains("Munster"))
         {
-            if(cityTwoName.equals("Niederlande"))
-            {
-                length = 2;
-                color.add(RouteColor.ORANGE);
-            }
-            else if (cityTwoName.equals("Emden"))
-            {
-                length = 4;
-                color.add(RouteColor.RED);
-            }
-            else if (cityTwoName.equals("Bremen"))
-            {
-                length = 3;
-                color.add(RouteColor.BLACK);
-            }
-            else if (cityTwoName.equals("Hannover"))
+            if (cityNames.contains("Hannover"))
             {
                 length = 4;
                 color.add(RouteColor.PINK);
             }
-            else if (cityTwoName.equals("Dortmund"))
+            else if (cityNames.contains("Dortmund"))
             {
                 length = 1;
                 color.add(RouteColor.GRAY);
                 color.add(RouteColor.GRAY);
             }
         }
-        else if (cityOneName.equals("Hannover"))
+        else if (cityNames.contains("Hannover"))
         {
-            if(cityTwoName.equals("Hamburg"))
-            {
-                length = 4;
-                color.add(RouteColor.WHITE);
-                color.add(RouteColor.RED);
-            }
-            else if (cityTwoName.equals("Bremen"))
-            {
-                length = 3;
-                color.add(RouteColor.YELLOW);
-            }
-            else if (cityTwoName.equals("Munster"))
-            {
-                length = 4;
-                color.add(RouteColor.PINK);
-            }
-            else if (cityTwoName.equals("Kassel"))
+            if (cityNames.contains("Kassel"))
             {
                 length = 3;
                 color.add(RouteColor.GRAY);
                 color.add(RouteColor.GRAY);
             }
-            else if (cityTwoName.equals("Erfurt"))
+            else if (cityNames.contains("Erfurt"))
             {
                 length = 5;
                 color.add(RouteColor.GREEN);
                 color.add(RouteColor.ORANGE);
             }
-            else if (cityTwoName.equals("Magdeburg"))
+            else if (cityNames.contains("Magdeburg"))
             {
                 length = 4;
                 color.add(RouteColor.BLUE);
             }
-            else if (cityTwoName.equals("Berlin"))
+            else if (cityNames.contains("Berlin"))
             {
                 length = 7;
                 color.add(RouteColor.BLACK);
             }
         }
-        else if (cityOneName.equals("Berlin"))
+        else if (cityNames.contains("Berlin"))
         {
-            if(cityTwoName.equals("Rostock"))
-            {
-                length = 6;
-                color.add(RouteColor.PINK);
-            }
-            else if (cityTwoName.equals("Schwerin"))
-            {
-                length = 5;
-                color.add(RouteColor.WHITE);
-            }
-            else if (cityTwoName.equals("Hamburg"))
-            {
-                length = 7;
-                color.add(RouteColor.BLUE);
-                color.add(RouteColor.YELLOW);
-            }
-            else if (cityTwoName.equals("Hannover"))
-            {
-                length = 7;
-                color.add(RouteColor.BLACK);
-            }
-            else if (cityTwoName.equals("Magdeburg"))
+            if (cityNames.contains("Magdeburg"))
             {
                 length = 3;
                 color.add(RouteColor.RED);
             }
-            else if (cityTwoName.equals("Leipzig"))
+            else if (cityNames.contains("Leipzig"))
             {
                 length = 4;
                 color.add(RouteColor.ORANGE);
             }
-            else if (cityTwoName.equals("Dresden"))
+            else if (cityNames.contains("Dresden"))
             {
                 length = 5;
                 color.add(RouteColor.GREEN);
             }
         }
-        else if (cityOneName.equals("Magdeburg"))
+        else if (cityNames.contains("Magdeburg"))
         {
-            if(cityTwoName.equals("Hannover"))
-            {
-                length = 4;
-                color.add(RouteColor.BLUE);
-            }
-            else if (cityTwoName.equals("Berlin"))
-            {
-                length = 3;
-                color.add(RouteColor.RED);
-            }
-            else if (cityTwoName.equals("Leipzig"))
+            if (cityNames.contains("Leipzig"))
             {
                 length = 2;
                 color.add(RouteColor.YELLOW);
             }
         }
-        else if (cityOneName.equals("Dusseldorf"))
+        else if (cityNames.contains("Dusseldorf"))
         {
-            if(cityTwoName.equals("Niederlande"))
-            {
-                length = 3;
-                color.add(RouteColor.PINK);
-            }
-            else if (cityTwoName.equals("Dortmund"))
+            if (cityNames.contains("Dortmund"))
             {
                 length = 1;
                 color.add(RouteColor.GRAY);
                 color.add(RouteColor.GRAY);
                 color.add(RouteColor.GRAY);
             }
-            else if (cityTwoName.equals("Koln"))
+            else if (cityNames.contains("Koln"))
             {
                 length = 1;
                 color.add(RouteColor.GRAY);
@@ -402,664 +270,621 @@ public class Route extends JPanel
                 color.add(RouteColor.GRAY);
             }
         }
-        else if (cityOneName.equals("Dortmund"))
+        else if (cityNames.contains("Kassel"))
         {
-            if(cityTwoName.equals("Munster"))
-            {
-                length = 1;
-                color.add(RouteColor.GRAY);
-                color.add(RouteColor.GRAY);
-            }
-            else if (cityTwoName.equals("Dusseldorf"))
-            {
-                length = 1;
-                color.add(RouteColor.GRAY);
-                color.add(RouteColor.GRAY);
-                color.add(RouteColor.GRAY);
-            }
-            else if (cityTwoName.equals("Kassel"))
+            if (cityNames.contains("Dortmund"))
             {
                 length = 4;
                 color.add(RouteColor.GREEN);
             }
-        }
-        else if (cityOneName.equals("Kassel"))
-        {
-            if(cityTwoName.equals("Hannover"))
-            {
-                length = 3;
-                color.add(RouteColor.GRAY);
-                color.add(RouteColor.GRAY);
-            }
-            else if (cityTwoName.equals("Dortmund"))
-            {
-                length = 4;
-                color.add(RouteColor.GREEN);
-            }
-            else if (cityTwoName.equals("Frankfurt"))
+            else if (cityNames.contains("Frankfurt"))
             {
                 length = 4;
                 color.add(RouteColor.BLUE);
                 color.add(RouteColor.WHITE);
             }
-            else if (cityTwoName.equals("Erfurt"))
+            else if (cityNames.contains("Erfurt"))
             {
                 length = 3;
                 color.add(RouteColor.GRAY);
             }
         }
-        else if (cityOneName.equals("Leipzig"))
+        else if (cityNames.contains("Leipzig"))
         {
-            if(cityTwoName.equals("Erfurt"))
+            if(cityNames.contains("Erfurt"))
             {
                 length = 3;
                 color.add(RouteColor.RED);
             }
-            else if (cityTwoName.equals("Magdeburg"))
-            {
-                length = 2;
-                color.add(RouteColor.YELLOW);
-            }
-            else if (cityTwoName.equals("Berlin"))
-            {
-                length = 4;
-                color.add(RouteColor.ORANGE);
-            }
-            else if (cityTwoName.equals("Dresden"))
+            else if (cityNames.contains("Dresden"))
             {
                 length = 3;
                 color.add(RouteColor.BLACK);
             }
-            else if (cityTwoName.equals("Chemnitz"))
+            else if (cityNames.contains("Chemnitz"))
             {
                 length = 2;
                 color.add(RouteColor.BLUE);
             }
         }
-        else if (cityOneName.equals("Dresden"))
+        else if (cityNames.contains("Dresden"))
         {
-            if(cityTwoName.equals("Berlin"))
-            {
-                length = 5;
-                color.add(RouteColor.GREEN);
-            }
-            else if (cityTwoName.equals("Leipzig"))
-            {
-                length = 3;
-                color.add(RouteColor.BLACK);
-            }
-            else if (cityTwoName.equals("Chemnitz"))
+            if (cityNames.contains("Chemnitz"))
             {
                 length = 1;
                 color.add(RouteColor.YELLOW);
             }
-            else if (cityTwoName.equals("Regensburg"))
+            else if (cityNames.contains("Regensburg"))
             {
                 length = 7;
                 color.add(RouteColor.RED);
             }
         }
-        else if (cityOneName.equals("Chemnitz"))
+        else if (cityNames.contains("Chemnitz"))
         {
-            if(cityTwoName.equals("Dresden"))
+            if(cityNames.contains("Dresden"))
             {
                 length = 1;
                 color.add(RouteColor.YELLOW);
             }
-            else if (cityTwoName.equals("Leipzig"))
+            else if (cityNames.contains("Leipzig"))
             {
                 length = 2;
                 color.add(RouteColor.BLUE);
             }
-            else if (cityTwoName.equals("Erfurt"))
+            else if (cityNames.contains("Erfurt"))
             {
                 length = 4;
                 color.add(RouteColor.BLACK);
             }
-            else if (cityTwoName.equals("Regensburg"))
+            else if (cityNames.contains("Regensburg"))
             {
                 length = 6;
                 color.add(RouteColor.PINK);
             }
         }
-        else if (cityOneName.equals("Erfurt"))
+        else if (cityNames.contains("Erfurt"))
         {
-            if(cityTwoName.equals("Hannover"))
+            if(cityNames.contains("Hannover"))
             {
                 length = 5;
                 color.add(RouteColor.GREEN);
                 color.add(RouteColor.ORANGE);
             }
-            else if (cityTwoName.equals("Kassel"))
+            else if (cityNames.contains("Kassel"))
             {
                 length = 3;
                 color.add(RouteColor.GRAY);
             }
-            else if (cityTwoName.equals("Nurnburg"))
+            else if (cityNames.contains("Nurnburg"))
             {
                 length = 4;
                 color.add(RouteColor.YELLOW);
                 color.add(RouteColor.PINK);
             }
-            else if (cityTwoName.equals("Regensburg"))
+            else if (cityNames.contains("Regensburg"))
             {
                 length = 7;
                 color.add(RouteColor.WHITE);
             }
-            else if (cityTwoName.equals("Chemnitz"))
+            else if (cityNames.contains("Chemnitz"))
             {
                 length = 4;
                 color.add(RouteColor.BLACK);
             }
-            else if (cityTwoName.equals("Leipzig"))
+            else if (cityNames.contains("Leipzig"))
             {
                 length = 3;
                 color.add(RouteColor.RED);
             }
         }
-        else if (cityOneName.equals("Koln"))
+        else if (cityNames.contains("Koln"))
         {
-            if(cityTwoName.equals("Dusseldorf"))
+            if(cityNames.contains("Dusseldorf"))
             {
                 length = 1;
                 color.add(RouteColor.GRAY);
                 color.add(RouteColor.GRAY);
                 color.add(RouteColor.GRAY);
             }
-            else if (cityTwoName.equals("Frankfurt"))
+            else if (cityNames.contains("Frankfurt"))
             {
                 length = 4;
                 color.add(RouteColor.GRAY);
                 color.add(RouteColor.GRAY);
             }
-            else if (cityTwoName.equals("Koblenz"))
+            else if (cityNames.contains("Koblenz"))
             {
                 length = 1;
                 color.add(RouteColor.GRAY);
                 color.add(RouteColor.GRAY);
             }
         }
-        else if (cityOneName.equals("Frankfurt"))
+        else if (cityNames.contains("Frankfurt"))
         {
-            if(cityTwoName.equals("Kassel"))
+            if(cityNames.contains("Kassel"))
             {
                 length = 4;
                 color.add(RouteColor.BLUE);
                 color.add(RouteColor.WHITE);
             }
-            else if (cityTwoName.equals("Wurzburg"))
+            else if (cityNames.contains("Wurzburg"))
             {
                 length = 2;
                 color.add(RouteColor.GRAY);
                 color.add(RouteColor.GRAY);
             }
-            else if (cityTwoName.equals("Mannheim"))
+            else if (cityNames.contains("Mannheim"))
             {
                 length = 2;
                 color.add(RouteColor.GRAY);
                 color.add(RouteColor.GRAY);
             }
-            else if (cityTwoName.equals("Mainz"))
+            else if (cityNames.contains("Mainz"))
             {
                 length = 2;
                 color.add(RouteColor.GRAY);
                 color.add(RouteColor.GRAY);
             }
-            else if (cityTwoName.equals("Koln"))
+            else if (cityNames.contains("Koln"))
             {
                 length = 4;
                 color.add(RouteColor.GRAY);
                 color.add(RouteColor.GRAY);
             }
         }
-        else if (cityOneName.equals("Koblenz"))
+        else if (cityNames.contains("Koblenz"))
         {
-            if(cityTwoName.equals("Koln"))
+            if(cityNames.contains("Koln"))
             {
                 length = 1;
                 color.add(RouteColor.GRAY);
                 color.add(RouteColor.GRAY);
             }
-            else if (cityTwoName.equals("Mainz"))
+            else if (cityNames.contains("Mainz"))
             {
                 length = 2;
                 color.add(RouteColor.GRAY);
                 color.add(RouteColor.GRAY);
             }
-            else if (cityTwoName.equals("Saarbrucken"))
+            else if (cityNames.contains("Saarbrucken"))
             {
                 length = 3;
                 color.add(RouteColor.GRAY);
             }
         }
-        else if (cityOneName.equals("Mainz"))
+        else if (cityNames.contains("Mainz"))
         {
-            if(cityTwoName.equals("Koblenz"))
+            if(cityNames.contains("Koblenz"))
             {
                 length = 2;
                 color.add(RouteColor.GRAY);
                 color.add(RouteColor.GRAY);
             }
-            else if (cityTwoName.equals("Frankfurt"))
+            else if (cityNames.contains("Frankfurt"))
             {
                 length = 1;
                 color.add(RouteColor.GRAY);
                 color.add(RouteColor.GRAY);
             }
-            else if (cityTwoName.equals("Mannheim"))
+            else if (cityNames.contains("Mannheim"))
             {
                 length = 1;
                 color.add(RouteColor.GRAY);
                 color.add(RouteColor.GRAY);
             }
-            else if (cityTwoName.equals("Saarbrucken"))
+            else if (cityNames.contains("Saarbrucken"))
             {
                 length = 3;
                 color.add(RouteColor.GRAY);
             }
         }
-        else if (cityOneName.equals("Wurzburg"))
+        else if (cityNames.contains("Wurzburg"))
         {
-            if(cityTwoName.equals("Frankfurt"))
+            if(cityNames.contains("Frankfurt"))
             {
                 length = 2;
                 color.add(RouteColor.GRAY);
                 color.add(RouteColor.GRAY);
             }
-            else if (cityTwoName.equals("Nurnburg"))
+            else if (cityNames.contains("Nurnburg"))
             {
                 length = 2;
                 color.add(RouteColor.GRAY);
                 color.add(RouteColor.GRAY);
             }
         }
-        else if (cityOneName.equals("Nurnburg"))
+        else if (cityNames.contains("Nurnburg"))
         {
-            if(cityTwoName.equals("Erfurt"))
+            if(cityNames.contains("Erfurt"))
             {
                 length = 4;
                 color.add(RouteColor.PINK);
                 color.add(RouteColor.YELLOW);
             }
-            else if (cityTwoName.equals("Wurzburg"))
+            else if (cityNames.contains("Wurzburg"))
             {
                 length = 2;
                 color.add(RouteColor.GRAY);
                 color.add(RouteColor.GRAY);
             }
-            else if (cityTwoName.equals("Augsburg"))
+            else if (cityNames.contains("Augsburg"))
             {
                 length = 4;
                 color.add(RouteColor.ORANGE);
             }
-            else if (cityTwoName.equals("Munchen"))
+            else if (cityNames.contains("Munchen"))
             {
                 length = 5;
                 color.add(RouteColor.BLACK);
                 color.add(RouteColor.BLUE);
             }
-            else if (cityTwoName.equals("Regensburg"))
+            else if (cityNames.contains("Regensburg"))
             {
                 length = 3;
                 color.add(RouteColor.GREEN);
             }
         }
-        else if (cityOneName.equals("Regensburg"))
+        else if (cityNames.contains("Regensburg"))
         {
-            if(cityTwoName.equals("Dresden"))
+            if(cityNames.contains("Dresden"))
             {
                 length = 7;
                 color.add(RouteColor.RED);
             }
-            else if (cityTwoName.equals("Chemnitz"))
+            else if (cityNames.contains("Chemnitz"))
             {
                 length = 6;
                 color.add(RouteColor.PINK);
             }
-            else if (cityTwoName.equals("Erfurt"))
+            else if (cityNames.contains("Erfurt"))
             {
                 length = 7;
                 color.add(RouteColor.WHITE);
             }
-            else if (cityTwoName.equals("Nurnburg"))
+            else if (cityNames.contains("Nurnburg"))
             {
                 length = 3;
                 color.add(RouteColor.GREEN);
             }
-            else if (cityTwoName.equals("Munchen"))
+            else if (cityNames.contains("Munchen"))
             {
                 length = 3;
                 color.add(RouteColor.ORANGE);
             }
-            else if (cityTwoName.equals("Osterreich"))
+            else if (cityNames.contains("Osterreich"))
             {
                 length = 4;
                 color.add(RouteColor.YELLOW);
             }
         }
-        else if (cityOneName.equals("Mannheim"))
+        else if (cityNames.contains("Mannheim"))
         {
-            if(cityTwoName.equals("Mainz"))
+            if(cityNames.contains("Mainz"))
             {
                 length = 1;
                 color.add(RouteColor.GRAY);
                 color.add(RouteColor.GRAY);
             }
-            else if (cityTwoName.equals("Frankfurt"))
+            else if (cityNames.contains("Frankfurt"))
             {
                 length = 2;
                 color.add(RouteColor.GRAY);
                 color.add(RouteColor.GRAY);
             }
-            else if (cityTwoName.equals("Stuttgart"))
+            else if (cityNames.contains("Stuttgart"))
             {
                 length = 2;
                 color.add(RouteColor.GRAY);
                 color.add(RouteColor.GRAY);
             }
-            else if (cityTwoName.equals("Karlsruhe"))
+            else if (cityNames.contains("Karlsruhe"))
             {
                 length = 1;
                 color.add(RouteColor.BLUE);
             }
-            else if (cityTwoName.equals("Saarbrucken"))
+            else if (cityNames.contains("Saarbrucken"))
             {
                 length = 3;
                 color.add(RouteColor.GRAY);
             }
         }
-        else if (cityOneName.equals("Saarbrucken"))
+        else if (cityNames.contains("Saarbrucken"))
         {
-            if(cityTwoName.equals("Frankreich"))
+            if(cityNames.contains("Frankreich"))
             {
                 length = 1;
                 color.add(RouteColor.GREEN);
             }
-            else if (cityTwoName.equals("Karlsruhe"))
+            else if (cityNames.contains("Karlsruhe"))
             {
                 length = 3;
                 color.add(RouteColor.GRAY);
             }
-            else if (cityTwoName.equals("Mannheim"))
+            else if (cityNames.contains("Mannheim"))
             {
                 length = 3;
                 color.add(RouteColor.GRAY);
             }
-            else if (cityTwoName.equals("Mainz"))
+            else if (cityNames.contains("Mainz"))
             {
                 length = 3;
                 color.add(RouteColor.GRAY);
             }
-            else if (cityTwoName.equals("Koblenz"))
+            else if (cityNames.contains("Koblenz"))
             {
                 length = 3;
                 color.add(RouteColor.GRAY);
             }
         }
-        else if (cityOneName.equals("Karlsruhe"))
+        else if (cityNames.contains("Karlsruhe"))
         {
-            if(cityTwoName.equals("Mannheim"))
+            if(cityNames.contains("Mannheim"))
             {
                 length = 1;
                 color.add(RouteColor.BLUE);
             }
-            else if (cityTwoName.equals("Saarbrucken"))
+            else if (cityNames.contains("Saarbrucken"))
             {
                 length = 3;
                 color.add(RouteColor.GRAY);
             }
-            else if (cityTwoName.equals("Frankreich"))
+            else if (cityNames.contains("Frankreich"))
             {
                 length = 2;
                 color.add(RouteColor.BLACK);
             }
-            else if (cityTwoName.equals("Freiburg"))
+            else if (cityNames.contains("Freiburg"))
             {
                 length = 3;
                 color.add(RouteColor.WHITE);
             }
-            else if (cityTwoName.equals("Stuttgart"))
+            else if (cityNames.contains("Stuttgart"))
             {
                 length = 1;
                 color.add(RouteColor.PINK);
             }
         }
-        else if (cityOneName.equals("Stuttgart"))
+        else if (cityNames.contains("Stuttgart"))
         {
-            if(cityTwoName.equals("Mannheim"))
+            if(cityNames.contains("Mannheim"))
             {
                 length = 2;
                 color.add(RouteColor.GRAY);
                 color.add(RouteColor.GRAY);
             }
-            else if (cityTwoName.equals("Karlsruhe"))
+            else if (cityNames.contains("Karlsruhe"))
             {
                 length = 1;
                 color.add(RouteColor.PINK);
             }
-            else if (cityTwoName.equals("Freiburg"))
+            else if (cityNames.contains("Freiburg"))
             {
                 length = 3;
                 color.add(RouteColor.GRAY);
             }
-            else if (cityTwoName.equals("Konstanz"))
+            else if (cityNames.contains("Konstanz"))
             {
                 length = 3;
                 color.add(RouteColor.GREEN);
             }
-            else if (cityTwoName.equals("Ulm"))
+            else if (cityNames.contains("Ulm"))
             {
                 length = 2;
                 color.add(RouteColor.GRAY);
                 color.add(RouteColor.GRAY);
             }
         }
-        else if (cityOneName.equals("Frankreich"))
+        else if (cityNames.contains("Frankreich"))
         {
-            if(cityTwoName.equals("Saarbrucken"))
+            if(cityNames.contains("Saarbrucken"))
             {
                 length = 1;
                 color.add(RouteColor.GREEN);
             }
-            else if (cityTwoName.equals("Karlsruhe"))
+            else if (cityNames.contains("Karlsruhe"))
             {
                 length = 2;
                 color.add(RouteColor.BLACK);
             }
-            else if (cityTwoName.equals("Freiburg"))
+            else if (cityNames.contains("Freiburg"))
             {
                 length = 2;
                 color.add(RouteColor.YELLOW);
             }
         }
-        else if (cityOneName.equals("Ulm"))
+        else if (cityNames.contains("Ulm"))
         {
-            if(cityTwoName.equals("Stuttgart"))
+            if(cityNames.contains("Stuttgart"))
             {
                 length = 2;
                 color.add(RouteColor.GRAY);
                 color.add(RouteColor.GRAY);
             }
-            else if (cityTwoName.equals("Augsburg"))
+            else if (cityNames.contains("Augsburg"))
             {
                 length = 1;
                 color.add(RouteColor.GRAY);
                 color.add(RouteColor.GRAY);
             }
-            else if (cityTwoName.equals("Lindau"))
+            else if (cityNames.contains("Lindau"))
             {
                 length = 2;
                 color.add(RouteColor.RED);
             }
         }
-        else if (cityOneName.equals("Augsburg"))
+        else if (cityNames.contains("Augsburg"))
         {
-            if(cityTwoName.equals("Nurnburg"))
+            if(cityNames.contains("Nurnburg"))
             {
                 length = 4;
                 color.add(RouteColor.ORANGE);
             }
-            else if (cityTwoName.equals("Munchen"))
+            else if (cityNames.contains("Munchen"))
             {
                 length = 2;
                 color.add(RouteColor.GRAY);
                 color.add(RouteColor.GRAY);
             }
-            else if (cityTwoName.equals("Ulm"))
+            else if (cityNames.contains("Ulm"))
             {
                 length = 1;
                 color.add(RouteColor.GRAY);
                 color.add(RouteColor.GRAY);
             }
         }
-        else if (cityOneName.equals("Munchen"))
+        else if (cityNames.contains("Munchen"))
         {
-            if(cityTwoName.equals("Augsburg"))
+            if(cityNames.contains("Augsburg"))
             {
                 length = 2;
                 color.add(RouteColor.GRAY);
                 color.add(RouteColor.GRAY);
             }
-            else if (cityTwoName.equals("Lindau"))
+            else if (cityNames.contains("Lindau"))
             {
                 length = 5;
                 color.add(RouteColor.GRAY);
             }
-            else if (cityTwoName.equals("Osterreich"))
+            else if (cityNames.contains("Osterreich"))
             {
                 length = 3;
                 color.add(RouteColor.RED);
             }
-            else if (cityTwoName.equals("Regensburg"))
+            else if (cityNames.contains("Regensburg"))
             {
                 length = 3;
                 color.add(RouteColor.ORANGE);
             }
-            else if (cityTwoName.equals("Nurnburg"))
+            else if (cityNames.contains("Nurnburg"))
             {
                 length = 5;
                 color.add(RouteColor.BLACK);
                 color.add(RouteColor.BLUE);
             }
         }
-        else if (cityOneName.equals("Freiburg"))
+        else if (cityNames.contains("Freiburg"))
         {
-            if(cityTwoName.equals("Frankreich"))
+            if(cityNames.contains("Frankreich"))
             {
                 length = 2;
                 color.add(RouteColor.YELLOW);
             }
-            else if (cityTwoName.equals("Karlsruhe"))
+            else if (cityNames.contains("Karlsruhe"))
             {
                 length = 3;
                 color.add(RouteColor.WHITE);
             }
-            else if (cityTwoName.equals("Stuttgart"))
+            else if (cityNames.contains("Stuttgart"))
             {
                 length = 3;
                 color.add(RouteColor.GRAY);
             }
-            else if (cityTwoName.equals("Konstanz"))
+            else if (cityNames.contains("Konstanz"))
             {
                 length = 2;
                 color.add(RouteColor.BLACK);
             }
-            else if (cityTwoName.equals("Schweiz"))
+            else if (cityNames.contains("Schweiz"))
             {
                 length = 2;
                 color.add(RouteColor.ORANGE);
             }
         }
-        else if (cityOneName.equals("Konstanz"))
+        else if (cityNames.contains("Konstanz"))
         {
-            if(cityTwoName.equals("Freiburg"))
+            if(cityNames.contains("Freiburg"))
             {
                 length = 2;
                 color.add(RouteColor.BLACK);
             }
-            else if (cityTwoName.equals("Stuttgart"))
+            else if (cityNames.contains("Stuttgart"))
             {
                 length = 3;
                 color.add(RouteColor.GREEN);
             }
-            else if (cityTwoName.equals("Lindau"))
+            else if (cityNames.contains("Lindau"))
             {
                 length = 1;
                 color.add(RouteColor.YELLOW);
             }
-            else if (cityTwoName.equals("Schweiz"))
+            else if (cityNames.contains("Schweiz"))
             {
                 length = 1;
                 color.add(RouteColor.WHITE);
             }
         }
-        else if (cityOneName.equals("Lindau"))
+        else if (cityNames.contains("Lindau"))
         {
-            if(cityTwoName.equals("Konstanz"))
+            if(cityNames.contains("Konstanz"))
             {
                 length = 1;
                 color.add(RouteColor.YELLOW);
             }
-            else if (cityTwoName.equals("Schweiz"))
+            else if (cityNames.contains("Schweiz"))
             {
                 length = 2;
                 color.add(RouteColor.BLUE);
             }
-            else if (cityTwoName.equals("Osterreich"))
+            else if (cityNames.contains("Osterreich"))
             {
                 length = 2;
                 color.add(RouteColor.PINK);
             }
-            else if (cityTwoName.equals("Munchen"))
+            else if (cityNames.contains("Munchen"))
             {
                 length = 5;
                 color.add(RouteColor.GRAY);
             }
-            else if (cityTwoName.equals("Ulm"))
+            else if (cityNames.contains("Ulm"))
             {
                 length = 2;
                 color.add(RouteColor.RED);
             }
         }
-        else if (cityOneName.equals("Schweiz"))
+        else if (cityNames.contains("Schweiz"))
         {
-            if(cityTwoName.equals("Freiburg"))
+            if(cityNames.contains("Freiburg"))
             {
                 length = 2;
                 color.add(RouteColor.ORANGE);
             }
-            else if (cityTwoName.equals("Konstanz"))
+            else if (cityNames.contains("Konstanz"))
             {
                 length = 1;
                 color.add(RouteColor.WHITE);
             }
-            else if (cityTwoName.equals("Lindau"))
+            else if (cityNames.contains("Lindau"))
             {
                 length = 2;
                 color.add(RouteColor.BLUE);
             }
         }
-        else if (cityOneName.equals("Osterreich"))
+        else if (cityNames.contains("Osterreich"))
         {
-            if(cityTwoName.equals("Lindau"))
+            if(cityNames.contains("Lindau"))
             {
                 length = 2;
                 color.add(RouteColor.PINK);
             }
         }
-        else if (cityOneName.equals("Osterreich"))
+        else if (cityNames.contains("Osterreich"))
         {
-            if(cityTwoName.equals("Munchen"))
+            if(cityNames.contains("Munchen"))
             {
                 length = 3;
                 color.add(RouteColor.RED);
             }
-            else if (cityTwoName.equals("Regensburg"))
+            else if (cityNames.contains("Regensburg"))
             {
                 length = 4;
                 color.add(RouteColor.YELLOW);
             }
         }
+        
+        map.get(cityOneName).addRoute(this);
+        map.get(cityTwoName).addRoute(this);
+        
     }
     
     protected boolean containsMouse(int x, int y){
@@ -1090,6 +915,10 @@ public class Route extends JPanel
             n = 18;
             
         p.updateScore(n);
+    }
+    
+    public String toString() {
+        return twoCities.get(0).name + twoCities.get(1).name;
     }
 
     public static String getStringrouteColor(RouteColor col) {

@@ -31,6 +31,7 @@ public class City
         name = nameIn;
         isCountry = false;
         meepleAmount = 1;
+        connectedRoutes = new ArrayList<Route>();
         
         //set iscountry
         //set meepleamount
@@ -156,6 +157,10 @@ public class City
         else if (name.equals("Wurzburg")) { 
             
         }
+    }
+    
+    protected void addRoute(Route r){
+        connectedRoutes.add(r);
     }
     
     protected void addMeeple(MeepleColor meeple){
