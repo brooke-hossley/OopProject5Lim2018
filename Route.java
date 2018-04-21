@@ -1229,6 +1229,552 @@ public class Route extends JPanel
         int [] a14 = {624, 632, 684, 677};
         g.drawPolygon(a13,a14,4);
         g.fillPolygon(a13,a14,4);
+        
+        //Nurnburg to Munchen
+        g.setColor(new Color(0,255,0));
+        int [] a15 = {788, 766, 827, 848};
+        int [] a16 = {637, 647, 786, 778};
+        g.drawPolygon(a15,a16,4);
+        g.fillPolygon(a15,a16,4);
+
+        //Nurnburg to Augsburg
+        g.setColor(new Color(0,255,0));
+        int [] a17 = {763, 753, 747, 758};
+        int [] a18 = {641, 641, 763, 763};
+        g.drawPolygon(a17,a18,4);
+        g.fillPolygon(a17,a18,4);
+
+        //Augsburg to Munchen
+        g.setColor(new Color(0,255,0));
+        int [] a19 = {768, 762, 820, 825};
+        int [] a20 = {771, 793, 807, 787};
+        g.drawPolygon(a19,a20,4);
+        g.fillPolygon(a19,a20,4);
+
+        //Augsburg to Ulm
+        g.setColor(new Color(0,255,0));
+        int [] a21 = {743, 741, 713, 713};
+        int [] a22 = {763, 785, 783, 762};
+        g.drawPolygon(a21,a22,4);
+        g.fillPolygon(a21,a22,4);
+
+        //Munchen to country
+        g.setColor(new Color(0,255,0));
+        int [] a23 = {853, 845, 910, 919};
+        int [] a24 = {802, 811, 873, 866};
+        g.drawPolygon(a23,a24,4);
+        g.fillPolygon(a23,a24,4);
+
+        //Regensburg to new country
+        g.setColor(new Color(0,255,0));
+        int [] a25 = {901, 891, 958, 968};
+        int [] a26 = {699, 706, 807, 801};
+        g.drawPolygon(a25,a26,4);
+        g.fillPolygon(a25,a26,4);
+
+        //Leipzig to Dresden
+        g.setColor(new Color(0,255,0));
+        int [] a27 = {875, 872, 957, 961};
+        int [] a28 = {432, 441, 471, 461};
+        g.drawPolygon(a27,a28,4);
+        g.fillPolygon(a27,a28,4);
+
+        //Leipzig to Chemnitz
+        g.setColor(new Color(0,255,0));
+        int [] a29 = {870, 862, 904, 911};
+        int [] a30 = {442, 449, 491, 484};
+        g.drawPolygon(a29,a30,4);
+        g.fillPolygon(a29,a30,4);
+
+        //Magdeburg to Leipzig
+        g.setColor(new Color(0,255,0));
+        int [] a31 = {836, 825, 849, 859};
+        int [] a32 = {366, 370, 425, 421};
+        g.drawPolygon(a31,a32,4);
+        g.fillPolygon(a31,a32,4);
+
+        //Schwerin to Rostock
+        g.setColor(new Color(0,255,0));
+        int [] a33 = {841, 834, 798, 805};
+        int [] a34 = {126, 121, 169, 175};
+        g.drawPolygon(a33,a34,4);
+        g.fillPolygon(a33,a34,4);
+
+        //Chemnitz to Dresden
+        g.setColor(new Color(0,255,0));
+        int [] a35 = {954, 958, 930, 926};
+        int [] a36 = {474, 482, 497, 486};
+        g.drawPolygon(a35,a36,4);
+        g.fillPolygon(a35,a36,4);
+
+        //Ulm to Lindau
+        g.setColor(new Color(0,255,0));
+        int [] a37 = {699, 691, 674, 684};
+        int [] a38 = {787, 785, 842, 845};
+        g.drawPolygon(a37,a38,4);
+        g.fillPolygon(a37,a38,4);
+
+        // Ulm to Stuttgart
+        g.setColor(new Color(0,255,0));
+        int [] a39 = {649, 635, 684, 699};
+        int [] a40 = {721, 739, 774, 755};
+        g.drawPolygon(a39,a40,4);
+        g.fillPolygon(a39,a40,4);
+
+        //Lindau to new country
+        g.setColor(new Color(0,255,0));
+        int [] a41 = {693, 689, 744, 748};
+        int [] a42 = {857, 865, 886, 875};
+        g.drawPolygon(a41,a42,4);
+        g.fillPolygon(a41,a42,4);
+
+        //Lindau to Konstanz
+        g.setColor(new Color(0,255,0));
+        int [] a43 = {640, 637, 665, 667};
+        int [] a44 = {841, 850, 857, 848};
+        g.drawPolygon(a43,a44,4);
+        g.fillPolygon(a43,a44,4);
+
+        //Konstanz to Stuttgart
+        g.setColor(new Color(0,255,0));
+        int [] a45 = {633, 623, 620, 631};
+        int [] a46 = {741, 741, 832, 832};
+        g.drawPolygon(a45,a46,4);
+        g.fillPolygon(a45,a46,4);
+
+        //Konstanz to Freiburg
+        g.setColor(new Color(0,255,0));
+        int [] a47 = {611, 613, 554, 552};
+        int [] a48 = {845, 835, 820, 831};
+        g.drawPolygon(a47,a48,4);
+        g.fillPolygon(a47,a48,4);
+
+        //Konstanz to new country
+        g.setColor(new Color(0,255,0));
+        int [] a49 = {612, 619, 595, 589};
+        int [] a50 = {848, 856, 874, 866};
+        g.drawPolygon(a49,a50,4);
+        g.fillPolygon(a49,a50,4);
+
+        //Freiburg to Stuttgart
+        g.setColor(new Color(0,255,0));
+        int [] a51 = {620, 612, 553, 559};
+        int [] a52 = {744, 737, 808, 815};
+        g.drawPolygon(a51,a52,4);
+        g.fillPolygon(a51,a52,4);
+
+        //Freiburg to Karlsruhe
+        g.setColor(new Color(0,255,0));
+        int [] a53 = {575, 566, 538, 547};
+        int [] a54 = {726, 724, 811, 813};
+        g.drawPolygon(a53,a54,4);
+        g.fillPolygon(a53,a54,4);
+
+        //Freiburg to France
+        g.setColor(new Color(0,255,0));
+        int [] a55 = {525, 527, 469, 467};
+        int [] a56 = {824, 814, 800, 811};
+        g.drawPolygon(a55,a56,4);
+        g.fillPolygon(a55,a56,4);
+
+        //Karlsruhe to Stuttgart
+        g.setColor(new Color(0,255,0));
+        int [] a57 = {587, 584, 611, 614};
+        int [] a58 = {714, 724, 731, 722};
+        g.drawPolygon(a57,a58,4);
+        g.fillPolygon(a57,a58,4);
+
+        //Karlsruhe to Mannheim
+        g.setColor(new Color(0,255,0));
+        int [] a59 = {576, 566, 566, 576};
+        int [] a60= {672, 672, 700, 700};
+        g.drawPolygon(a59,a60,4);
+        g.fillPolygon(a59,a60,4);
+
+        //Karlsruhe to France
+        g.setColor(new Color(0,255,0));
+        int [] a61 = {560, 555, 502, 507};
+        int [] a62 = {725, 717, 745, 754};
+        g.drawPolygon(a61,a62,4);
+        g.fillPolygon(a61,a62,4);
+
+        //Mannheim to Stuttgart
+        g.setColor(new Color(0,255,0));
+        int [] a63 = {599, 580, 616, 634};
+        int [] a64 = {658, 672, 721, 707};
+        g.drawPolygon(a63,a64,4);
+        g.fillPolygon(a63,a64,4);
+
+        //Mainz to Mannheim
+        g.setColor(new Color(0,255,0));
+        int [] a65 = {569, 547, 559, 579 };
+        int [] a66 = {614, 624, 649, 641};
+        g.drawPolygon(a65,a66,4);
+        g.fillPolygon(a65,a66,4);
+
+        //Mannheim to Saerbrucken
+        g.setColor(new Color(0,255,0));
+        int [] a67 = {563, 563, 473, 472};
+        int [] a68 = {657, 666, 678, 669};
+        g.drawPolygon(a67,a68,4);
+        g.fillPolygon(a67,a68,4);
+
+        //Saerbrucken to France
+        g.setColor(new Color(0,255,0));
+        int [] a69 = {458,449,444,453};
+        int [] a70 = {685,684,712,714};
+        g.drawPolygon(a69,a70,4);
+        g.fillPolygon(a69,a70,4);
+
+        //Koblenz to Saerbrucken
+        g.setColor(new Color(0,255,0));
+        int [] a71 = {478,469,451,461};
+        int [] a72 = {569,567,656,657};
+        g.drawPolygon(a71,a72,4);
+        g.fillPolygon(a71,a72,4);
+
+        //Koblenz to Mainz
+        g.setColor(new Color(0,255,0));
+        int [] a73 = {498,485,533,547};
+        int [] a74= {555,574,608,590};
+        g.drawPolygon(a73,a74,4);
+        g.fillPolygon(a73,a74,4);
+
+        //Mainz to Frankfurt
+        g.setColor(new Color(0,255,0));
+        int [] a75 = {593,580,555,567};
+        int [] a76 = {589,571,589,607};
+        g.drawPolygon(a75,a76,4);
+        g.fillPolygon(a75,a76,4);
+
+        //Mannheim to Frankfurt
+        g.setColor(new Color(0,255,0));
+        int [] a77 = {617,596,582,603};
+        int [] a78 = {595,590,648,652};
+        g.drawPolygon(a77,a78,4);
+        g.fillPolygon(a77,a78,4);
+
+        //Frankfurt to Wurzburg
+        g.setColor(new Color(0,255,0));
+        int [] a79 = {621,612,668,676};
+        int [] a80 = {569,590,613,591};
+        g.drawPolygon(a79,a80,4);
+        g.fillPolygon(a79,a80,4);
+
+        //Wurzburg to Nurnburg
+        g.setColor(new Color(0,255,0));
+        int [] a81 = {700,692,748,757};
+        int [] a82 = {600,621,643,622};
+        g.drawPolygon(a81,a82,4);
+        g.fillPolygon(a81,a82,4);
+
+        //Mainz to Saerbrucken
+        g.setColor(new Color(0,255,0));
+        int [] a83 = {545,540,464,469};
+        int [] a84 = {619,610,661,668};
+        g.drawPolygon(a83,a84,4);
+        g.fillPolygon(a83,a84,4);
+
+        //Koblenz to Koln
+        g.setColor(new Color(0,255,0));
+        int [] a85 = {477,455,463,485};
+        int [] a86 = {512,519,546,540};
+        g.drawPolygon(a85,a86,4);
+        g.fillPolygon(a85,a86,4);
+
+        //Frankfurt to Koln
+        g.setColor(new Color(0,255,0));
+        int [] a87 = {490,477,582,594};
+        int [] a88 = {488,508,570,550};
+        g.drawPolygon(a87,a88,4);
+        g.fillPolygon(a87,a88,4);
+
+        //Koln to Desseldorf
+        g.setColor(new Color(0,255,0));
+        int [] a89 = {485,451,450,484};
+        int [] a90 = {451,451,481,481};
+        g.drawPolygon(a89,a90,4);
+        g.fillPolygon(a89,a90,4);
+
+        //Dusseldorf to Dortmund
+        g.setColor(new Color(0,255,0));
+        int [] a91 = {518,505,476,490};
+        int [] a92 = {434,402,415,446};
+        g.drawPolygon(a91,a92,4);
+        g.fillPolygon(a91,a92,4);
+
+        //Dusseldorf to new country
+        g.setColor(new Color(0,255,0));
+        int [] a93 = {440,430,461,470};
+        int [] a94 = {336,340,425,421};
+        g.drawPolygon(a93,a94,4);
+        g.fillPolygon(a93,a94,4);
+
+        //Dortmund to Munser
+        g.setColor(new Color(0,255,0));
+        int [] a95 = {541,520,512,534};
+        int [] a96 = {374,369,399,402};
+        g.drawPolygon(a95,a96,4);
+        g.fillPolygon(a95,a96,4);
+
+        //Munster to new country
+        g.setColor(new Color(0,255,0));
+        int [] a97 = {517,522,466,462};
+        int [] a98 = {356,346,326,334};
+        g.drawPolygon(a97,a98,4);
+        g.fillPolygon(a97,a98,4);
+
+        //Munster to Emden
+        g.setColor(new Color(0,255,0));
+        int [] a99 = {507,497,528,537};
+        int [] a100 = {223,225,341,340};
+        g.drawPolygon(a99,a100,4);
+        g.fillPolygon(a99,a100,4);
+
+        //Munster to Bremen
+        g.setColor(new Color(0,255,0));
+        int [] a101 = {601,592,541,549};
+        int [] a102 = {265,262,336,342};
+        g.drawPolygon(a101,a102,4);
+        g.fillPolygon(a101,a102,4);
+
+        //Bremen to Emden
+        g.setColor(new Color(0,255,0));
+        int [] a103 = {595,599,513,509};
+        int [] a104 = {247,237,209,218};
+        g.drawPolygon(a103,a104,4);
+        g.fillPolygon(a103,a104,4);
+
+        //Emden to new country
+        g.setColor(new Color(0,255,0));
+        int [] a105 = {491,484,445,452};
+        int [] a106 = {223,215,262,269};
+        g.drawPolygon(a105,a106,4);
+        g.fillPolygon(a105,a106,4);
+
+        //Hamburg to Kiel
+        g.setColor(new Color(0,255,0));
+        int [] a107 = {708,686,697,718};
+        int [] a108 = {121,124,183,179};
+        g.drawPolygon(a107,a108,4);
+        g.fillPolygon(a107,a108,4);
+
+        //Bremen to Bremerhaven
+        g.setColor(new Color(0,255,0));
+        int [] a109 = {609,599,602,612};
+        int [] a110 = {206,206,236,235};
+        g.drawPolygon(a109,a110,4);
+        g.fillPolygon(a109,a110,4);
+
+        //Bremerhaven to Kiel
+        g.setColor(new Color(0,255,0));
+        int [] a111 = {684,677,610,616};
+        int [] a112 = {123,115,177,183};
+        g.drawPolygon(a111,a112,4);
+        g.fillPolygon(a111,a112,4);
+
+        //Berlin to Dresden
+        g.setColor(new Color(0,255,0));
+        int [] a113 = {937,953,964,968,969,966,976,980,979,974,963,947};
+        int [] a114 = {317,341,370,400,431,460,461,432,400,367,337,310};
+        g.drawPolygon(a113,a114,12);
+        g.fillPolygon(a113,a114,12);
+
+        //Berlin to Leipzig
+        g.setColor(new Color(0,255,0));
+        int [] a115 = {928,924,865,873,935,938};
+        int [] a116 = {321,350,421,428,355,322};
+        g.drawPolygon(a115,a116,6);
+        g.fillPolygon(a115,a116,6);
+
+        //Berlin to Magdeburg
+        g.setColor(new Color(0,255,0));
+        int [] a117 = {917,897,837,838,899,906,925};
+        int [] a118 = {318,339,350,360,350,346,324};
+        g.drawPolygon(a117,a118,7);
+        g.fillPolygon(a117,a118,7);
+
+        //Berlin to Schwerin
+        g.setColor(new Color(0,255,0));
+        int [] a119 = {919,904,883,860,835,807,811,839,866,890,911,928};
+        int [] a120 = {286,261,237,218,201,191,181,190,208,229,254,282};
+        g.drawPolygon(a119,a120,12);
+        g.fillPolygon(a119,a120,12);
+
+        //Berlin to Rostock
+        g.setColor(new Color(0,255,0));
+        int [] a121 = {930,929,922,911,896,876,852,859,883,905,920,932,940,940};
+        int [] a122 = {281,252,223,194,167,144,126,118,136,161,189,219,251,282};
+        g.drawPolygon(a121,a122,14);
+        g.fillPolygon(a121,a122,14);
+
+        //Schwerin to Hamburg
+        g.setColor(new Color(0,255,0));
+        int [] a123 = {777,750,727,720,749,781};
+        int [] a124 = {184,171,188,181,160,175};
+        g.drawPolygon(a123,a124,6);
+        g.fillPolygon(a123,a124,6);
+
+        //Schwerin to Kiel
+        g.setColor(new Color(0,255,0));
+        int [] a125 = {782,762,737,710,716,743,769,791};
+        int [] a126 = {172,151,133,121,110,124,142,165};
+        g.drawPolygon(a125,a126,8);
+        g.fillPolygon(a125,a126,8);
+        
+        //Rostock to Kiel
+        g.setColor(new Color(0,255,0));
+        int [] a127 = {831,802,772,741,713,709,739,772,805,834};
+        int [] a128 = {110,101,97 ,100,108,100,90 ,87 ,91 ,101};
+        g.drawPolygon(a127,a128,10);
+        g.fillPolygon(a127,a128,10);
+
+        //Kiel to Denmark
+        g.setColor(new Color(0,255,0));
+        int [] a129 = {698,710,686,693,716,720,708};
+        int [] a130 = {93 ,65 ,47 ,40 ,56 ,70 ,97};
+        g.drawPolygon(a129,a130,7);
+        g.fillPolygon(a129,a130,7);
+
+        //Bremerhaven to Denmark
+        g.setColor(new Color(0,255,0));
+        int [] a131 = {606,602,605,614,628,648,640,619,604,595,593,596};
+        int [] a132 = {179,150,119,89 ,62 ,41 ,35 ,57 ,86 ,118,150,180};
+        g.drawPolygon(a131,a132,12);
+        g.fillPolygon(a131,a132,12);
+
+        //Beremerhaven to Emden
+        g.setColor(new Color(0,255,0));
+        int [] a133 = {588,561,531,510,502,526,559,567,593};
+        int [] a134 = {190,176,181,203,197,172,166,167,180};
+        g.drawPolygon(a133,a134,9);
+        g.fillPolygon(a133,a134,9);
+
+        //Bremerhaven to Hamburg
+        g.setColor(new Color(0,255,0));
+        int [] a135 = {626,648,664,696,698,669,649,619};
+        int [] a136 = {193,173,189,197,186,180,159,186};
+        g.drawPolygon(a135,a136,8);
+        g.fillPolygon(a135,a136,8);
+
+        //Bremen to Hamburg
+        g.setColor(new Color(0,255,0));
+        int [] a137 = {621,680,688,695,685,678,618};
+        int [] a138 = {253,237,229,202,199,227,243};
+        g.drawPolygon(a137,a138,7);
+        g.fillPolygon(a137,a138,7);
+
+        //Bremen to Hannover
+        g.setColor(new Color(0,255,0));
+        int [] a139 = {606,625,636,665,665,636,617};
+        int [] a140 = {261,319,325,326,316,314,257};
+        g.drawPolygon(a139,a140,7);
+        g.fillPolygon(a139,a140,7);
+
+        //Munster to Hannover
+        g.setColor(new Color(0,255,0));
+        int [] a141 = {544,575,606,635,664,663,632,602,575,546};
+        int [] a142 = {365,371,355,344,338,329,334,346,361,355};
+        g.drawPolygon(a141,a142,10);
+        g.fillPolygon(a141,a142,10);
+
+        //Magdeburg to Hannover
+        g.setColor(new Color(0,255,0));
+        int [] a143 = {816,786,751,719,696,702,724,753,784,813};
+        int [] a144 = {365,374,373,360,340,333,352,363,363,356};
+        g.drawPolygon(a143,a144,10);
+        g.fillPolygon(a143,a144,10);
+
+        //Leipzig to Erfurt
+        g.setColor(new Color(0,255,0));
+        int [] a145 = {849,819,793,781,772,785,816,849};
+        int [] a146 = {438,435,451,479,476,445,425,429};
+        g.drawPolygon(a145,a146,8);
+        g.fillPolygon(a145,a146,8);
+
+        //Hannover to Kassel
+        g.setColor(new Color(0,255,0));
+        int [] a147 = {671,667,667,671,649,645,645,649};
+        int [] a148 = {346,376,407,436,437,407,375,345};
+        g.drawPolygon(a147,a148,8);
+        g.fillPolygon(a147,a148,8);
+
+        //Kassel to Dortmund
+        g.setColor(new Color(0,255,0));
+        int [] a149 = {648,618,584,551,527,534,556,585,616,645};
+        int [] a150 = {451,460,461,449,429,421,440,450,451,442};
+        g.drawPolygon(a149,a150,10);
+        g.fillPolygon(a149,a150,10);
+
+        //Kassel to Erfurt
+        g.setColor(new Color(0,255,0));
+        int [] a151 = {755,723,687,671,680,695,724,753};
+        int [] a152 = {494,502,489,462,456,481,493,484};
+        g.drawPolygon(a151,a152,8);
+        g.fillPolygon(a151,a152,8);
+
+        //Kassel to Frankfurt
+        g.setColor(new Color(0,255,0));
+        int [] a153 = {669,670,662,638,612,606,600,596,621,640,647,646,657,658};
+        int [] a154 = {463,494,528,555,573,563,564,556,538,516,485,455,456,463};
+        g.drawPolygon(a153,a154,14);
+        g.fillPolygon(a153,a154,14);
+
+        //Saerbrucken to Karlsruhe
+        g.setColor(new Color(0,255,0));
+        int [] a155 = {464,488,522,553,553,523,492,472};
+        int [] a156 = {687,709,716,714,704,706,700,680};
+        g.drawPolygon(a155,a156,8);
+        g.fillPolygon(a155,a156,8);
+
+        //Freiburg to newCountry
+        g.setColor(new Color(0,255,0));
+        int [] a157 = {525,503,530,539,517,533};
+        int [] a158 = {833,867,894,886,865,838};
+        g.drawPolygon(a157,a158,6);
+        g.fillPolygon(a157,a158,6);
+
+        //Lindau to newCountry
+        g.setColor(new Color(0,255,0));
+        int [] a159 = {667,646,617,617,647,654,674};
+        int [] a160 = {863,884,886,896,895,891,869};
+        g.drawPolygon(a159,a160,7);
+        g.fillPolygon(a159,a160,7);
+
+        //Munchen to Regensburg
+        g.setColor(new Color(0,255,0));
+        int [] a161 = {851,879,884,896,898,891,880,886,874,848};
+        int [] a162 = {792,779,773,746,738,711,712,741,769,784};
+        g.drawPolygon(a161,a162,10);
+        g.fillPolygon(a161,a162,10);
+
+        //Regensburg to Erfurt
+        g.setColor(new Color(0,255,0));
+        int [] a163 = {868,868,860,847,829,807,781,787,813,837,855,870,878,878};
+        int [] a164 = {684,623,594,567,540,520,505,496,512,534,561,590,622,684};
+        g.drawPolygon(a163,a164,14);
+        g.fillPolygon(a163,a164,14);
+
+        //Regensburg to Chemnitz
+        g.setColor(new Color(0,255,0));
+        int [] a165 = {880,879,883,906,912,891,890};
+        int [] a166 = {683,531,522,504,511,531,684};
+        g.drawPolygon(a165,a166,7);
+        g.fillPolygon(a165,a166,7);
+
+        //Regensburg to Dresden
+        g.setColor(new Color(0,255,0));
+        int [] a167 = {893,909,922,932,961,970,942,931,918,901};
+        int [] a168 = {687,662,633,604,485,487,606,637,666,692};
+        g.drawPolygon(a167,a168,10);
+        g.fillPolygon(a167,a168,10);
+        
+        //Lindau to Munchen
+        g.setColor(new Color(0,255,0));
+        int [] a169 = {692,722,754,784,815,841,835,810,782,752,722,692};
+        int [] a170 = {854,856,853,846,833,817,809,824,836,844,847,844};
+        g.drawPolygon(a169,a170,12);
+        g.fillPolygon(a169,a170,12);
 
     }
     // protected boolean isDouble(){
