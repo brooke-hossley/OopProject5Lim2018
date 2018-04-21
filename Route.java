@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+import java.util.*;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
@@ -15,11 +15,11 @@ public class Route extends JPanel
     //How many trains needed to claim the route
     protected int length; 
 
-    //The color of the route
-    protected ArrayList<RouteColor> color; 
+    //hold the two cities
+    protected ArrayList<City> twoCities = new ArrayList(2);
 
-    //if there are two possibilities for this route in different colors
-    protected boolean twoColors; 
+    //The possible colors of the route
+    protected ArrayList<RouteColor> color; 
 
     //polygon to use as bounds for mouse hover and click
     protected Polygon routeShape;
@@ -30,25 +30,12 @@ public class Route extends JPanel
     //holds locations of trains occypying route once it's claimed by a player
     protected Polygon[] occupyingTrains;
 
-    //protected boolean doubleTrack;//If the route has double or triple capacity
-    //protected boolean tripleTrack;
-    private ArrayList<String> cities = new ArrayList<String>(2);
-    //private ArrayList<RouteColor> colors = new ArrayList<RouteColor>();
-
     private static Image board, blackBackground;
 
-    public Route(int len, RouteColor rcolor, boolean twoCol){
-        length = len;
-        //color = rcolor;
-
-    }
-
-    public Route(String firstCity, String secondCity)
+    public Route(String cityOneName, String cityTwoName, HashMap<String, City> map)
     {
-        //cities.add(firstCity);
-        //cities.add(secondCity);
-        String cityOneName = firstCity;
-        String cityTwoName = secondCity;
+        twoCities.add(map.get(cityOneName));
+        twoCities.add(map.get(cityTwoName));
 
         if (cityOneName.equals("Danemark"))
         {
@@ -744,7 +731,7 @@ public class Route extends JPanel
                 length = 3;
                 color.add(RouteColor.ORANGE);
             }
-            else if (cityTwoName.equals("OsterreichRIGHT"))
+            else if (cityTwoName.equals("Osterreich"))
             {
                 length = 4;
                 color.add(RouteColor.YELLOW);
@@ -938,7 +925,7 @@ public class Route extends JPanel
                 length = 5;
                 color.add(RouteColor.GRAY);
             }
-            else if (cityTwoName.equals("OsterreichRIGHT"))
+            else if (cityTwoName.equals("Osterreich"))
             {
                 length = 3;
                 color.add(RouteColor.RED);
@@ -1018,7 +1005,7 @@ public class Route extends JPanel
                 length = 2;
                 color.add(RouteColor.BLUE);
             }
-            else if (cityTwoName.equals("OsterreichLEFT"))
+            else if (cityTwoName.equals("Osterreich"))
             {
                 length = 2;
                 color.add(RouteColor.PINK);
@@ -1052,7 +1039,7 @@ public class Route extends JPanel
                 color.add(RouteColor.BLUE);
             }
         }
-        else if (cityOneName.equals("OsterreichLEFT"))
+        else if (cityOneName.equals("Osterreich"))
         {
             if(cityTwoName.equals("Lindau"))
             {
@@ -1060,7 +1047,7 @@ public class Route extends JPanel
                 color.add(RouteColor.PINK);
             }
         }
-        else if (cityOneName.equals("OsterreichRIGHT"))
+        else if (cityOneName.equals("Osterreich"))
         {
             if(cityTwoName.equals("Munchen"))
             {
@@ -1073,6 +1060,36 @@ public class Route extends JPanel
                 color.add(RouteColor.YELLOW);
             }
         }
+    }
+    
+    protected boolean containsMouse(int x, int y){
+        return routeShape.contains(x, y);
+    }
+    
+    //check is route is open to take
+    protected boolean isOpen(){
+        return occupiedByColor == null;
+    }
+
+    protected void claimRoute(Player p) {
+        occupiedByColor = p.getColor();
+        
+        //increment player score with points its worth
+        int n = 0;
+        if (length < 3) 
+            n = length;
+        else if (length == 3) 
+            n = 4;
+        else if (length == 4) 
+            n = 7;
+        else if (length == 5) 
+            n = 10;
+        else if (length == 6) 
+            n = 15;
+        else if (length == 7) 
+            n = 18;
+            
+        p.updateScore(n);
     }
 
     public static String getStringrouteColor(RouteColor col) {
@@ -1102,9 +1119,6 @@ public class Route extends JPanel
         return length;   
     }
 
-    protected RouteColor getRouteColor(){
-        return null;   
-    }
 
     public Route()
     {
