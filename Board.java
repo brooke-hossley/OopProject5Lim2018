@@ -158,11 +158,17 @@ public class Board
         routes.add(new Route("Konstanz","Lindau", allCities));
         routes.add(new Route("Lindau","Schweiz", allCities));
         routes.add(new Route("Lindau","Osterreich", allCities));
+        
         //continue here with the rest
         //can eliminate redundancies in Route constructor if statements
         //
         
-        
+        // for (Route r: routes) {
+            // //r.addToCities();
+            // for (City c: r.twoCities) {
+                // c.connectedRoutes.add(r);
+            // }
+        // }
         
         
         

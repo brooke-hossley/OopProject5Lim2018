@@ -16,6 +16,7 @@ public class Route extends JPanel
     protected int length; 
 
     //hold the two cities
+    protected ArrayList<String> cityNames;
     protected ArrayList<City> twoCities;
 
     //The possible colors of the route
@@ -36,7 +37,7 @@ public class Route extends JPanel
     {
         twoCities = new ArrayList(2);
         color = new ArrayList<RouteColor>();
-        ArrayList<String> cityNames = new ArrayList<String>(2);
+        cityNames = new ArrayList<String>(2);
 
         cityNames.add(cityOneName);
         cityNames.add(cityTwoName);
@@ -894,9 +895,15 @@ public class Route extends JPanel
             }
         }
 
-        map.get(cityOneName).addRoute(this);
-        map.get(cityTwoName).addRoute(this);
+        //map.get(cityOneName).addRoute(this);
+        //map.get(cityTwoName).addRoute(this);
 
+    }
+    
+    protected void addToCities() {
+        for (City c: twoCities) {
+            c.addRoute(this);
+        }
     }
 
     protected boolean containsMouse(int x, int y){
