@@ -37,7 +37,7 @@ public class Route extends JPanel
         twoCities = new ArrayList(2);
         color = new ArrayList<RouteColor>();
         ArrayList<String> cityNames = new ArrayList<String>(2);
-        
+
         cityNames.add(cityOneName);
         cityNames.add(cityTwoName);
         twoCities.add(map.get(cityOneName));
@@ -113,12 +113,20 @@ public class Route extends JPanel
                 length = 7;
                 color.add(RouteColor.BLUE);
                 color.add(RouteColor.YELLOW);
+                //Hamburg to Berlin
+                int [] a1 = {605, 593, 782, 794};
+                int [] a2 = {189, 208, 308, 289};
+                routeShape = new Polygon(a1,a2,4);
             }
             else if (cityNames.contains("Hannover"))
             {
                 length = 4;
                 color.add(RouteColor.RED);
                 color.add(RouteColor.WHITE);
+                //Hamburg to Hannover
+                int [] a3 = {592, 570, 540, 563};
+                int [] a4 = {207, 201, 321, 325};
+                routeShape = new Polygon(a3,a4,4);
             }
             else if (cityNames.contains("Bremen"))
             {
@@ -225,6 +233,10 @@ public class Route extends JPanel
             {
                 length = 7;
                 color.add(RouteColor.BLACK);
+                //Hannover to Berlin
+                int [] a5 = {567, 567, 782, 782};
+                int [] a6 = {320, 329, 321, 310};
+                routeShape = new Polygon(a5,a6,4);
             }
         }
         else if (cityNames.contains("Berlin"))
@@ -881,17 +893,17 @@ public class Route extends JPanel
                 color.add(RouteColor.YELLOW);
             }
         }
-        
+
         map.get(cityOneName).addRoute(this);
         map.get(cityTwoName).addRoute(this);
-        
+
     }
-    
+
     protected boolean containsMouse(int x, int y){
         if (routeShape == null) return false;
         return routeShape.contains(x, y);
     }
-    
+
     //check is route is open to take
     protected boolean isOpen(){
         return occupiedByColor == null;
@@ -927,7 +939,6 @@ public class Route extends JPanel
     protected int getRouteLength(){
         return length;   
     }
-
 
     public Route()
     {
@@ -990,6 +1001,7 @@ public class Route extends JPanel
         g.drawRect(580, 340, 217, 10);
         g.fillRect(580,340,217, 10);
 
+        //alissa did
         //Hamburg to Berlin
         g.setColor(new Color(0,255,0));
         int [] a1 = {605, 593, 782, 794};
@@ -997,6 +1009,7 @@ public class Route extends JPanel
         g.drawPolygon(a1,a2,4);
         g.fillPolygon(a1,a2,4);
 
+        //alissa did
         //Hamburg to Hannover
         g.setColor(new Color(0,255,0));
         int [] a3 = {592, 570, 540, 563};
@@ -1004,6 +1017,7 @@ public class Route extends JPanel
         g.drawPolygon(a3,a4,4);
         g.fillPolygon(a3,a4,4);
 
+        //alissa did
         //Hannover to Berlin
         g.setColor(new Color(0,255,0));
         int [] a5 = {567, 567, 782, 782};
@@ -1011,6 +1025,7 @@ public class Route extends JPanel
         g.drawPolygon(a5,a6,4);
         g.fillPolygon(a5,a6,4);
 
+        //chris start here
         //Hannover to Erfurt
         g.setColor(new Color(0,255,0));
         int [] a7 = {565, 545, 624, 644};
@@ -1038,7 +1053,7 @@ public class Route extends JPanel
         int [] a14 = {624, 632, 684, 677};
         g.drawPolygon(a13,a14,4);
         g.fillPolygon(a13,a14,4);
-        
+
         //Nurnburg to Munchen
         g.setColor(new Color(0,255,0));
         int [] a15 = {788, 766, 827, 848};
@@ -1430,7 +1445,7 @@ public class Route extends JPanel
         int [] a126 = {172,151,133,121,110,124,142,165};
         g.drawPolygon(a125,a126,8);
         g.fillPolygon(a125,a126,8);
-        
+
         //Rostock to Kiel
         g.setColor(new Color(0,255,0));
         int [] a127 = {831,802,772,741,713,709,739,772,805,834};
@@ -1577,7 +1592,7 @@ public class Route extends JPanel
         int [] a168 = {687,662,633,604,485,487,606,637,666,692};
         g.drawPolygon(a167,a168,10);
         g.fillPolygon(a167,a168,10);
-        
+
         //Lindau to Munchen
         g.setColor(new Color(0,255,0));
         int [] a169 = {692,722,754,784,815,841,835,810,782,752,722,692};
