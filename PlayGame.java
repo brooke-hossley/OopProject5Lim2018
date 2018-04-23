@@ -20,7 +20,7 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
     protected static int numberOfPlayers;
     // initializes the players
     private ArrayList<Player> players = new ArrayList<Player>();
-    private Player currentPlayer;
+    protected static Player currentPlayer;
     private static JFrame frame;
     private Deck deck;
     private Board board;
@@ -92,7 +92,7 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
             }
         }
     }
-    
+
     public void homeScreen(Graphics g)
     {
         g.drawImage(TicketToRidePic,0,0,null);
@@ -173,6 +173,11 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
             x2 += 10;
         }
 
+    }
+
+    public Player getCurrentPlayer()
+    {
+        return currentPlayer;   
     }
 
     /**
