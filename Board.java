@@ -16,47 +16,55 @@ public class Board
      */
     public Board()
     {
+        ArrayList<Integer> meepleIndexes = new ArrayList<Integer>(60);
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 10; j++) {
+                meepleIndexes.add(i);
+            }
+        }
+        Collections.shuffle(meepleIndexes);
+        
         allCities = new HashMap<String, City>();
-        allCities.put("Augsburg", new City("Augsburg"));
-        allCities.put("Berlin", new City("Berlin"));
-        allCities.put("Bremen", new City("Bremen"));
-        allCities.put("Bremerhaven", new City("Bremerhaven"));
-        allCities.put("Chemnitz", new City("Chemnitz"));
-        allCities.put("Danemark", new City("Danemark"));
-        allCities.put("Dortmund", new City("Dortmund"));
-        allCities.put("Dresden", new City("Dresden"));
-        allCities.put("Dusseldorf", new City("Dusseldorf"));
-        allCities.put("Emden", new City("Emden"));
-        allCities.put("Erfurt", new City("Erfurt"));
-        allCities.put("Frankfurt", new City("Frankfurt"));
-        allCities.put("Frankreich", new City("Frankreich"));
-        allCities.put("Freiburg", new City("Freiburg"));
-        allCities.put("Hamburg", new City("Hamburg"));
-        allCities.put("Hannover", new City("Hannover"));
-        allCities.put("Karlsruhe", new City("Karlsruhe"));
-        allCities.put("Kassel", new City("Kassel"));
-        allCities.put("Kiel", new City("Kiel"));
-        allCities.put("Koblenz", new City("Koblenz"));
-        allCities.put("Koln", new City("Koln"));
-        allCities.put("Konstanz", new City("Konstanz"));
-        allCities.put("Leipzig", new City("Leipzig"));
-        allCities.put("Lindau", new City("Lindau"));
-        allCities.put("Magdeburg", new City("Magdeburg"));
-        allCities.put("Mainz", new City("Mainz"));
-        allCities.put("Mannheim", new City("Mannheim"));
-        allCities.put("Munchen", new City("Munchen"));
-        allCities.put("Munster", new City("Munster"));
-        allCities.put("Niederlande", new City("Niederlande"));
-        allCities.put("Nurnberg", new City("Nurnberg"));
-        allCities.put("Osterreich", new City("Osterreich"));
-        allCities.put("Regensburg", new City("Regensburg"));
-        allCities.put("Rostock", new City("Rostock"));
-        allCities.put("Saarbrucken", new City("Saarbrucken"));
-        allCities.put("Schweiz", new City("Schweiz"));
-        allCities.put("Schwerin", new City("Schwerin"));
-        allCities.put("Stuttgart", new City("Stuttgart"));
-        allCities.put("Ulm", new City("Ulm"));
-        allCities.put("Wurzburg", new City("Wurzburg"));
+        allCities.put("Augsburg", new City(meepleIndexes, "Augsburg"));
+        allCities.put("Berlin", new City(meepleIndexes, "Berlin"));
+        allCities.put("Bremen", new City(meepleIndexes, "Bremen"));
+        allCities.put("Bremerhaven", new City(meepleIndexes, "Bremerhaven"));
+        allCities.put("Chemnitz", new City(meepleIndexes, "Chemnitz"));
+        allCities.put("Danemark", new City(meepleIndexes, "Danemark"));
+        allCities.put("Dortmund", new City(meepleIndexes, "Dortmund"));
+        allCities.put("Dresden", new City(meepleIndexes, "Dresden"));
+        allCities.put("Dusseldorf", new City(meepleIndexes, "Dusseldorf"));
+        allCities.put("Emden", new City(meepleIndexes, "Emden"));
+        allCities.put("Erfurt", new City(meepleIndexes, "Erfurt"));
+        allCities.put("Frankfurt", new City(meepleIndexes, "Frankfurt"));
+        allCities.put("Frankreich", new City(meepleIndexes, "Frankreich"));
+        allCities.put("Freiburg", new City(meepleIndexes, "Freiburg"));
+        allCities.put("Hamburg", new City(meepleIndexes, "Hamburg"));
+        allCities.put("Hannover", new City(meepleIndexes, "Hannover"));
+        allCities.put("Karlsruhe", new City(meepleIndexes, "Karlsruhe"));
+        allCities.put("Kassel", new City(meepleIndexes, "Kassel"));
+        allCities.put("Kiel", new City(meepleIndexes, "Kiel"));
+        allCities.put("Koblenz", new City(meepleIndexes, "Koblenz"));
+        allCities.put("Koln", new City(meepleIndexes, "Koln"));
+        allCities.put("Konstanz", new City(meepleIndexes, "Konstanz"));
+        allCities.put("Leipzig", new City(meepleIndexes, "Leipzig"));
+        allCities.put("Lindau", new City(meepleIndexes, "Lindau"));
+        allCities.put("Magdeburg", new City(meepleIndexes, "Magdeburg"));
+        allCities.put("Mainz", new City(meepleIndexes, "Mainz"));
+        allCities.put("Mannheim", new City(meepleIndexes, "Mannheim"));
+        allCities.put("Munchen", new City(meepleIndexes, "Munchen"));
+        allCities.put("Munster", new City(meepleIndexes, "Munster"));
+        allCities.put("Niederlande", new City(meepleIndexes, "Niederlande"));
+        allCities.put("Nurnberg", new City(meepleIndexes, "Nurnberg"));
+        allCities.put("Osterreich", new City(meepleIndexes, "Osterreich"));
+        allCities.put("Regensburg", new City(meepleIndexes, "Regensburg"));
+        allCities.put("Rostock", new City(meepleIndexes, "Rostock"));
+        allCities.put("Saarbrucken", new City(meepleIndexes, "Saarbrucken"));
+        allCities.put("Schweiz", new City(meepleIndexes, "Schweiz"));
+        allCities.put("Schwerin", new City(meepleIndexes, "Schwerin"));
+        allCities.put("Stuttgart", new City(meepleIndexes, "Stuttgart"));
+        allCities.put("Ulm", new City(meepleIndexes, "Ulm"));
+        allCities.put("Wurzburg", new City(meepleIndexes, "Wurzburg"));
         
         routes = new ArrayList<Route>();
         routes.add(new Route("Danemark","Kiel", allCities));
@@ -102,6 +110,7 @@ public class Board
         routes.add(new Route("Leipzig","Chemnitz", allCities));
         routes.add(new Route("Dresden","Chemnitz", allCities));
         routes.add(new Route("Dresden","Regensburg", allCities));
+        
         routes.add(new Route("Chemnitz","Leipzig", allCities));
         routes.add(new Route("Chemnitz","Erfurt", allCities));
         routes.add(new Route("Chemnitz","Regensburg", allCities));
