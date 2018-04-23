@@ -26,7 +26,7 @@ public class City
     //This array hold each of the 6 colored meeples. Each time a meeple is add/subtracted, the
     //location of that specific color in the array is incremented or decremented 
     
-    public City(String nameIn)
+    public City(ArrayList<Integer> meepleIndexes, String nameIn)
     {
         name = nameIn;
         isCountry = false;
@@ -157,43 +157,17 @@ public class City
         else if (name.equals("Wurzburg")) { 
             
         }
+        
+        //add meeples
+        int indexNum;
+        for (int i = 0; i < meepleAmount; i++) {
+            indexNum = meepleIndexes.remove(meepleIndexes.size() -1);
+            meeples[indexNum]++;
+        }
+        
     }
     
     protected void addRoute(Route r){
         connectedRoutes.add(r);
-    }
-    
-    protected void addMeeple(MeepleColor meeple){
-        switch(meeple){
-            case RED: meeples[0] ++;
-            break;
-            case BLACK: meeples[1] ++;
-            break;
-            case GREEN: meeples[2] ++;
-            break;
-            case YELLOW: meeples[3] ++;
-            break;
-            case BLUE: meeples[4] ++;
-            break;
-            case WHITE: meeples[5] ++;
-            break;             
-        }
-    }
-
-    protected void removeMeeple(MeepleColor meeple){
-        switch(meeple){
-            case RED: meeples[0] --;
-            break;
-            case BLACK: meeples[1] --;
-            break;
-            case GREEN: meeples[2] --;
-            break;
-            case YELLOW: meeples[3] --;
-            break;
-            case BLUE: meeples[4] --;
-            break;
-            case WHITE: meeples[5] --;
-            break;             
-        }
     }
 }

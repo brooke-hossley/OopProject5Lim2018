@@ -14,11 +14,8 @@ import java.lang.String;
  */
 public class PlayGame extends JPanel implements MouseListener, MouseMotionListener
 {
-    //private Image traincol, traincol2, traincol3, traincol4, traincol5, traincol6;
-    //private Image traincol7, traincol8, traincol9;
     private static Image boardPic, blackBackground, TicketToRidePic;
     private Image blueDest, globeTrotter, orangeDest, trainCardBack;
-    private JButton button1, button2;
     private boolean secondClick, choosingTrainCard;
     protected static int numberOfPlayers;
     // initializes the players
@@ -27,7 +24,6 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
     private static JFrame frame;
     private Deck deck;
     private Board board;
-    private int cardsTaken = 0;
     private JLabel viewDestCards;
     private ImageIcon destCard;
     /**
@@ -70,7 +66,7 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
                 }
             }
         );
-        //frame.add(viewDestCards);
+        frame.add(viewDestCards);
 
         dealDestinationCards();
         drawFirstFour();
@@ -84,9 +80,19 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
         paintTrainCards(g);
         paintDestinationCards(g);
         paintPlayerInfo(g);
-        frame.add(viewDestCards);
+        paintPlayerRoutes(g);
+        //frame.add(viewDestCards);
     }
 
+    public void paintPlayerRoutes(Graphics g) {
+        for (Player p: players) {
+            g.setColor(p.color);
+            for (Route r: p.controlledRoutes) {
+                g.fillPolygon(r.routeShape);
+            }
+        }
+    }
+    
     public void homeScreen(Graphics g)
     {
         g.drawImage(TicketToRidePic,0,0,null);
@@ -143,15 +149,14 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
         int y = 50;
 
         g.drawString("Player Scores", x,22);
-        for(Player p : players)
-        {
-            g.setColor(p.getColor());
-            g.drawString(p.getName() + ": "+ p.getScore(), x,y);
+        for(Player p : players) {
+            g.setColor(p.color);
+            g.drawString(p.name + ": "+ p.score, x,y);
             y+=25;
         }
 
-        g.setColor(currentPlayer.getColor());
-        g.drawString(currentPlayer.getName() + " has " + currentPlayer.getCarsRemaining() + " train pieces", 10,22);
+        g.setColor(currentPlayer.color);
+        g.drawString(currentPlayer.name + " has " + currentPlayer.carsRemaining + " train pieces", 10,22);
 
         ////to do: display meeple counts and option to see their destination cards
 
@@ -194,9 +199,9 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
         // }
 
         /////////TO DO: add functionality for player to choose which combo of cards to take///////////
-        
+
         JOptionPane.showMessageDialog(null,"Dealing " +
-            p.getName()+" destination tickets!");
+            p.name+" destination tickets!");
         // players options for their destination cards
         DestinationCard[] cards = new DestinationCard[4];
         // adds three destination cards
@@ -312,15 +317,13 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
     public void mouseClicked( MouseEvent e ) {
         choosingTrainCard = false;
         ////////////////To do:///////////////
-        //check if clicked on a route
+        //check if clicked on a route (see bottom of method)
 
         //check if clicked on a train card in deck
-        if(e.getX() >=905 && e.getX() <= 1055 && e.getY() >= 620 && e.getY() <= 710)
-        {
+        if(e.getX() >=905 && e.getX() <= 1055 && e.getY() >= 620 && e.getY() <= 710) {
             if (deck.trainCards.size() + deck.discardedTrainCards.size() > 0) {
                 currentPlayer.addTrainCard(deck.drawTrainCard());
-                if(secondClick)
-                {
+                if(secondClick) {
                     nextPlayer();
                 }
                 secondClick = !secondClick;
@@ -337,32 +340,28 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
         }
 
         //x and y of the 2nd, face up train card
-        if(e.getX() >=905 && e.getX() <= 1055 && e.getY() >= 420 && e.getY() <= 510 && deck.faceUpTrainCards.size() > 1)  
-        {
+        if(e.getX() >=905 && e.getX() <= 1055 && e.getY() >= 420 && e.getY() <= 510 && deck.faceUpTrainCards.size() > 1)  {
             cardIndex = 1;
             choosingTrainCard = true;
         }
 
-        if(e.getX() >=905 && e.getX() <= 1055 && e.getY() >= 320 && e.getY() <= 410 && deck.faceUpTrainCards.size() > 2)  
-        {
+        if(e.getX() >=905 && e.getX() <= 1055 && e.getY() >= 320 && e.getY() <= 410 && deck.faceUpTrainCards.size() > 2)  {
             cardIndex = 2;
             choosingTrainCard = true;
         }
 
-        if(e.getX() >=905 && e.getX() <= 1055 && e.getY() >= 220 && e.getY() <= 310 && deck.faceUpTrainCards.size() > 3)  
-        {
+        if(e.getX() >=905 && e.getX() <= 1055 && e.getY() >= 220 && e.getY() <= 310 && deck.faceUpTrainCards.size() > 3)  {
             cardIndex = 3;
             choosingTrainCard = true;
         }
 
-        if(e.getX() >=905 && e.getX() <= 1055 && e.getY() >=120 && e.getY() <= 210 && deck.faceUpTrainCards.size() > 4)  
-        {
+        if(e.getX() >=905 && e.getX() <= 1055 && e.getY() >=120 && e.getY() <= 210 && deck.faceUpTrainCards.size() > 4)  {
             cardIndex = 4;
             choosingTrainCard = true;
         }
 
         if (choosingTrainCard) {
-            if (deck.drawFaceupCard(cardIndex).isRainbow()) {
+            if (deck.faceUpTrainCards.get(cardIndex).isRainbow()) {
                 if (secondClick) {
                     //reject trying to take rainbow card on second click
                     return;
@@ -375,8 +374,7 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
 
             currentPlayer.addTrainCard(deck.drawFaceupCard(cardIndex));
 
-            if(secondClick)
-            {
+            if(secondClick) {
                 nextPlayer();   
             }
 
@@ -390,11 +388,24 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
         //check if trying to see their own destination cards
 
         if (e.getX() >= 905 && e.getX() <=1055 && e.getY() >= 720 && e.getY() <= 910 ) {
-            if(!secondClick)
-            {
+            if(!secondClick) {
                 chooseDestinationCards(currentPlayer, 1);
                 nextPlayer();
                 repaint();
+                return;
+            }
+        }
+
+        for (Route possibleR: board.routes) {
+            if (possibleR.containsMouse(e.getX(), e.getY()) && currentPlayer.canTakeRoute(possibleR)) {
+                ///////////// TO DO: add in all the stuff for choosing which cards to use/////////
+
+                //deck.discardTrainCard(currentPlayer.removeTrainCard(the index)) for each card
+                currentPlayer.addRoute(possibleR);
+                //////////// TO DO: let player choose meeples
+                nextPlayer();
+                repaint();
+                return;
             }
         }
 

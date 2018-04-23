@@ -888,6 +888,7 @@ public class Route extends JPanel
     }
     
     protected boolean containsMouse(int x, int y){
+        if (routeShape == null) return false;
         return routeShape.contains(x, y);
     }
     
@@ -896,27 +897,6 @@ public class Route extends JPanel
         return occupiedByColor == null;
     }
 
-    protected void claimRoute(Player p) {
-        occupiedByColor = p.getColor();
-        
-        //increment player score with points its worth
-        int n = 0;
-        if (length < 3) 
-            n = length;
-        else if (length == 3) 
-            n = 4;
-        else if (length == 4) 
-            n = 7;
-        else if (length == 5) 
-            n = 10;
-        else if (length == 6) 
-            n = 15;
-        else if (length == 7) 
-            n = 18;
-            
-        p.updateScore(n);
-    }
-    
     public String toString() {
         return twoCities.get(0).name + twoCities.get(1).name;
     }
