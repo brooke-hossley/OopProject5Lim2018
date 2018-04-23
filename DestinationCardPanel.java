@@ -5,8 +5,8 @@ import java.util.*;
 /**
  * Write a description of class DestinationCardPanel here.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author (Patrick Barber)
+ * @version (4/23/2018)
  */
 public class DestinationCardPanel extends JPanel
 {
@@ -45,8 +45,8 @@ public class DestinationCardPanel extends JPanel
         for(int i = 0; i< playersDestinationCards.size();i++)
         {
             g.drawImage(playersDestinationCards.get(i).getPicture(),x,y,null);
-            x+=100;
-            y+=100;
+            x+=300;
+            
         }
     }
     
