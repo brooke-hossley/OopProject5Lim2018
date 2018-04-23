@@ -45,7 +45,6 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
         globeTrotter = new ImageIcon("Images" + File.separator + "Globetrotter.JPG").getImage();
         orangeDest = new ImageIcon("Images" + File.separator + "OrangeDest.JPG").getImage();
         trainCardBack = new ImageIcon("Images" + File.separator + "TrainCardBack.JPG").getImage();
-
         Dimension size = new Dimension(blackBackground.getWidth(null), boardPic.getHeight(null));
         //width is ... pixels
         //height is ...
@@ -54,20 +53,6 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
         setMaximumSize(size);
         setSize(size);
         setLayout(null);
-
-        viewDestCards = new JLabel("View my destination cards",destCard,JLabel.CENTER);
-        viewDestCards.setBounds(50,620, 150,90);
-        viewDestCards.addMouseListener(new MouseAdapter() 
-            {
-                @Override
-                public void mouseClicked(MouseEvent e) 
-                {
-                    DestinationCardPanel.createAndShowGUI();
-                }
-            }
-        );
-        frame.add(viewDestCards);
-
         dealDestinationCards();
         drawFirstFour();
     }
@@ -81,7 +66,17 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
         paintDestinationCards(g);
         paintPlayerInfo(g);
         paintPlayerRoutes(g);
-        //frame.add(viewDestCards);
+        paintDestinationCardBack(g);
+    }
+    
+    public void paintDestinationCardBack(Graphics g)
+    {
+        g.drawImage(blueDest,50,700,null);
+        Font font = new Font("Verdana", Font.BOLD, 20);
+        g.setFont(font);
+        g.setColor(Color.WHITE);
+        g.drawString("View your", 50,670);
+        g.drawString("destination cards", 50,690);
     }
 
     public void paintPlayerRoutes(Graphics g) {
@@ -414,6 +409,11 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
             }
         }
 
+        
+        if(e.getX() >=50 && e.getX() <=200 && e.getY() >=700 && e.getY()<=790)
+        {
+             DestinationCardPanel.createAndShowGUI();
+        }
         //nextPlayer();
         //repaint();
     }
