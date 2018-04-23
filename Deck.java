@@ -136,7 +136,7 @@ public class Deck
         Collections.shuffle(longCards);
 
         
-        //will need rest of stuff in constructor if we store train cards differently
+        //load in train card images and construct approptiate amount of each color
         trainCardPics[0] = Toolkit.getDefaultToolkit().getImage("Images" + File.separator + "YellowCard.JPG");
         trainCardPics[1] = Toolkit.getDefaultToolkit().getImage("Images" + File.separator + "BlueCard.JPG");
         trainCardPics[2] = Toolkit.getDefaultToolkit().getImage("Images" + File.separator + "GreenCard.JPG");
@@ -175,13 +175,52 @@ public class Deck
 
     ///////////to do: need to check if 3 or more are rainbow////////////////
     protected TrainCard drawFaceupCard(int index){
-        TrainCard temp = faceUpTrainCards.remove(index);
-        faceUpTrainCards.add(drawTrainCard());
-        return temp;
+        if (faceUpTrainCards.size() - 1 < index) {
+            return null;
+        }
+        TrainCard removing = faceUpTrainCards.remove(index);
+        if (trainCards.isEmpty() && discardedTrainCards.isEmpty()) {
+            return removing;
+        }
+        //TrainCard replacement = drawTrainCard();
+        faceUpTrainCards.add(index, drawTrainCard());
+        //only allow 5 reshuffles incase we can't avoid having 3 rainbows in deck
+        int reshuffleCount = 0;
+        //check if three rainbows with a count
+        while (reshuffleCount < 10 && threeRainbowsUp()) {
+            //discard all the faceup cards
+            while (!faceUpTrainCards.isEmpty()) {
+                discardedTrainCards.add(faceUpTrainCards.remove(faceUpTrainCards.size()-1));
+            }
+            //draw 5 more
+            for (int i = 0; i < 5; i++)
+                faceUpTrainCards.add(drawTrainCard());
+            reshuffleCount++;
+        }
+        
+        return removing;
+    }
+    
+    private boolean threeRainbowsUp() {
+        int count = 0; 
+        for (TrainCard t: faceUpTrainCards) {
+            if (t.isRainbow()) 
+                count++;
+        }
+        return count >= 3;
     }
 
     protected void discardTrainCard(TrainCard tCard){
         discardedTrainCards.add(tCard);
+        if (trainCards.isEmpty()) {
+            //reshuffle discards into train deck
+            reshuffleDiscards();
+        }
+        
+        if (faceUpTrainCards.size() < 5) {
+            faceUpTrainCards.add(drawTrainCard());
+            return;
+        }
     }
 
     //draw traincard from top of deck
@@ -193,14 +232,14 @@ public class Deck
             //otherwise reshuffle discards into train deck
             reshuffleDiscards();
         }
-        return trainCards.remove(rand.nextInt(trainCards.size()));
+        return trainCards.remove(trainCards.size()-1);
     }
 
     //method to move all discards to trainCards deck when that's empty
     private void reshuffleDiscards() {
         Collections.shuffle(discardedTrainCards);
         while (!discardedTrainCards.isEmpty()) {
-            trainCards.add(discardedTrainCards.remove(trainCards.size()-1));
+            trainCards.add(discardedTrainCards.remove(discardedTrainCards.size()-1));
         }
     }
 

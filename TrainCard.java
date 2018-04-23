@@ -46,6 +46,11 @@ public class TrainCard //extends Card
         return arrIndex;
     }
     
+    public boolean equals(Object o) {
+        TrainCard tcard = (TrainCard) o;
+        return tcard.tColor == this.tColor;
+    }
+    
     protected boolean isRainbow() {
         return tColor == TrainColor.RAINBOW;
     }
