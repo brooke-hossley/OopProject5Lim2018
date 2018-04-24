@@ -283,7 +283,7 @@ public class Driver extends JPanel implements ActionListener
         }
         else
         {
-
+            Rules.createAndShowGUI();
         }
     }
 
