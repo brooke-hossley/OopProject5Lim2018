@@ -145,7 +145,7 @@ public class Route extends JPanel
                 color.add(RouteColor.BLUE);
                 color.add(RouteColor.YELLOW);
                 //Hamburg to Berlin
-                int [] a1 = {605, 593, 782, 794};
+                int [] a1 = {732, 720, 909, 921};
                 int [] a2 = {189, 208, 308, 289};
                 routeShape = new Polygon(a1,a2,4);
             }
@@ -155,7 +155,7 @@ public class Route extends JPanel
                 color.add(RouteColor.RED);
                 color.add(RouteColor.WHITE);
                 //Hamburg to Hannover
-                int [] a3 = {592, 570, 540, 563};
+                int [] a3 = {719, 697, 667, 690};
                 int [] a4 = {207, 201, 321, 325};
                 routeShape = new Polygon(a3,a4,4);
             }
@@ -296,7 +296,7 @@ public class Route extends JPanel
                 length = 5;
                 color.add(RouteColor.GREEN);
                 color.add(RouteColor.ORANGE);
-                int [] a7 = {565, 545, 624, 644};
+                int [] a7 = {692, 672, 751, 771};
                 int [] a8 = {338, 349, 481, 469};
                 routeShape= new Polygon(a7,a8,4);
             }
@@ -313,7 +313,7 @@ public class Route extends JPanel
                 length = 7;
                 color.add(RouteColor.BLACK);
                 //Hannover to Berlin
-                int [] a5 = {567, 567, 782, 782};
+                int [] a5 = {694, 694, 909, 909};
                 int [] a6 = {320, 329, 321, 310};
                 routeShape = new Polygon(a5,a6,4);
             }
@@ -435,7 +435,7 @@ public class Route extends JPanel
                 length = 4;
                 color.add(RouteColor.YELLOW);
                 color.add(RouteColor.PINK);
-                int [] a11 = {651, 628, 631, 653};
+                int [] a11 = {778, 755, 758, 780};
                 int [] a12 = {498, 498, 620, 619};
                 routeShape = new Polygon(a11,a12,4);
             }
@@ -443,7 +443,7 @@ public class Route extends JPanel
             {
                 length = 4;
                 color.add(RouteColor.BLACK);
-                int [] a9 = {655, 654, 776, 776};
+                int [] a9 = {782, 781, 903, 903};
                 int [] a10 = {481, 490, 502, 492};
                 routeShape = new Polygon(a9,a10,4);
             }
@@ -592,7 +592,7 @@ public class Route extends JPanel
             {
                 length = 3;
                 color.add(RouteColor.GREEN);
-                int [] a13 = {665, 658, 733, 739};
+                int [] a13 = {792, 785, 860, 866};
                 int [] a14 = {624, 632, 684, 677};
                 routeShape= new Polygon(a13,a14,4);
             }
