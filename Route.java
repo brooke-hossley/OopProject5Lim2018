@@ -870,7 +870,7 @@ public class Route extends JPanel
 
         if (routeShape != null) {
         for (int i = 0; i < routeShape.xpoints.length; i++) {
-            routeShape.xpoints[i] -=120;
+            routeShape.xpoints[i] -=127;
         }
     }
         //map.get(cityOneName).addRoute(this);

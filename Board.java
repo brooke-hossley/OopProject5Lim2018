@@ -119,7 +119,7 @@ public class Board
         routes.add(new Route("Koln","Dusseldorf", allCities));
         routes.add(new Route("Koln","Frankfurt", allCities));
         routes.add(new Route("Koln","Koblenz", allCities));
-        routes.add(new Route("Frankfurt","Kassel", allCities));
+        //routes.add(new Route("Frankfurt","Kassel", allCities));
         routes.add(new Route("Frankfurt","Wurzburg", allCities));
         routes.add(new Route("Frankfurt","Mannheim", allCities));
         routes.add(new Route("Frankfurt","Mainz", allCities));

@@ -55,6 +55,20 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
         setLayout(null);
         dealDestinationCards();
         drawFirstFour();
+
+        // JButton button = new JButton("Click Me");
+        // button.setBounds(50,700,50,50);
+        // button.addActionListener(new ActionListener() { 
+        // public void actionPerformed(ActionEvent e) { 
+        // Graphics.setColor(Color.BLUE);
+
+        // for (Route meh: board.routes) {
+        // if ( meh.routeShape != null) {
+        // g.drawPolygon(meh.routeShape);
+        // }
+        // }
+        // } 
+        // });
     }
 
     public void paintComponent(Graphics g) 
@@ -65,10 +79,18 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
         paintTrainCards(g);
         paintDestinationCards(g);
         paintPlayerInfo(g);
-        paintPlayerRoutes(g);
+        
         paintDestinationCardBack(g);
+        g.setColor(Color.BLUE);
+
+        for (Route meh: board.routes) {
+            if ( meh.routeShape != null) {
+                g.fillPolygon(meh.routeShape);
+            }
+        }
+        paintPlayerRoutes(g);
     }
-    
+
     public void paintDestinationCardBack(Graphics g)
     {
         g.drawImage(blueDest,50,700,null);
@@ -409,10 +431,9 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
             }
         }
 
-        
         if(e.getX() >=50 && e.getX() <=200 && e.getY() >=700 && e.getY()<=790)
         {
-             DestinationCardPanel.createAndShowGUI();
+            DestinationCardPanel.createAndShowGUI();
         }
         //nextPlayer();
         //repaint();
