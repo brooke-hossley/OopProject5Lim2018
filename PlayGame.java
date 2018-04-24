@@ -16,7 +16,7 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
 {
     private static Image boardPic, blackBackground, TicketToRidePic;
     private Image blueDest, globeTrotter, orangeDest, trainCardBack;
-    private boolean secondClick, choosingTrainCard;
+    private boolean secondClick, choosingTrainCard, finalTurn;
     protected static int numberOfPlayers;
     // initializes the players
     private ArrayList<Player> players = new ArrayList<Player>();
@@ -55,20 +55,6 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
         setLayout(null);
         dealDestinationCards();
         drawFirstFour();
-
-        // JButton button = new JButton("Click Me");
-        // button.setBounds(50,700,50,50);
-        // button.addActionListener(new ActionListener() { 
-        // public void actionPerformed(ActionEvent e) { 
-        // Graphics.setColor(Color.BLUE);
-
-        // for (Route meh: board.routes) {
-        // if ( meh.routeShape != null) {
-        // g.drawPolygon(meh.routeShape);
-        // }
-        // }
-        // } 
-        // });
     }
 
     public void paintComponent(Graphics g) 
@@ -79,15 +65,16 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
         paintTrainCards(g);
         paintDestinationCards(g);
         paintPlayerInfo(g);
-        
         paintDestinationCardBack(g);
-        g.setColor(Color.BLUE);
-
-        for (Route meh: board.routes) {
-            if ( meh.routeShape != null) {
-                g.fillPolygon(meh.routeShape);
-            }
-        }
+        // g.setColor(Color.BLUE);
+        // for (Route meh: board.routes) {
+        // if ( meh.routeShape != null) {
+        // g.fillPolygon(meh.routeShape);
+        // }
+        // else {
+        // g.setColor(Color.BLUE);
+        // }
+        // }
         paintPlayerRoutes(g);
     }
 
@@ -440,11 +427,30 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
     }
 
     protected void nextPlayer() {
+        //here 
+        if (currentPlayer.isLastTurn) {
+            //call gameover
+            
+        }
+        else if (currentPlayer.carsRemaining <= 3) {
+            currentPlayer.isLastTurn = true;
+            finalTurn = true;
+        }
+
         int index = players.indexOf(currentPlayer);
         if (index == players.size()-1)
             currentPlayer = players.get(0);
         else 
             currentPlayer = players.get(index+1);
+
+        if (finalTurn) {
+            JOptionPane.showMessageDialog(null,"FINAL ROUND: It is now " +
+                currentPlayer.name+"'s FINAL turn.");
+        }
+        else {
+            JOptionPane.showMessageDialog(null,"It is now " +
+                currentPlayer.name+"'s turn.");
+        }
     }
 
     /**

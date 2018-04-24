@@ -63,7 +63,7 @@ public class Route extends JPanel
                 routeShape = new Polygon(a131,a132,12);
             }
         }
-        else if (cityNames.contains("Kiel"))
+        if (cityNames.contains("Kiel"))
         {
             if(cityNames.contains("Rostock"))
             {
@@ -99,7 +99,7 @@ public class Route extends JPanel
                 routeShape = new Polygon(a111,a112,4);
             }
         }
-        else if (cityNames.contains("Rostock"))
+        if (cityNames.contains("Rostock"))
         {
             if (cityNames.contains("Schwerin"))
             {
@@ -118,7 +118,7 @@ public class Route extends JPanel
                 routeShape = new Polygon(a121,a122,14);
             }
         }
-        else if (cityNames.contains("Schwerin"))
+        if (cityNames.contains("Schwerin"))
         {
             if (cityNames.contains("Hamburg"))
             {
@@ -137,7 +137,7 @@ public class Route extends JPanel
                 routeShape = new Polygon(a119,a120,12);
             }
         }
-        else if (cityNames.contains("Hamburg"))
+        if (cityNames.contains("Hamburg"))
         {
             if(cityNames.contains("Berlin"))
             {
@@ -176,7 +176,7 @@ public class Route extends JPanel
                 routeShape = new Polygon(a135,a136,8);
             }
         }
-        else if (cityNames.contains("Bremerhaven"))
+        if (cityNames.contains("Bremerhaven"))
         {
             if (cityNames.contains("Bremen"))
             {
@@ -195,7 +195,7 @@ public class Route extends JPanel
                 routeShape = new Polygon(a133,a134,9);
             }
         }
-        else if (cityNames.contains("Emden"))
+        if (cityNames.contains("Emden"))
         {
             if (cityNames.contains("Bremen"))
             {
@@ -222,7 +222,7 @@ public class Route extends JPanel
                 routeShape = new Polygon(a105,a106,4);
             }
         }
-        else if (cityNames.contains("Bremen"))
+        if (cityNames.contains("Bremen"))
         {
             if (cityNames.contains("Munster"))
             {
@@ -241,7 +241,7 @@ public class Route extends JPanel
                 routeShape = new Polygon(a139,a140,7);
             }
         }
-        else if (cityNames.contains("Niederlande"))
+        if (cityNames.contains("Niederlande"))
         {
             if (cityNames.contains("Munster"))
             {
@@ -260,7 +260,7 @@ public class Route extends JPanel
                 routeShape = new Polygon(a93,a94,4);
             }
         }
-        else if (cityNames.contains("Munster"))
+        if (cityNames.contains("Munster"))
         {
             if (cityNames.contains("Hannover"))
             {
@@ -280,7 +280,7 @@ public class Route extends JPanel
                 routeShape = new Polygon(a95,a96,4);
             }
         }
-        else if (cityNames.contains("Hannover"))
+        if (cityNames.contains("Hannover"))
         {
             if (cityNames.contains("Kassel"))
             {
@@ -318,7 +318,7 @@ public class Route extends JPanel
                 routeShape = new Polygon(a5,a6,4);
             }
         }
-        else if (cityNames.contains("Berlin"))
+        if (cityNames.contains("Berlin"))
         {
             if (cityNames.contains("Magdeburg"))
             {
@@ -345,7 +345,7 @@ public class Route extends JPanel
                 routeShape = new Polygon(a113,a114,12);
             }
         }
-        else if (cityNames.contains("Magdeburg"))
+        if (cityNames.contains("Magdeburg"))
         {
             if (cityNames.contains("Leipzig"))
             {
@@ -356,7 +356,7 @@ public class Route extends JPanel
                 routeShape = new Polygon(a31,a32,4);
             }
         }
-        else if (cityNames.contains("Dusseldorf"))
+        if (cityNames.contains("Dusseldorf"))
         {
             if (cityNames.contains("Dortmund"))
             {
@@ -379,7 +379,7 @@ public class Route extends JPanel
                 routeShape = new Polygon(a89,a90,4);
             }
         }
-        else if (cityNames.contains("Kassel"))
+        if (cityNames.contains("Kassel"))
         {
             if (cityNames.contains("Dortmund"))
             {
@@ -390,7 +390,7 @@ public class Route extends JPanel
                 routeShape = new Polygon(a149,a150,10);
             }
         }
-        else if (cityNames.contains("Leipzig"))
+        if (cityNames.contains("Leipzig"))
         {
             if (cityNames.contains("Dresden"))
             {
@@ -409,7 +409,7 @@ public class Route extends JPanel
                 routeShape = new Polygon(a29,a30,4);
             }
         }
-        else if (cityNames.contains("Chemnitz"))
+        if (cityNames.contains("Chemnitz"))
         {
             if(cityNames.contains("Dresden"))
             {
@@ -420,7 +420,7 @@ public class Route extends JPanel
                 routeShape = new Polygon(a35,a36,4);
             }
         }
-        else if (cityNames.contains("Erfurt"))
+        if (cityNames.contains("Erfurt"))
         {
             if (cityNames.contains("Kassel"))
             {
@@ -430,7 +430,7 @@ public class Route extends JPanel
                 int [] a152 = {494,502,489,462,456,481,493,484};
                 routeShape = new Polygon(a151,a152,8);
             }
-            else if (cityNames.contains("Nurnburg"))
+            else if (cityNames.contains("Nurnberg"))
             {
                 length = 4;
                 color.add(RouteColor.YELLOW);
@@ -456,7 +456,7 @@ public class Route extends JPanel
                 routeShape = new Polygon(a145,a146,8);
             }
         }
-        else if (cityNames.contains("Koln"))
+        if (cityNames.contains("Koln"))
         {
             if(cityNames.contains("Dusseldorf"))
             {
@@ -469,7 +469,7 @@ public class Route extends JPanel
                 routeShape = new Polygon(a89,a90,4);
             }
         }
-        else if (cityNames.contains("Frankfurt"))
+        if (cityNames.contains("Frankfurt"))
         {
             if(cityNames.contains("Kassel"))
             {
@@ -499,7 +499,7 @@ public class Route extends JPanel
                 routeShape = new Polygon(a87,a88,4);
             }
         }
-        else if (cityNames.contains("Koblenz"))
+        if (cityNames.contains("Koblenz"))
         {
             if(cityNames.contains("Koln"))
             {
@@ -528,7 +528,7 @@ public class Route extends JPanel
                 routeShape = new Polygon(a71,a72,4);
             }
         }
-        else if (cityNames.contains("Mainz"))
+        if (cityNames.contains("Mainz"))
         {
             if (cityNames.contains("Frankfurt"))
             {
@@ -557,9 +557,9 @@ public class Route extends JPanel
                 routeShape = new Polygon(a83,a84,4);
             }
         }
-        else if (cityNames.contains("Wurzburg"))
+        if (cityNames.contains("Wurzburg"))
         {
-            if (cityNames.contains("Nurnburg"))
+            if (cityNames.contains("Nurnberg"))
             {
                 length = 2;
                 color.add(RouteColor.GRAY);
@@ -569,7 +569,7 @@ public class Route extends JPanel
                 routeShape = new Polygon(a81,a82,4);
             }
         }
-        else if (cityNames.contains("Nurnburg"))
+        if (cityNames.contains("Nurnberg"))
         {
             if (cityNames.contains("Augsburg"))
             {
@@ -597,7 +597,7 @@ public class Route extends JPanel
                 routeShape= new Polygon(a13,a14,4);
             }
         }
-        else if (cityNames.contains("Regensburg"))
+        if (cityNames.contains("Regensburg"))
         {
             if(cityNames.contains("Dresden"))
             {
@@ -632,7 +632,7 @@ public class Route extends JPanel
                 routeShape= new Polygon(a25,a26,4);
             }
         }
-        else if (cityNames.contains("Mannheim"))
+        if (cityNames.contains("Mannheim"))
         {
             if (cityNames.contains("Frankfurt"))
             {
@@ -661,7 +661,7 @@ public class Route extends JPanel
                 routeShape = new Polygon(a67,a68,4);
             }
         }
-        else if (cityNames.contains("Saarbrucken"))
+        if (cityNames.contains("Saarbrucken"))
         {
             if(cityNames.contains("Frankreich"))
             {
@@ -672,7 +672,7 @@ public class Route extends JPanel
                 routeShape = new Polygon(a69,a70,4);
             }
         }
-        else if (cityNames.contains("Karlsruhe"))
+        if (cityNames.contains("Karlsruhe"))
         {
             if(cityNames.contains("Mannheim"))
             {
@@ -707,7 +707,7 @@ public class Route extends JPanel
                 routeShape = new Polygon(a57,a58,4);
             }
         }
-        else if (cityNames.contains("Ulm"))
+        if (cityNames.contains("Ulm"))
         {
             if(cityNames.contains("Stuttgart"))
             {
@@ -727,7 +727,7 @@ public class Route extends JPanel
                 routeShape = new Polygon(a37,a38,4);
             }
         }
-        else if (cityNames.contains("Augsburg"))
+        if (cityNames.contains("Augsburg"))
         {
             if (cityNames.contains("Munchen"))
             {
@@ -748,7 +748,7 @@ public class Route extends JPanel
                 routeShape = new Polygon(a21,a22,4);
             }
         }
-        else if (cityNames.contains("Munchen"))
+        if (cityNames.contains("Munchen"))
         {
             if (cityNames.contains("Osterreich"))
             {
@@ -767,7 +767,7 @@ public class Route extends JPanel
                 routeShape = new Polygon(a161,a162,10);
             }
         }
-        else if (cityNames.contains("Freiburg"))
+        if (cityNames.contains("Freiburg"))
         {
             if(cityNames.contains("Frankreich"))
             {
@@ -794,7 +794,7 @@ public class Route extends JPanel
                 routeShape = new Polygon(a51,a52,4);
             }
         }
-        else if (cityNames.contains("Konstanz"))
+        if (cityNames.contains("Konstanz"))
         {
             if(cityNames.contains("Freiburg"))
             {
@@ -821,7 +821,7 @@ public class Route extends JPanel
                 routeShape = new Polygon(a49,a50,4);
             }
         }
-        else if (cityNames.contains("Lindau"))
+        if (cityNames.contains("Lindau"))
         {
             if(cityNames.contains("Konstanz"))
             {
@@ -847,8 +847,15 @@ public class Route extends JPanel
                 int [] a170 = {854,856,853,846,833,817,809,824,836,844,847,844};
                 routeShape = new Polygon(a169,a170,12);
             }
+            else if (cityNames.contains("Osterreich")) 
+            {
+                int [] a41 = {693, 689, 744, 748};
+                int [] a42 = {857, 865, 886, 875};
+                routeShape = new Polygon(a41,a42,4);
+
+            }
         }
-        else if (cityNames.contains("Schweiz"))
+        if (cityNames.contains("Schweiz"))
         {
             if(cityNames.contains("Freiburg"))
             {
@@ -869,10 +876,10 @@ public class Route extends JPanel
         }
 
         if (routeShape != null) {
-        for (int i = 0; i < routeShape.xpoints.length; i++) {
-            routeShape.xpoints[i] -=127;
+            for (int i = 0; i < routeShape.xpoints.length; i++) {
+                routeShape.xpoints[i] -=127;
+            }
         }
-    }
         //map.get(cityOneName).addRoute(this);
         //map.get(cityTwoName).addRoute(this);
 
@@ -1021,28 +1028,28 @@ public class Route extends JPanel
         g.drawPolygon(a9,a10,4);
         g.fillPolygon(a9,a10,4);
 
-        //Erfurt to Nurnburg
+        //Erfurt to Nurnberg
         g.setColor(new Color(0,255,0));
         int [] a11 = {778, 755, 758, 780};
         int [] a12 = {498, 498, 620, 619};
         g.drawPolygon(a11,a12,4);
         g.fillPolygon(a11,a12,4);
 
-        //Nurnburg to Regensburg
+        //Nurnberg to Regensburg
         g.setColor(new Color(0,255,0));
         int [] a13 = {792, 785, 860, 866};
         int [] a14 = {624, 632, 684, 677};
         g.drawPolygon(a13,a14,4);
         g.fillPolygon(a13,a14,4);
 
-        //Nurnburg to Munchen
+        //Nurnberg to Munchen
         g.setColor(new Color(0,255,0));
         int [] a15 = {788, 766, 827, 848};
         int [] a16 = {637, 647, 786, 778};
         g.drawPolygon(a15,a16,4);
         g.fillPolygon(a15,a16,4);
 
-        //Nurnburg to Augsburg
+        //Nurnberg to Augsburg
         g.setColor(new Color(0,255,0));
         int [] a17 = {763, 753, 747, 758};
         int [] a18 = {641, 641, 763, 763};
@@ -1126,8 +1133,8 @@ public class Route extends JPanel
         g.drawPolygon(a39,a40,4);
         g.fillPolygon(a39,a40,4);
 
-        //Lindau to new country
-        g.setColor(new Color(0,255,0));
+        //Lindau to osterreich
+        g.setColor(Color.RED);
         int [] a41 = {693, 689, 744, 748};
         int [] a42 = {857, 865, 886, 875};
         g.drawPolygon(a41,a42,4);
@@ -1266,7 +1273,7 @@ public class Route extends JPanel
         g.drawPolygon(a79,a80,4);
         g.fillPolygon(a79,a80,4);
 
-        //Wurzburg to Nurnburg
+        //Wurzburg to Nurnberg
         g.setColor(new Color(0,255,0));
         int [] a81 = {700,692,748,757};
         int [] a82 = {600,621,643,622};
@@ -1540,7 +1547,7 @@ public class Route extends JPanel
         g.fillPolygon(a157,a158,6);
 
         //Lindau to newCountry
-        g.setColor(new Color(0,255,0));
+        g.setColor(Color.BLUE);
         int [] a159 = {667,646,617,617,647,654,674};
         int [] a160 = {863,884,886,896,895,891,869};
         g.drawPolygon(a159,a160,7);

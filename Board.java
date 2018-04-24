@@ -114,12 +114,11 @@ public class Board
         routes.add(new Route("Chemnitz","Leipzig", allCities));
         routes.add(new Route("Chemnitz","Erfurt", allCities));
         routes.add(new Route("Chemnitz","Regensburg", allCities));
-        routes.add(new Route("Erfurt","Nurnburg", allCities));
+        routes.add(new Route("Erfurt","Nurnberg", allCities));
         routes.add(new Route("Erfurt","Regensburg", allCities));
         routes.add(new Route("Koln","Dusseldorf", allCities));
         routes.add(new Route("Koln","Frankfurt", allCities));
         routes.add(new Route("Koln","Koblenz", allCities));
-        //routes.add(new Route("Frankfurt","Kassel", allCities));
         routes.add(new Route("Frankfurt","Wurzburg", allCities));
         routes.add(new Route("Frankfurt","Mannheim", allCities));
         routes.add(new Route("Frankfurt","Mainz", allCities));
@@ -127,10 +126,10 @@ public class Board
         routes.add(new Route("Koblenz","Saarbrucken", allCities));
         routes.add(new Route("Mainz","Mannheim", allCities));
         routes.add(new Route("Mainz","Saarbrucken", allCities));
-        routes.add(new Route("Wurzburg","Nurnburg", allCities));
-        routes.add(new Route("Nurnburg","Augsburg", allCities));
-        routes.add(new Route("Nurnburg","Munchen", allCities));
-        routes.add(new Route("Nurnburg","Regensburg", allCities));
+        routes.add(new Route("Wurzburg","Nurnberg", allCities));
+        routes.add(new Route("Nurnberg","Augsburg", allCities));
+        routes.add(new Route("Nurnberg","Munchen", allCities));
+        routes.add(new Route("Nurnberg","Regensburg", allCities));
         routes.add(new Route("Regensburg","Munchen", allCities));
         routes.add(new Route("Regensburg","Osterreich", allCities));
         routes.add(new Route("Mannheim","Stuttgart", allCities));
@@ -159,16 +158,13 @@ public class Board
         routes.add(new Route("Lindau","Schweiz", allCities));
         routes.add(new Route("Lindau","Osterreich", allCities));
         
-        //continue here with the rest
-        //can eliminate redundancies in Route constructor if statements
-        //
-        
-        // for (Route r: routes) {
-            // //r.addToCities();
-            // for (City c: r.twoCities) {
-                // c.connectedRoutes.add(r);
-            // }
-        // }
+        for (Route r: routes) {
+            //r.addToCities();
+            for (City c: r.twoCities) {
+                //System.out.println(r);
+                c.connectedRoutes.add(r); 
+            }
+        }
         
         
         

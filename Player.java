@@ -46,8 +46,8 @@ public class Player
             color = Color.white;
         else if (pColor.equalsIgnoreCase("Red"))
             color = Color.red;
-        else if (pColor.equalsIgnoreCase("Black"))
-            color = new Color(50, 50, 50);
+        else
+            color = new Color(0, 170, 225);
     }
 
     protected boolean useTrainCars(int count) {

@@ -214,13 +214,13 @@ public class Driver extends JPanel implements ActionListener
         if(action.equals("Two")) 
         {
             PlayGame.numberOfPlayers = 2;
-            String[] possibleValues = { "Purple", "Yellow", "Red", "White", "Black" };
+            String[] possibleValues = { "Purple", "Yellow", "Red", "White", "Blue" };
             ArrayList<String> possibleVals = new ArrayList(5);
             possibleVals.add("Purple");
             possibleVals.add("Yellow");
             possibleVals.add("Red");
             possibleVals.add("White");
-            possibleVals.add("Black");
+            possibleVals.add("Blue");
 
             while(count < 3){
                 String name = JOptionPane.showInputDialog(frame, "Enter in Player " + count + 
@@ -249,13 +249,13 @@ public class Driver extends JPanel implements ActionListener
         else if(action.equals("Three"))
         {
             PlayGame.numberOfPlayers = 3;
-            String[] possibleValues = { "Purple", "Yellow", "Red", "White", "Black" };
+            String[] possibleValues = { "Purple", "Yellow", "Red", "White", "Blue" };
             ArrayList<String> possibleVals = new ArrayList(5);
             possibleVals.add("Purple");
             possibleVals.add("Yellow");
             possibleVals.add("Red");
             possibleVals.add("White");
-            possibleVals.add("Black");
+            possibleVals.add("Blue");
 
             while(count < 4){
                 String name = JOptionPane.showInputDialog(frame, "Enter in Player " + count + 
