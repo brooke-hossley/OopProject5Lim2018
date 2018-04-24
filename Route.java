@@ -868,6 +868,11 @@ public class Route extends JPanel
             }
         }
 
+        if (routeShape != null) {
+        for (int i = 0; i < routeShape.xpoints.length; i++) {
+            routeShape.xpoints[i] -=120;
+        }
+    }
         //map.get(cityOneName).addRoute(this);
         //map.get(cityTwoName).addRoute(this);
 
