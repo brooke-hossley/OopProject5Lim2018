@@ -981,55 +981,51 @@ public class Route extends JPanel
         g.drawRect(580, 340, 217, 10);
         g.fillRect(580,340,217, 10);
 
-        //alissa did
         //Hamburg to Berlin
         g.setColor(new Color(0,255,0));
-        int [] a1 = {605, 593, 782, 794};
+        int [] a1 = {732, 720, 909, 921};
         int [] a2 = {189, 208, 308, 289};
         g.drawPolygon(a1,a2,4);
         g.fillPolygon(a1,a2,4);
 
-        //alissa did
         //Hamburg to Hannover
         g.setColor(new Color(0,255,0));
-        int [] a3 = {592, 570, 540, 563};
+        int [] a3 = {719, 697, 667, 690};
         int [] a4 = {207, 201, 321, 325};
         g.drawPolygon(a3,a4,4);
         g.fillPolygon(a3,a4,4);
 
-        //alissa did
         //Hannover to Berlin
         g.setColor(new Color(0,255,0));
-        int [] a5 = {567, 567, 782, 782};
+        int [] a5 = {694, 694, 909, 909};
         int [] a6 = {320, 329, 321, 310};
         g.drawPolygon(a5,a6,4);
         g.fillPolygon(a5,a6,4);
 
-        //chris start here
         //Hannover to Erfurt
         g.setColor(new Color(0,255,0));
-        int [] a7 = {565, 545, 624, 644};
+        int [] a7 = {692, 672, 751, 771};
         int [] a8 = {338, 349, 481, 469};
         g.drawPolygon(a7,a8,4);
         g.fillPolygon(a7,a8,4);
 
         //Erfurt to Chyemnitz
         g.setColor(new Color(0,255,0));
-        int [] a9 = {655, 654, 776, 776};
+        int [] a9 = {782, 781, 903, 903};
         int [] a10 = {481, 490, 502, 492};
         g.drawPolygon(a9,a10,4);
         g.fillPolygon(a9,a10,4);
 
         //Erfurt to Nurnburg
         g.setColor(new Color(0,255,0));
-        int [] a11 = {651, 628, 631, 653};
+        int [] a11 = {778, 755, 758, 780};
         int [] a12 = {498, 498, 620, 619};
         g.drawPolygon(a11,a12,4);
         g.fillPolygon(a11,a12,4);
 
         //Nurnburg to Regensburg
         g.setColor(new Color(0,255,0));
-        int [] a13 = {665, 658, 733, 739};
+        int [] a13 = {792, 785, 860, 866};
         int [] a14 = {624, 632, 684, 677};
         g.drawPolygon(a13,a14,4);
         g.fillPolygon(a13,a14,4);
@@ -1216,21 +1212,21 @@ public class Route extends JPanel
         g.drawPolygon(a65,a66,4);
         g.fillPolygon(a65,a66,4);
 
-        //Mannheim to saarbrucken
+        //Mannheim to Saerbrucken
         g.setColor(new Color(0,255,0));
         int [] a67 = {563, 563, 473, 472};
         int [] a68 = {657, 666, 678, 669};
         g.drawPolygon(a67,a68,4);
         g.fillPolygon(a67,a68,4);
 
-        //saarbrucken to France
+        //Saerbrucken to France
         g.setColor(new Color(0,255,0));
         int [] a69 = {458,449,444,453};
         int [] a70 = {685,684,712,714};
         g.drawPolygon(a69,a70,4);
         g.fillPolygon(a69,a70,4);
 
-        //Koblenz to saarbrucken
+        //Koblenz to Saerbrucken
         g.setColor(new Color(0,255,0));
         int [] a71 = {478,469,451,461};
         int [] a72 = {569,567,656,657};
@@ -1272,7 +1268,7 @@ public class Route extends JPanel
         g.drawPolygon(a81,a82,4);
         g.fillPolygon(a81,a82,4);
 
-        //Mainz to saarbrucken
+        //Mainz to Saerbrucken
         g.setColor(new Color(0,255,0));
         int [] a83 = {545,540,464,469};
         int [] a84 = {619,610,661,668};
@@ -1425,7 +1421,7 @@ public class Route extends JPanel
         int [] a126 = {172,151,133,121,110,124,142,165};
         g.drawPolygon(a125,a126,8);
         g.fillPolygon(a125,a126,8);
-
+        
         //Rostock to Kiel
         g.setColor(new Color(0,255,0));
         int [] a127 = {831,802,772,741,713,709,739,772,805,834};
@@ -1524,7 +1520,7 @@ public class Route extends JPanel
         g.drawPolygon(a153,a154,14);
         g.fillPolygon(a153,a154,14);
 
-        //saarbrucken to Karlsruhe
+        //Saerbrucken to Karlsruhe
         g.setColor(new Color(0,255,0));
         int [] a155 = {464,488,522,553,553,523,492,472};
         int [] a156 = {687,709,716,714,704,706,700,680};
@@ -1572,20 +1568,11 @@ public class Route extends JPanel
         int [] a168 = {687,662,633,604,485,487,606,637,666,692};
         g.drawPolygon(a167,a168,10);
         g.fillPolygon(a167,a168,10);
-
+        
         //Lindau to Munchen
         g.setColor(new Color(0,255,0));
         int [] a169 = {692,722,754,784,815,841,835,810,782,752,722,692};
         int [] a170 = {854,856,853,846,833,817,809,824,836,844,847,844};
         g.drawPolygon(a169,a170,12);
         g.fillPolygon(a169,a170,12);
-
     }
-    // protected boolean isDouble(){
-    // return doubleTrack;   
-    // }
-
-    // protected boolean isTriple(){
-    // return tripleTrack;   
-    // }
-}
