@@ -46,7 +46,7 @@ public class Player
             color = Color.white;
         else if (pColor.equalsIgnoreCase("Red"))
             color = Color.red;
-        else
+        else //blue
             color = new Color(0, 170, 225);
     }
 

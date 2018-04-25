@@ -278,11 +278,38 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
         }       
     }
 
-    protected void claimRoute (Route route) {
+    private void claimRouteDialogue (Route route) {
         ////////////////To do:///////////////
-        //if route already taken then no
-        //ask user which cards to use
-        //if valid card combo: claim the route, dispose of the cards, and end player's turn
+        ArrayList<Integer> cardsToRemove = new ArrayList();
+        boolean validCombo = false;
+        while (!validCombo) {
+            //Graphically ask user which cards to use if there's a choice
+            //if its one color only need to ask about locomotive number
+            //if two colored route ask locomotive # and which of 2 colors to use
+            //if grey route ask locomotive # and which other color to use
+            
+            // if (its valid) 
+            validCombo = true;
+            // int numRainbowToRemove = ______
+            // int numOtherToRemove = ______
+            // int otherColorIndex = ______
+            
+            
+            
+        }
+        
+        
+        // for (int i = 0; i < numRainbowsToRemove; i++) {
+                // cardsToRemove.add(8);
+            // }
+            // for (int i = 0; i < numOtherToRemove; i++) {
+                // cardsToRemove.add(otherColorIndex);
+            // }
+            
+        //if valid card combo: dispose of the cards
+        for (int index: cardsToRemove) {
+            deck.discardTrainCard(currentPlayer.removeTrainCard(index));
+        }
         //if invalid combo tell them no and let them try again
     }
 
@@ -303,6 +330,14 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
         ////////////////To do:///////////////
         //check if mouse location is within boundaries of a city
         //if so paint a little box for the city info like name and meeples
+        for (City c: board.allCities.values()) {
+            if (c.cityShape != null && c.cityShape.contains(e.getX(), e.getY())) {
+                //show a box with city name and meeple counts 
+                //the city's meeple counts will be in c.meeples which is an int[]
+                
+            }
+        }
+        
     }
 
     /**
@@ -333,6 +368,7 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
             if (deck.trainCards.size() + deck.discardedTrainCards.size() > 0) {
                 currentPlayer.addTrainCard(deck.drawTrainCard());
                 if(secondClick) {
+                    repaint();
                     nextPlayer();
                 }
                 secondClick = !secondClick;
@@ -384,6 +420,7 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
             currentPlayer.addTrainCard(deck.drawFaceupCard(cardIndex));
 
             if(secondClick) {
+                repaint();
                 nextPlayer();   
             }
 
@@ -399,6 +436,7 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
         if (e.getX() >= 905 && e.getX() <=1055 && e.getY() >= 720 && e.getY() <= 910 ) {
             if(!secondClick) {
                 chooseDestinationCards(currentPlayer, 1);
+                repaint();
                 nextPlayer();
                 repaint();
                 return;
@@ -407,8 +445,7 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
 
         for (Route possibleR: board.routes) {
             if (possibleR.containsMouse(e.getX(), e.getY()) && currentPlayer.canTakeRoute(possibleR)) {
-                ///////////// TO DO: add in all the stuff for choosing which cards to use/////////
-
+                claimRouteDialogue(possibleR);
                 //deck.discardTrainCard(currentPlayer.removeTrainCard(the index)) for each card
                 currentPlayer.addRoute(possibleR);
                 //////////// TO DO: let player choose meeples
