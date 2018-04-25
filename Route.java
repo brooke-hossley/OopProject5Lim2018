@@ -885,12 +885,6 @@ public class Route extends JPanel
 
     }
 
-    protected void addToCities() {
-        for (City c: twoCities) {
-            c.addRoute(this);
-        }
-    }
-
     protected boolean containsMouse(int x, int y){
         if (routeShape == null) return false;
         return routeShape.contains(x, y);
@@ -903,33 +897,6 @@ public class Route extends JPanel
 
     public String toString() {
         return twoCities.get(0).name + twoCities.get(1).name;
-    }
-
-    public static String getStringrouteColor(RouteColor col) {
-        if(col == RouteColor.YELLOW)
-        {
-            return "yellow";
-        }
-        else if(col == RouteColor.ORANGE)
-        {
-            return "orange";
-        }
-        // return "orange";
-        // return "green";
-        // return "blue";
-        // return "red";
-        // return "gray";
-        // return "white";
-        // return "black";
-        // return "purple";
-        //else
-        else {
-            return "nosuchcolor";
-        }
-    }
-
-    protected int getRouteLength(){
-        return length;   
     }
 
     public Route()

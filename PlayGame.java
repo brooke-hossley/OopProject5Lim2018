@@ -465,11 +465,10 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
         //repaint();
     }
 
+    //moves to next player if game isn't over, or calls endgame if it is
     protected void nextPlayer() {
-        //here 
         if (currentPlayer.isLastTurn) {
-            //call gameover
-            
+            endGame();
         }
         else if (currentPlayer.carsRemaining <= 3) {
             currentPlayer.isLastTurn = true;
@@ -505,7 +504,17 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
      */
     private void endGame() 
     {
-
+        for (Player p: players) {
+            board.traverseDestinations(p);
+            int add = p.getPosDestScore();
+            int sub = p.getNegDestScore();
+            JOptionPane.showMessageDialog(null, p.name + " gains " + add + 
+            " points from completed destination cards and loses " + sub +
+            " from incomplete destination cards");
+            p.score += add;
+            p.score += sub;
+        }
+        addBonusPoints();
     }
 
     protected static void createAndShowGUI() {

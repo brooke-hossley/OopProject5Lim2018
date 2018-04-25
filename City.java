@@ -169,8 +169,4 @@ public class City
         }
         
     }
-    
-    protected void addRoute(Route r){
-        connectedRoutes.add(r);
-    }
 }

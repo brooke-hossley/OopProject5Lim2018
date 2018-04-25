@@ -167,17 +167,43 @@ public class Board extends JPanel
         routes.add(new Route("Lindau","Osterreich", allCities));
         
         for (Route r: routes) {
-            //r.addToCities();
             for (City c: r.twoCities) {
                 //System.out.println(r);
                 c.connectedRoutes.add(r); 
             }
         }
-        
-        
-        
     }
 
+    //at the end of the game traverse graph to figure out which destination cards are completed
+    protected void traverseDestinations(Player p) {
+        for (DestinationCard card: p.destinations) {
+            boolean done = false;
+            ArrayList<City> reachableCities = new ArrayList<City>();
+            while (!done) {
+                done = true; 
+                for (Route route: p.controlledRoutes) {
+                    City city1 = route.twoCities.get(0);
+                    City city2 = route.twoCities.get(1);
+                    
+                    if (!city1.isCountry && reachableCities.contains(city1) && !reachableCities.contains(city2)) {
+                        reachableCities.add(city2);
+                        done = false;
+                    }
+                    else if (!city2.isCountry && reachableCities.contains(city2) && !reachableCities.contains(city1)) {
+                        reachableCities.add(city1);
+                        done = false;
+                    }
+                }
+            }
+            
+            //check if both card cities are reachable to complete card
+            if (reachableCities.contains(allCities.get(card.city1)) && 
+            reachableCities.contains(allCities.get(card.city2))) {
+                p.completeDestinationCard(card);
+            }
+        }
+    }
+    
     // public static void main (String args[]) {
         // Board b = new Board();
         // int count = 0;

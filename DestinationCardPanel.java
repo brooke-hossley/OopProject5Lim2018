@@ -39,7 +39,7 @@ public class DestinationCardPanel extends JPanel
         g.drawImage(woodBackground,0,0,null);
         //draw the players destination tickets here
         ArrayList<DestinationCard> playersDestinationCards = new ArrayList(); 
-        playersDestinationCards = PlayGame.currentPlayer.getDestinationCards();
+        playersDestinationCards = PlayGame.currentPlayer.destinations;
         int x = 20;
         int y = 20;
         for(int i = 0; i< playersDestinationCards.size();i++)

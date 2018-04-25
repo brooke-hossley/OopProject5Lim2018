@@ -164,14 +164,13 @@ public class Player
         destinations.add(d);
     }
 
-    protected void CompleteDestinationCard(DestinationCard d){
+    protected void completeDestinationCard(DestinationCard d){
         if(destinations.contains(d)){
             destinations.remove(d);
         }
-        //score += d.getPoints();
         completedDestinations.add(d);
     }
-
+    
     //finds score to add based on all the completed destination cards
     protected int getPosDestScore() {
         int total = 0;
@@ -189,9 +188,5 @@ public class Player
         }
         return total;
     }
-
-    public ArrayList<DestinationCard> getDestinationCards()
-    {
-        return destinations;
-    }   
+   
 }
