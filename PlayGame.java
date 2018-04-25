@@ -285,6 +285,7 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
         while (!validCombo) {
             //Graphically ask user which cards to use if there's a choice
             //if its one color only need to ask about locomotive number
+            //use JSpinner for locomotive number
             //if two colored route ask locomotive # and which of 2 colors to use
             //if grey route ask locomotive # and which other color to use
             
@@ -406,7 +407,8 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
         }
 
         if (choosingTrainCard) {
-            if (deck.faceUpTrainCards.get(cardIndex).isRainbow()) {
+            //TO DO: should also check if there's only rainbow left and no blind deck
+            if (deck.faceUpTrainCards.get(cardIndex).isRainbow() || deck.faceUpTrainCards.isEmpty()) {
                 if (secondClick) {
                     //reject trying to take rainbow card on second click
                     return;
