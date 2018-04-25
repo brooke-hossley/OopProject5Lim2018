@@ -1,12 +1,20 @@
 import java.util.*;
+import java.awt.*;
+import javax.swing.*;
+import java.awt.event.*;
+
 /**
  * Write a description of class Board here.
  *
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Board
+public class Board extends JPanel
 {
+    //get rid of these later
+    private static Image board, blackBackground;
+    
+    
     // instance variables - replace the example below with your own
     protected ArrayList<Route> routes;
     protected HashMap<String, City> allCities;
@@ -170,18 +178,79 @@ public class Board
         
     }
 
-    public static void main (String args[]) {
+    // public static void main (String args[]) {
+        // Board b = new Board();
+        // int count = 0;
+        // for (Route r: b.routes) {
+            // System.out.println(r);
+            // count ++;
+            // if (count >15) break;
+        // }
+        // System.out.println("");
+        // City c1 = b.allCities.get("Berlin");
+        // for (Route r1: c1.connectedRoutes) {
+            // System.out.println(r1);
+        // }
+    // }
+    
+    public Board(int i)
+    {
+        String dir = "Images//";
+        board = new ImageIcon(dir + "Board.JPG").getImage();
+        blackBackground = new ImageIcon(dir + "blackBackground.JPG").getImage();
+        Dimension size = new Dimension(blackBackground.getWidth(null), board.getHeight(null));
+        setPreferredSize(size);
+        setMinimumSize(size);
+        setMaximumSize(size);
+        setSize(size);
+        setLayout(null);
+    }
+
+    private static void createAndShowGUI() {
+        //Create and set up the window.
+        JFrame frame = new JFrame("Ticket To Ride");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        Board panel = new Board(1);
+        frame.getContentPane().add(panel);
+
+        //Display the window.
+        frame.pack();
+        frame.setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        //Schedule a job for the event-dispatching thread:
+        //creating and showing this application's GUI.
+        javax.swing.SwingUtilities.invokeLater(new Runnable() {
+                public void run() {
+                    createAndShowGUI();
+                }
+            });
+    }
+
+    @Override
+    public void paintComponent(Graphics g){
+        // As we learned in the last lesson,
+        // the origin (0,0) is at the upper left corner.
+        // x increases to the right, and y increases downward.
+        // add 270 to be on board, board ends at 890
+        super.paintComponent(g);
+
+        g.drawImage(blackBackground,0,0,null);
+        g.drawImage(board,270,0,null);
+
+        //used to find coordinates
+        g.setColor(Color.BLUE);
+        
         Board b = new Board();
-        int count = 0;
-        for (Route r: b.routes) {
-            System.out.println(r);
-            count ++;
-            if (count >15) break;
+        for (City c: b.allCities.values()) {
+            if (c.cityShape != null) {
+                //show a box with city name and meeple counts 
+                //the city's meeple counts will be in c.meeples which is an int[]
+                g.fillPolygon(c.cityShape);
+            }
         }
-        System.out.println("");
-        City c1 = b.allCities.get("Berlin");
-        for (Route r1: c1.connectedRoutes) {
-            System.out.println(r1);
-        }
+        
     }
 }

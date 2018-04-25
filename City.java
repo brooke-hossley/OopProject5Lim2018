@@ -38,7 +38,10 @@ public class City
         //////////////To do: set shapes///////////////////
         
         if (name.equals("Augsburg")) { 
-            
+            //this is just dummy coordinates to draw a big blue shape so I knew it ran
+            int[] xs = {40, 140, 155, 50};
+            int[] ys = {40, 40, 155, 150};
+            cityShape = new Polygon(xs, ys, 4);
         }
         else if (name.equals("Berlin")) { 
             meepleAmount = 5;
