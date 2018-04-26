@@ -65,6 +65,9 @@ public class City
         }
         else if (name.equals("Danemark")) { 
             isCountry = true;
+            int [] b79 = {542,555,564,565,553,530,518,515,515,524,531};
+            int [] b80 = {21,24,36,53,69,69,57,48,33,23,19};
+            cityShape = new Polygon(b79,b80,11);
         }
         else if (name.equals("Dortmund")) { 
             int [] b11 = {396,405,406,400,390,384,384,389};
