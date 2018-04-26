@@ -6,11 +6,12 @@ import java.util.*;
  * Write a description of class DestinationCardPanel here.
  *
  * @author (Patrick Barber)
- * @version (4/23/2018)
+ * @version (4/26/2018)
  */
 public class DestinationCardPanel extends JPanel
 {
     private static Image woodBackground;
+
     DestinationCardPanel()
     {
         woodBackground = new ImageIcon("Images" + File.separator + "WoodPaneling.jpg").getImage();
@@ -41,15 +42,20 @@ public class DestinationCardPanel extends JPanel
         ArrayList<DestinationCard> playersDestinationCards = new ArrayList(); 
         playersDestinationCards = PlayGame.currentPlayer.destinations;
         int x = 20;
-        int y = 20;
+        int y = 5;
+        
         for(int i = 0; i< playersDestinationCards.size();i++)
         {
             g.drawImage(playersDestinationCards.get(i).getPicture(),x,y,null);
-            x+=300;
-            
+            x+=220;
+            if(i==3)
+            {
+             x=20;
+             y=350;
+            }
+
         }
     }
-    
 
     public static void main(String[] args) {
         //Schedule a job for the event-dispatching thread:
