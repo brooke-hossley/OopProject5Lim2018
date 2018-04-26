@@ -181,11 +181,23 @@ public class Board extends JPanel
             ArrayList<City> reachableCities = new ArrayList<City>();
             while (!done) {
                 done = true; 
+                
+                //problem: never adding first city. how to decide?
                 for (Route route: p.controlledRoutes) {
                     City city1 = route.twoCities.get(0);
                     City city2 = route.twoCities.get(1);
                     
-                    if (!city1.isCountry && reachableCities.contains(city1) && !reachableCities.contains(city2)) {
+                    if (reachableCities.isEmpty()){
+                        if (allCities.get(card.city1).equals(city1) || allCities.get(card.city2).equals(city1)) {
+                            reachableCities.add(city1);
+                            done = false;
+                        }
+                        else if (allCities.get(card.city1).equals(city2) || allCities.get(card.city2).equals(city2)) {
+                            reachableCities.add(city2);
+                            done = false;
+                        }
+                    }
+                    else if (!city1.isCountry && reachableCities.contains(city1) && !reachableCities.contains(city2)) {
                         reachableCities.add(city2);
                         done = false;
                     }
@@ -195,6 +207,13 @@ public class Board extends JPanel
                     }
                 }
             }
+            
+            System.out.println(p.name);
+            System.out.println(card);
+            for (City c: reachableCities) {
+                System.out.println(c.name);
+            }
+            
             
             //check if both card cities are reachable to complete card
             if (reachableCities.contains(allCities.get(card.city1)) && 
