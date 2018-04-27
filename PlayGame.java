@@ -469,6 +469,7 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
     protected void nextPlayer() {
         if (currentPlayer.isLastTurn) {
             endGame();
+            return;
         }
         else if (currentPlayer.carsRemaining <= 3) {
             currentPlayer.isLastTurn = true;

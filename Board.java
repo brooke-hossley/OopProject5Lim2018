@@ -214,12 +214,15 @@ public class Board extends JPanel
                 System.out.println(c.name);
             }
             
-            
             //check if both card cities are reachable to complete card
             if (reachableCities.contains(allCities.get(card.city1)) && 
             reachableCities.contains(allCities.get(card.city2))) {
-                p.completeDestinationCard(card);
+                p.completedDestinations.add(card);
             }
+        }
+        
+        for (DestinationCard completed: p.completedDestinations) {
+            p.destinations.remove(completed);
         }
     }
     

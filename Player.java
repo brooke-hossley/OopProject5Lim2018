@@ -164,12 +164,12 @@ public class Player
         destinations.add(d);
     }
 
-    protected void completeDestinationCard(DestinationCard d){
-        if(destinations.contains(d)){
-            destinations.remove(d);
-        }
-        completedDestinations.add(d);
-    }
+    // protected void completeDestinationCard(DestinationCard d){
+        // if(destinations.contains(d)){
+            // destinations.remove(d);
+        // }
+        // completedDestinations.add(d);
+    // }
     
     //finds score to add based on all the completed destination cards
     protected int getPosDestScore() {
