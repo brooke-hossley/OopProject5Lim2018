@@ -208,11 +208,11 @@ public class Board extends JPanel
                 }
             }
             
-            System.out.println(p.name);
-            System.out.println(card);
-            for (City c: reachableCities) {
-                System.out.println(c.name);
-            }
+            // System.out.println(p.name);
+            // System.out.println(card);
+            // for (City c: reachableCities) {
+                // System.out.println(c.name);
+            // }
             
             //check if both card cities are reachable to complete card
             if (reachableCities.contains(allCities.get(card.city1)) && 

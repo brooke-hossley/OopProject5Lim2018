@@ -162,7 +162,7 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
         g.setColor(currentPlayer.color);
         g.drawString(currentPlayer.name + " has " + currentPlayer.carsRemaining + " train pieces", 10,22);
 
-        ////to do: display meeple counts and option to see their destination cards
+        ////to do: display meeple counts
 
         //draw the 9 card images on player side
         int x2 = 73;
@@ -210,12 +210,11 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
         /////////TO DO: add functionality for player to choose which combo of cards to take///////////
 
         JOptionPane.showMessageDialog(null,"Dealing " +
-            p.name+" destination tickets!");
+            p.name+"'s destination tickets!");
         // players options for their destination cards
         DestinationCard[] cards = new DestinationCard[4];
         // adds three destination cards
-        for(int k = 0; k < 3; k++)
-        {
+        for(int k = 0; k < 3; k++) {
             cards[k] = deck.drawShortCard();
         }
         // adds one long destination card
@@ -223,40 +222,30 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
         // check boxes for the players options
         JCheckBox[] boxes = new JCheckBox[4];
         // creates a list of options in a JOption pain
-        for(int i = 0; i < 4; i++)
-        {
+        for(int i = 0; i < 4; i++) {
             boxes[i] = new JCheckBox(cards[i].toString() + 
                 " for " + cards[i].getPoints() + " points");
         }   
 
         int count = 0;
         // makes sure at least 2 cards are chosen
-        do 
-        {
+        do {
             count = 0;
             JOptionPane.showMessageDialog(null,boxes,"Pick your "
                 +"destinations", JOptionPane.QUESTION_MESSAGE);
-            for(int n = 0; n < 4; n++)
-            {
-                if(boxes[n].isSelected())
-                {
+            for(int n = 0; n < 4; n++) {
+                if(boxes[n].isSelected()) {
                     count++;
                 }
             }
         } while(count < keep);
 
-        for(int j = 0; j < 4; j++)
-        {
-            if(boxes[j].isSelected())
-            {
+        for(int j = 0; j < 4; j++) {
+            if(boxes[j].isSelected()) {
                 p.addDestinationCard(cards[j]);
             }
-            //what is this next line????
-            //else if(!boxes[j].isSelected() && j != 3)
-            else
-            {
-                if(cards[j].getPoints()<=11)
-                {
+            else {
+                if(cards[j].getPoints()<=11) {
                     deck.addShortCard(cards[j]);
                 }
                 else deck.addLongCard(cards[j]);
@@ -282,31 +271,56 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
         ////////////////To do:///////////////
         ArrayList<Integer> cardsToRemove = new ArrayList();
         boolean validCombo = false;
+        int numRainbowsToRemove = 0;
+        int numOtherToRemove = 0;
+        int otherColorIndex = 0;
         while (!validCombo) {
+            //if (currentPlayer.trainCounts[8] > 0) {
+                JSpinner numberSpinner;
+                SpinnerNumberModel numberSpinnerModel = new SpinnerNumberModel(0, 0, currentPlayer.trainCounts[8], 1);
+                numberSpinner = new JSpinner(numberSpinnerModel);
+                //JOptionPane.showMessageDialog(null, numberSpinner);
+            //}
+            
+            //if (route.color.contains(RouteColor.GRAY) || route.color.size() > 2) {
+                String[] colorOptions = route.getCardColors();
+                JComboBox cardColor = new JComboBox(colorOptions);
+                // Object selected = JOptionPane.showInputDialog(null, "What card color will you use?", "Card Selection", JOptionPane.DEFAULT_OPTION, null, values, "0");
+                // if ( selected != null ){//null if the user cancels. 
+                    // String selectedString = selected.toString();
+                    // //do something
+                // }else{
+                    // System.out.println("User cancelled");
+                // }
+            //}
+            
+            
+            Object[] message = {
+                "Number of Locomotives:", numberSpinner,
+                "Other Card Color:", cardColor};
+
+            String option = JOptionPane.showInputDialog(null, message, "Choose Cards", JOptionPane.OK_CANCEL_OPTION);
+
             //Graphically ask user which cards to use if there's a choice
             //if its one color only need to ask about locomotive number
             //use JSpinner for locomotive number
             //if two colored route ask locomotive # and which of 2 colors to use
             //if grey route ask locomotive # and which other color to use
-            
+
             // if (its valid) 
             validCombo = true;
             // int numRainbowToRemove = ______
             // int numOtherToRemove = ______
             // int otherColorIndex = ______
-            
-            
-            
+
         }
-        
-        
-        // for (int i = 0; i < numRainbowsToRemove; i++) {
-                // cardsToRemove.add(8);
-            // }
-            // for (int i = 0; i < numOtherToRemove; i++) {
-                // cardsToRemove.add(otherColorIndex);
-            // }
-            
+        for (int i = 0; i < numRainbowsToRemove; i++) {
+            cardsToRemove.add(8);
+        }
+        for (int i = 0; i < numOtherToRemove; i++) {
+            cardsToRemove.add(otherColorIndex);
+        }
+
         //if valid card combo: dispose of the cards
         for (int index: cardsToRemove) {
             deck.discardTrainCard(currentPlayer.removeTrainCard(index));
@@ -335,10 +349,10 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
             if (c.cityShape != null && c.cityShape.contains(e.getX(), e.getY())) {
                 //show a box with city name and meeple counts 
                 //the city's meeple counts will be in c.meeples which is an int[]
-                
+
             }
         }
-        
+
     }
 
     /**
@@ -361,8 +375,6 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
      */
     public void mouseClicked( MouseEvent e ) {
         choosingTrainCard = false;
-        ////////////////To do:///////////////
-        //check if clicked on a route (see bottom of method)
 
         //check if clicked on a train card in deck
         if(e.getX() >=905 && e.getX() <= 1055 && e.getY() >= 620 && e.getY() <= 710) {
@@ -434,26 +446,28 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
         //check if clicked on destination card deck
         //in all these cases after stuff happens we move to next player in list
         //check if trying to see their own destination cards
+        if(!secondClick) {
+            if (e.getX() >= 905 && e.getX() <=1055 && e.getY() >= 720 && e.getY() <= 910 ) {
 
-        if (e.getX() >= 905 && e.getX() <=1055 && e.getY() >= 720 && e.getY() <= 910 ) {
-            if(!secondClick) {
                 chooseDestinationCards(currentPlayer, 1);
                 repaint();
                 nextPlayer();
                 repaint();
                 return;
-            }
-        }
 
-        for (Route possibleR: board.routes) {
-            if (possibleR.containsMouse(e.getX(), e.getY()) && currentPlayer.canTakeRoute(possibleR)) {
-                claimRouteDialogue(possibleR);
-                //deck.discardTrainCard(currentPlayer.removeTrainCard(the index)) for each card
-                currentPlayer.addRoute(possibleR);
-                //////////// TO DO: let player choose meeples
-                nextPlayer();
-                repaint();
-                return;
+            }
+
+            for (Route possibleR: board.routes) {
+                if (possibleR.containsMouse(e.getX(), e.getY()) && currentPlayer.canTakeRoute(possibleR)) {
+                    claimRouteDialogue(possibleR);
+                    //deck.discardTrainCard(currentPlayer.removeTrainCard(the index)) for each card
+                    currentPlayer.addRoute(possibleR);
+                    repaint();
+                    //////////// TO DO: let player choose meeples
+                    nextPlayer();
+                    repaint();
+                    return;
+                }
             }
         }
 
@@ -510,8 +524,8 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
             int add = p.getPosDestScore();
             int sub = p.getNegDestScore();
             JOptionPane.showMessageDialog(null, p.name + " gains " + add + 
-            " points from completed destination cards and loses " + sub +
-            " from incomplete destination cards");
+                " points from completed destination cards and loses " + sub +
+                " from incomplete destination cards");
             p.score += add;
             p.score += sub;
         }

@@ -25,7 +25,7 @@ public class DestinationCardPanel extends JPanel
 
     protected static void createAndShowGUI() {
         //Create and set up the window.
-        JFrame frame = new JFrame("Your Destination Tickets");
+        JFrame frame = new JFrame(PlayGame.currentPlayer.name + "'s Destination Tickets");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         DestinationCardPanel panel = new DestinationCardPanel();
         frame.getContentPane().add(panel);

@@ -15,8 +15,8 @@ public class Player
     protected Color color;
     protected int score;
     protected int carsRemaining;
-    //protected boolean turn = false;
     protected boolean isLastTurn = false;
+    
     //Int array [9] each spot has a different color tain card with how many the player has
     protected int[] trainCounts = new int[9];
     protected ArrayList<TrainCard> trainCards = new ArrayList();

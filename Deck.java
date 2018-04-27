@@ -184,7 +184,7 @@ public class Deck
         }
         //TrainCard replacement = drawTrainCard();
         faceUpTrainCards.add(index, drawTrainCard());
-        //only allow 5 reshuffles incase we can't avoid having 3 rainbows in deck
+        //only allow 10 reshuffles incase we can't avoid having 3 rainbows in deck
         int reshuffleCount = 0;
         //check if three rainbows with a count
         while (reshuffleCount < 10 && threeRainbowsUp()) {

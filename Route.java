@@ -880,14 +880,65 @@ public class Route extends JPanel
                 routeShape.xpoints[i] -=127;
             }
         }
-        //map.get(cityOneName).addRoute(this);
-        //map.get(cityTwoName).addRoute(this);
-
     }
 
     protected boolean containsMouse(int x, int y){
         if (routeShape == null) return false;
         return routeShape.contains(x, y);
+    }
+
+    //return arraylist of colors for user to choose from when choosing Route
+    protected String[] getCardColors(){
+        String[] cardColors;
+        if (color.contains(RouteColor.GRAY)) {
+            cardColors = new String[8];
+            cardColors[0] = "Yellow";
+            cardColors[1] = "Blue";
+            cardColors[2] = "Green";
+            cardColors[3] = "Pink";
+            cardColors[4] = "Red";
+            cardColors[5] = "Black";
+            cardColors[6] = "Orange";
+            cardColors[7] = "White";
+            return cardColors;
+        }
+        
+        cardColors = new String[color.size()];
+        int index = 0;
+        if (color.contains(RouteColor.YELLOW)) {
+            cardColors[index] = "Yellow"; 
+            index = 1;
+        }
+        if (color.contains(RouteColor.BLUE)) {
+            cardColors[index] = "Blue"; 
+            index = 1;
+        }
+        if (color.contains(RouteColor.GREEN)) {
+            cardColors[index] = "Green"; 
+            index = 1;
+        }
+        if (color.contains(RouteColor.PINK)) {
+            cardColors[index] = "Pink"; 
+            index = 1;
+        }
+        if (color.contains(RouteColor.RED)) {
+            cardColors[index] = "Red"; 
+            index = 1;
+        }
+        if (color.contains(RouteColor.BLACK)) {
+            cardColors[index] = "Black"; 
+            index = 1;
+        }
+        if (color.contains(RouteColor.ORANGE)) {
+            cardColors[index] = "Orange"; 
+            index = 1;
+        }
+        if (color.contains(RouteColor.WHITE)) {
+            cardColors[index] = "White"; 
+            index = 1;
+        }
+
+        return cardColors;
     }
 
     //check is route is open to take
@@ -1400,7 +1451,7 @@ public class Route extends JPanel
         int [] a126 = {172,151,133,121,110,124,142,165};
         g.drawPolygon(a125,a126,8);
         g.fillPolygon(a125,a126,8);
-        
+
         //Rostock to Kiel
         g.setColor(new Color(0,255,0));
         int [] a127 = {831,802,772,741,713,709,739,772,805,834};
@@ -1547,7 +1598,7 @@ public class Route extends JPanel
         int [] a168 = {687,662,633,604,485,487,606,637,666,692};
         g.drawPolygon(a167,a168,10);
         g.fillPolygon(a167,a168,10);
-        
+
         //Lindau to Munchen
         g.setColor(new Color(0,255,0));
         int [] a169 = {692,722,754,784,815,841,835,810,782,752,722,692};
@@ -1555,4 +1606,4 @@ public class Route extends JPanel
         g.drawPolygon(a169,a170,12);
         g.fillPolygon(a169,a170,12);
     }
-    }
+}
