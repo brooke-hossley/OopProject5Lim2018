@@ -12,21 +12,24 @@ import java.lang.String;
  * @author (Patrick, Alissa, Chris, Brooke, Hieu)
  * @version (4/18/2018)
  */
-public class PlayGame extends JPanel implements MouseListener, MouseMotionListener
+public class PlayGame extends JPanel implements MouseListener, MouseMotionListener, ActionListener
 {
     private static Image boardPic, blackBackground, TicketToRidePic;
-    private Image blueDest, globeTrotter, orangeDest, trainCardBack,yellowMeeple, greenMeeple,blueMeeple, whiteMeeple,blackMeeple, redMeeple;
+    private Image blueDest, globeTrotter, orangeDest, trainCardBack;
     private boolean secondClick, choosingTrainCard, finalTurn;
     protected static int numberOfPlayers;
     // initializes the players
-    private ArrayList<Player> players = new ArrayList<Player>();
+    protected static ArrayList<Player> players = new ArrayList<Player>();
     protected static Player currentPlayer;
     private static JFrame frame;
     private Deck deck;
     private Board board;
     private JLabel viewDestCards;
     private ImageIcon destCard;
+
     private JButton helpButton;
+    public static String info;
+
     /**
      * Constructor for objects of class playGame
      */
@@ -47,14 +50,8 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
         orangeDest = new ImageIcon("Images" + File.separator + "OrangeDest.JPG").getImage();
         trainCardBack = new ImageIcon("Images" + File.separator + "TrainCardBack.JPG").getImage();
         Dimension size = new Dimension(blackBackground.getWidth(null), boardPic.getHeight(null));
-
-        blackMeeple = new ImageIcon("Images" + File.separator + "blackMeeple.PNG").getImage();
-        redMeeple = new ImageIcon("Images" + File.separator + "redMeeple.PNG").getImage();
-        greenMeeple = new ImageIcon("Images" + File.separator + "greenMeeple.PNG").getImage();
-        whiteMeeple = new ImageIcon("Images" + File.separator + "whiteMeeple.PNG").getImage();
-        blueMeeple = new ImageIcon("Images" + File.separator + "blueMeeple.PNG").getImage();
-        yellowMeeple = new ImageIcon("Images" + File.separator + "yellowMeeple.PNG").getImage();
-
+        //width is ... pixels
+        //height is ...
         setPreferredSize(size);
         setMinimumSize(size);
         setMaximumSize(size);
@@ -62,6 +59,7 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
         setLayout(null);
         dealDestinationCards();
         drawFirstFour();
+
         helpButton = new JButton("Help");
         helpButton.setFont(new Font("Arial", Font.BOLD, 20));
         helpButton.setBackground(Color.RED);
@@ -94,29 +92,16 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
         paintDestinationCards(g);
         paintPlayerInfo(g);
         paintDestinationCardBack(g);
+        // g.setColor(Color.BLUE);
+        // for (Route meh: board.routes) {
+        // if ( meh.routeShape != null) {
+        // g.fillPolygon(meh.routeShape);
+        // }
+        // else {
+        // g.setColor(Color.BLUE);
+        // }
+        // }
         paintPlayerRoutes(g);
-        paintMeepleCount(g);
-    }
-
-    public void paintMeepleCount(Graphics g)
-    {
-        g.drawImage(redMeeple,5,590,null);
-        g.drawImage(blackMeeple, 46, 590, null);
-        g.drawImage(greenMeeple, 87,590,null);
-        g.drawImage(yellowMeeple, 128,590,null);
-        g.drawImage(blueMeeple, 169,590,null);
-        g.drawImage(whiteMeeple, 210,590,null);
-        int a = 13;
-        int b = 610;
-        for(int i = 0 ; i <=5;i++)
-        {
-            g.setColor(new Color(25, 25, 25));
-            g.fillRect(a, b, 20, 20);
-            g.setColor(Color.white);
-            g.drawRect(a, b, 20, 20);
-            g.drawString("" + currentPlayer.meeples[i], a+4, b+18);
-            a+=41;
-        }
     }
 
     public void paintDestinationCardBack(Graphics g)
@@ -161,6 +146,7 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
                 y1 -= 100;
             }
         }
+
         //draw the 9 card images on player side
         int x = 10;
         int y = 50;
@@ -169,6 +155,8 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
             y += 55;
             x += 10;
         }
+
+        //when deck is empty bad things happen
     }
 
     public void paintDestinationCards(Graphics g)
@@ -378,7 +366,7 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
     /**
      * @param e an event that indicates a mouse action has occured.
      */
-    public void mouseMoved( MouseEvent e ) { 
+    public void mouseMoved(MouseEvent e) { 
         ////////////////To do:///////////////
         //check if mouse location is within boundaries of a city
         //if so paint a little box for the city info like name and meeples
@@ -386,6 +374,8 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
             if (c.cityShape != null && c.cityShape.contains(e.getX(), e.getY())) {
                 //show a box with city name and meeple counts 
                 //the city's meeple counts will be in c.meeples which is an int[]
+                setToolTipText(c.name);
+                return;
 
             }
         }
@@ -548,7 +538,154 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
      */
     public void addBonusPoints() 
     {
+        //To determin the glober trotter bonus
+        int[] playerTotal = new int[players.size()];
+        int index = 0;
+        for(Player p : players){
+            playerTotal[index] += p.getPosDestScore();
+            index++;
+        }
+        int max;
+        if(playerTotal.length == 2){
+            max = 0;
+            index = 0;
+            for(int x = 0; x < playerTotal.length; x++){
+                if(playerTotal[x] > max)
+                {
+                    max = playerTotal[x]; index = x;
+                }
+                else if(playerTotal[x] == max){ 
+                    players.get(0).score += 15;
+                    players.get(1).score += 15;
+                }
+                else if(playerTotal[x] != max && x == 1){
+                    players.get(index).score += 15;
+                }
+            }
 
+        }
+        else{
+            max = 0;
+            index = 0;
+            for(int x = 0; x < playerTotal.length; x++){
+                if(playerTotal[x] > max)
+                {
+                    max = playerTotal[x]; index = x;
+                }
+                else if(playerTotal[0] == playerTotal[1]){ 
+                    players.get(0).score += 15;
+                    players.get(1).score += 15;
+                }
+                else if(playerTotal[0] == playerTotal[2]){ 
+                    players.get(0).score += 15;
+                    players.get(2).score += 15;
+                }
+                else if(playerTotal[1] == playerTotal[2]){ 
+                    players.get(1).score += 15;
+                    players.get(2).score += 15;
+                }
+                else if(playerTotal[x] != max && x == 2){
+                    players.get(index).score += 15;
+                }
+            }
+        }
+
+        //To determin the Meeple bonus
+        if(playerTotal.length == 2){
+            for(int y = 0; y < 6; y++){
+                if(players.get(0).meeples[y] > players.get(1).meeples[y]){
+                    players.get(0).score += 20;
+                    players.get(1).score += 10;
+                }
+                else if(players.get(0).meeples[y] == players.get(1).meeples[y]){
+                    players.get(0).score += 20;
+                    players.get(1).score += 20;
+                }
+                else if(players.get(0).meeples[y] < players.get(1).meeples[y]){
+                    players.get(0).score += 10;
+                    players.get(1).score += 20;
+                }
+            }
+        }
+        else{
+            for(int z = 0; z < 6; z++){
+                if(players.get(0).meeples[z] > players.get(1).meeples[z] &&
+                players.get(0).meeples[z] > players.get(2).meeples[z]){
+                    players.get(0).score += 20;
+                    if(players.get(1).meeples[z] > players.get(2).meeples[z]){
+                        players.get(1).score += 10;
+                    }
+                    else if(players.get(1).meeples[z] == players.get(2).meeples[z]){
+                        players.get(1).score += 10;
+                        players.get(2).score += 10;
+                    }
+                    else if(players.get(1).meeples[z] < players.get(2).meeples[z]){
+                        players.get(2).score += 10;
+                    }
+                }
+                else if(players.get(0).meeples[z] < players.get(1).meeples[z] &&
+                players.get(1).meeples[z] > players.get(2).meeples[z]){
+                    players.get(1).score += 20;
+                    if(players.get(0).meeples[z] > players.get(2).meeples[z]){
+                        players.get(0).score += 10;
+                    }
+                    else if(players.get(0).meeples[z] == players.get(2).meeples[z]){
+                        players.get(0).score += 10;
+                        players.get(2).score += 10;
+                    }
+                    else if(players.get(0).meeples[z] < players.get(2).meeples[z]){
+                        players.get(2).score += 10;
+                    }
+                }
+                else if(players.get(0).meeples[z] < players.get(2).meeples[z] &&
+                players.get(1).meeples[z] < players.get(2).meeples[z]){
+                    players.get(2).score += 20;
+                    if(players.get(0).meeples[z] > players.get(1).meeples[z]){
+                        players.get(0).score += 10;
+                    }
+                    else if(players.get(0).meeples[z] == players.get(1).meeples[z]){
+                        players.get(0).score += 10;
+                        players.get(1).score += 10;
+                    }
+                    else if(players.get(0).meeples[z] < players.get(1).meeples[z]){
+                        players.get(1).score += 10;
+                    }
+                }
+                else if(players.get(0).meeples[z] == players.get(1).meeples[z] &&
+                players.get(0).meeples[z] > players.get(2).meeples[z]){
+                    players.get(0).score += 20;
+                    players.get(1).score += 20;
+                }
+                else if(players.get(0).meeples[z] == players.get(2).meeples[z] &&
+                players.get(0).meeples[z] > players.get(1).meeples[z]){
+                    players.get(0).score += 20;
+                    players.get(2).score += 20;
+                }
+                else if(players.get(1).meeples[z] == players.get(2).meeples[z] &&
+                players.get(1).meeples[z] > players.get(0).meeples[z]){
+                    players.get(1).score += 20;
+                    players.get(2).score += 20;
+                }
+                else if(players.get(0).meeples[z] == players.get(1).meeples[z] &&
+                players.get(0).meeples[z] < players.get(2).meeples[z]){
+                    players.get(0).score += 10;
+                    players.get(1).score += 10;
+                    players.get(2).score += 20;
+                }
+                else if(players.get(0).meeples[z] == players.get(2).meeples[z] &&
+                players.get(0).meeples[z] < players.get(1).meeples[z]){
+                    players.get(0).score += 10;
+                    players.get(1).score += 20;
+                    players.get(2).score += 10;
+                }
+                else if(players.get(1).meeples[z] == players.get(2).meeples[z] &&
+                players.get(1).meeples[z] < players.get(0).meeples[z]){
+                    players.get(0).score += 20;
+                    players.get(1).score += 10;
+                    players.get(2).score += 10;
+                }
+            }
+        }
     }
 
     /**
@@ -560,11 +697,9 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
             board.traverseDestinations(p);
             int add = p.getPosDestScore();
             int sub = p.getNegDestScore();
-            JOptionPane.showMessageDialog(null, p.name + " gains " + add + 
-                " points from completed destination cards and loses " + sub +
-                " from incomplete destination cards");
             p.score += add;
             p.score += sub;
+            EndGameWin.createAndShowGUI();
         }
         addBonusPoints();
     }
@@ -578,15 +713,5 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
         //Display the window.
         frame.pack();
         frame.setVisible(true);
-    }
-
-    public static void main(String[] args) {
-        //Schedule a job for the event-dispatching thread:
-        //creating and showing this application's GUI.
-        javax.swing.SwingUtilities.invokeLater(new Runnable() {
-                public void run() {
-                    createAndShowGUI();
-                }
-            });
     }
 }

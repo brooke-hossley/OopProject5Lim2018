@@ -1,5 +1,6 @@
 import java.util.*;
 import java.awt.*;
+import javax.swing.*;
 ////////////////////////////////////////////////////////////////////////////////
 /**
  * This class needs work
@@ -7,10 +8,10 @@ import java.awt.*;
  * @author (your name)
  * @version (a version number or a date)
  */
-public class City
+public class City extends JPanel	
 {
     //Name of the city
-    protected String name;
+    protected static String name;
     protected boolean isCountry;
 
     //routes connecting to the city

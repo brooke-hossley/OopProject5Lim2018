@@ -16,7 +16,8 @@ public class Player
     protected int score;
     protected int carsRemaining;
     protected boolean isLastTurn = false;
-    
+    protected static boolean globeTrotter = false;
+
     //Int array [9] each spot has a different color tain card with how many the player has
     protected int[] trainCounts = new int[9];
     protected ArrayList<TrainCard> trainCards = new ArrayList();
@@ -165,12 +166,12 @@ public class Player
     }
 
     // protected void completeDestinationCard(DestinationCard d){
-        // if(destinations.contains(d)){
-            // destinations.remove(d);
-        // }
-        // completedDestinations.add(d);
+    // if(destinations.contains(d)){
+    // destinations.remove(d);
     // }
-    
+    // completedDestinations.add(d);
+    // }
+
     //finds score to add based on all the completed destination cards
     protected int getPosDestScore() {
         int total = 0;
@@ -188,5 +189,5 @@ public class Player
         }
         return total;
     }
-   
+
 }
