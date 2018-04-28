@@ -15,7 +15,7 @@ import java.lang.String;
 public class PlayGame extends JPanel implements MouseListener, MouseMotionListener
 {
     private static Image boardPic, blackBackground, TicketToRidePic;
-    private Image blueDest, globeTrotter, orangeDest, trainCardBack;
+    private Image blueDest, globeTrotter, orangeDest, trainCardBack,yellowMeeple, greenMeeple,blueMeeple, whiteMeeple,blackMeeple, redMeeple;
     private boolean secondClick, choosingTrainCard, finalTurn;
     protected static int numberOfPlayers;
     // initializes the players
@@ -46,8 +46,10 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
         orangeDest = new ImageIcon("Images" + File.separator + "OrangeDest.JPG").getImage();
         trainCardBack = new ImageIcon("Images" + File.separator + "TrainCardBack.JPG").getImage();
         Dimension size = new Dimension(blackBackground.getWidth(null), boardPic.getHeight(null));
-        //width is ... pixels
-        //height is ...
+
+        blackMeeple = new ImageIcon("Images" + File.separator + "blackMeeple.PNG").getImage();
+        redMeeple = new ImageIcon("Images" + File.separator + "redMeeple.PNG").getImage();
+
         setPreferredSize(size);
         setMinimumSize(size);
         setMaximumSize(size);
@@ -66,16 +68,18 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
         paintDestinationCards(g);
         paintPlayerInfo(g);
         paintDestinationCardBack(g);
-        // g.setColor(Color.BLUE);
-        // for (Route meh: board.routes) {
-        // if ( meh.routeShape != null) {
-        // g.fillPolygon(meh.routeShape);
-        // }
-        // else {
-        // g.setColor(Color.BLUE);
-        // }
-        // }
         paintPlayerRoutes(g);
+        paintMeepleCount(g);
+    }
+
+    public void paintMeepleCount(Graphics g)
+    {
+        g.drawImage(blackMeeple,5,590,null);
+        g.drawImage(redMeeple, 56, 590, null);
+        g.drawImage(greenMeeple, 107,590,null);
+        g.drawImage(yellowMeeple, 158,590,null);
+        g.drawImage(blueMeeple, 209,590,null);
+        g.drawImage(whiteMeeple, 260,590,null);
     }
 
     public void paintDestinationCardBack(Graphics g)
@@ -120,7 +124,6 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
                 y1 -= 100;
             }
         }
-
         //draw the 9 card images on player side
         int x = 10;
         int y = 50;
@@ -129,8 +132,6 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
             y += 55;
             x += 10;
         }
-
-        //when deck is empty bad things happen
     }
 
     public void paintDestinationCards(Graphics g)
@@ -276,28 +277,27 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
         int otherColorIndex = 0;
         while (!validCombo) {
             //if (currentPlayer.trainCounts[8] > 0) {
-                JSpinner numberSpinner;
-                SpinnerNumberModel numberSpinnerModel = new SpinnerNumberModel(0, 0, currentPlayer.trainCounts[8], 1);
-                numberSpinner = new JSpinner(numberSpinnerModel);
-                //JOptionPane.showMessageDialog(null, numberSpinner);
+            JSpinner numberSpinner;
+            SpinnerNumberModel numberSpinnerModel = new SpinnerNumberModel(0, 0, currentPlayer.trainCounts[8], 1);
+            numberSpinner = new JSpinner(numberSpinnerModel);
+            //JOptionPane.showMessageDialog(null, numberSpinner);
             //}
-            
+
             //if (route.color.contains(RouteColor.GRAY) || route.color.size() > 2) {
-                String[] colorOptions = route.getCardColors();
-                JComboBox cardColor = new JComboBox(colorOptions);
-                // Object selected = JOptionPane.showInputDialog(null, "What card color will you use?", "Card Selection", JOptionPane.DEFAULT_OPTION, null, values, "0");
-                // if ( selected != null ){//null if the user cancels. 
-                    // String selectedString = selected.toString();
-                    // //do something
-                // }else{
-                    // System.out.println("User cancelled");
-                // }
+            String[] colorOptions = route.getCardColors();
+            JComboBox cardColor = new JComboBox(colorOptions);
+            // Object selected = JOptionPane.showInputDialog(null, "What card color will you use?", "Card Selection", JOptionPane.DEFAULT_OPTION, null, values, "0");
+            // if ( selected != null ){//null if the user cancels. 
+            // String selectedString = selected.toString();
+            // //do something
+            // }else{
+            // System.out.println("User cancelled");
+            // }
             //}
-            
-            
+
             Object[] message = {
-                "Number of Locomotives:", numberSpinner,
-                "Other Card Color:", cardColor};
+                    "Number of Locomotives:", numberSpinner,
+                    "Other Card Color:", cardColor};
 
             String option = JOptionPane.showInputDialog(null, message, "Choose Cards", JOptionPane.OK_CANCEL_OPTION);
 
