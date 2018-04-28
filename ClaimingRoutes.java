@@ -11,16 +11,21 @@ import java.io.*;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class ClaimingRoutes extends JPanel implements ActionListener
+public class ClaimingRoutes extends JPanel 
 {
     //Images
-    
+    private Image pic;
     public ClaimingRoutes(){
-        
-
+        pic = new ImageIcon("Images" + File.separator + "ClaimingRoutes.PNG").getImage();
+        Dimension size = new Dimension(pic.getWidth(null), pic.getHeight(null));
+        setPreferredSize(size);
+        setMinimumSize(size);
+        setMaximumSize(size);
+        setSize(size);
+        setLayout(null);
     }
-    
-     /**
+
+    /**
      * Panel's paint method to manage the graphics
      * 
      * @param g The Graphics reference
@@ -28,12 +33,7 @@ public class ClaimingRoutes extends JPanel implements ActionListener
     public void paintComponent(Graphics g) 
     {
         super.paintComponent(g);
-
-    }
-
-    public void actionPerformed(ActionEvent e)
-    {
-        String action = e.getActionCommand();
+        g.drawImage(pic, 0, 0, null);
     }
 
     /**

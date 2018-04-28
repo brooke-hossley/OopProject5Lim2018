@@ -11,13 +11,21 @@ import java.io.*;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class EndGame extends JPanel implements ActionListener
-{
+public class EndGame extends JPanel 
+{  
+    //Image
+    private Image pic;
     public EndGame(){
-
+        pic = new ImageIcon("Images" + File.separator + "EndGame.PNG").getImage();
+        Dimension size = new Dimension(pic.getWidth(null), pic.getHeight(null));
+        setPreferredSize(size);
+        setMinimumSize(size);
+        setMaximumSize(size);
+        setSize(size);
+        setLayout(null);
     }
-    
-     /**
+
+    /**
      * Panel's paint method to manage the graphics
      * 
      * @param g The Graphics reference
@@ -25,13 +33,8 @@ public class EndGame extends JPanel implements ActionListener
     public void paintComponent(Graphics g) 
     {
         super.paintComponent(g);
-
-    }
-
-    public void actionPerformed(ActionEvent e)
-    {
-        String action = e.getActionCommand();
-    }
+        g.drawImage(pic, 0, 0, null);
+    }	
 
     /**
      * Creates the JFrame for the ClaimingRoutes window
