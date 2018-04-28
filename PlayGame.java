@@ -26,7 +26,6 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
     private Board board;
     private JLabel viewDestCards;
     private ImageIcon destCard;
-    
     private JButton helpButton;
     /**
      * Constructor for objects of class playGame
@@ -51,6 +50,10 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
 
         blackMeeple = new ImageIcon("Images" + File.separator + "blackMeeple.PNG").getImage();
         redMeeple = new ImageIcon("Images" + File.separator + "redMeeple.PNG").getImage();
+        greenMeeple = new ImageIcon("Images" + File.separator + "greenMeeple.PNG").getImage();
+        whiteMeeple = new ImageIcon("Images" + File.separator + "whiteMeeple.PNG").getImage();
+        blueMeeple = new ImageIcon("Images" + File.separator + "blueMeeple.PNG").getImage();
+        yellowMeeple = new ImageIcon("Images" + File.separator + "yellowMeeple.PNG").getImage();
 
         setPreferredSize(size);
         setMinimumSize(size);
@@ -59,7 +62,6 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
         setLayout(null);
         dealDestinationCards();
         drawFirstFour();
-        
         helpButton = new JButton("Help");
         helpButton.setFont(new Font("Arial", Font.BOLD, 20));
         helpButton.setBackground(Color.RED);
@@ -98,12 +100,23 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
 
     public void paintMeepleCount(Graphics g)
     {
-        g.drawImage(blackMeeple,5,590,null);
-        g.drawImage(redMeeple, 56, 590, null);
-        g.drawImage(greenMeeple, 107,590,null);
-        g.drawImage(yellowMeeple, 158,590,null);
-        g.drawImage(blueMeeple, 209,590,null);
-        g.drawImage(whiteMeeple, 260,590,null);
+        g.drawImage(redMeeple,5,590,null);
+        g.drawImage(blackMeeple, 46, 590, null);
+        g.drawImage(greenMeeple, 87,590,null);
+        g.drawImage(yellowMeeple, 128,590,null);
+        g.drawImage(blueMeeple, 169,590,null);
+        g.drawImage(whiteMeeple, 210,590,null);
+        int a = 13;
+        int b = 610;
+        for(int i = 0 ; i <=5;i++)
+        {
+            g.setColor(new Color(25, 25, 25));
+            g.fillRect(a, b, 20, 20);
+            g.setColor(Color.white);
+            g.drawRect(a, b, 20, 20);
+            g.drawString("" + currentPlayer.meeples[i], a+4, b+18);
+            a+=41;
+        }
     }
 
     public void paintDestinationCardBack(Graphics g)
