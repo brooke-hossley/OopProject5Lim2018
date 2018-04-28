@@ -15,20 +15,22 @@ public class Rules extends JPanel implements ActionListener
 {
     //Images 
     protected Image background, rules;
+    protected Image objectPic;
     //Buttons 
-    protected JButton gamePlay;
-    protected JButton components;
+    protected JButton turns;
+    protected JButton objectives;
     protected JButton endGame;
-    protected JButton goals;
+    protected JButton routes;
     //Variable to repaint
-    protected boolean comp;
+    protected boolean objective;
     protected boolean play;
     protected boolean end;
-    protected boolean goal;
+    protected boolean route;
     public Rules(){
         //Images 
         background = new ImageIcon("Images" + File.separator + "homescreenbackground.jpg").getImage();
         rules = new ImageIcon("Images" + File.separator + "rules.png").getImage();
+        objectPic = new ImageIcon("Images" + File.separator + "Objectives.png").getImage();
         //Setting up the starting window
         Dimension size = new Dimension(800, 600);
         setPreferredSize(size);
@@ -38,41 +40,41 @@ public class Rules extends JPanel implements ActionListener
         setLayout(null);
 
         //Setting up buttons 
-        components = new JButton("Components");
-        components.setFont(new Font("Arial", Font.BOLD, 40));
-        components.setBackground(Color.CYAN);
-        components.setBorder(BorderFactory.createLineBorder(Color.black));
-        components.setBounds(100,250,250,75);
-        add(components);
-        components.addActionListener(this);
-        components.setActionCommand("Comp");
+        objectives = new JButton("Objectives");
+        objectives.setFont(new Font("Arial", Font.BOLD, 40));
+        objectives.setBackground(Color.CYAN);
+        objectives.setBorder(BorderFactory.createLineBorder(Color.black));
+        objectives.setBounds(100,250,250,75);
+        objectives.addActionListener(this);
+        objectives.setActionCommand("obj");
+        add(objectives);
 
-        gamePlay = new JButton("Game Play");
-        gamePlay.setFont(new Font("Arial", Font.BOLD, 40));
-        gamePlay.setBackground(Color.RED);
-        gamePlay.setBorder(BorderFactory.createLineBorder(Color.black));
-        gamePlay.setBounds(450,250,250,75);
-        add(gamePlay);
-        gamePlay.addActionListener(this);
-        gamePlay.setActionCommand("Play");
+        turns = new JButton("Turn Taking");
+        turns.setFont(new Font("Arial", Font.BOLD, 40));
+        turns.setBackground(Color.RED);
+        turns.setBorder(BorderFactory.createLineBorder(Color.black));
+        turns.setBounds(450,250,250,75);
+        turns.addActionListener(this);
+        turns.setActionCommand("Turn");
+        add(turns);
 
-        goals = new JButton("Game Goals");
-        goals.setFont(new Font("Arial", Font.BOLD, 40));
-        goals.setBackground(Color.GREEN);
-        goals.setBorder(BorderFactory.createLineBorder(Color.black));
-        goals.setBounds(100,375,250,75);
-        add(goals);
-        goals.addActionListener(this);
-        goals.setActionCommand("Goals");
+        routes = new JButton("Claiming Routes");
+        routes.setFont(new Font("Arial", Font.BOLD, 30));
+        routes.setBackground(Color.GREEN);
+        routes.setBorder(BorderFactory.createLineBorder(Color.black));
+        routes.setBounds(100,375,250,75);
+        routes.addActionListener(this);
+        routes.setActionCommand("claim");
+        add(routes);
 
         endGame = new JButton("End Game");
         endGame.setFont(new Font("Arial", Font.BOLD, 40));
         endGame.setBackground(Color.YELLOW);
         endGame.setBorder(BorderFactory.createLineBorder(Color.black));
         endGame.setBounds(450,375,250,75);
-        add(endGame);
         endGame.addActionListener(this);
         endGame.setActionCommand("Goals");
+        add(endGame);
     }
 
     /**
@@ -83,63 +85,31 @@ public class Rules extends JPanel implements ActionListener
     public void paintComponent(Graphics g) 
     {
         super.paintComponent(g);
-        if(comp){
 
-        }
-        else if(play){
+        g.drawImage(background, 0, 0, null);
+        g.drawImage(rules, 300, 40, null);
 
-        }
-        else if(goal){
-
-        }
-        else if(end){
-
-        }
-        else{
-            g.drawImage(background, 0, 0, null);
-            g.drawImage(rules, 300, 40, null);
-        }
     }
 
     public void actionPerformed(ActionEvent e)
     {
         String action = e.getActionCommand();
-        if(action.equals("Comp")){
-            comp = true;
-            repaint();
+        if(action.equals("obj")){
+            Objectives.createAndShowGUI();
         }
-        else if(action.equals("Play")){
-            play = true;
-            repaint();
+        else if(action.equals("Turn")){
+            Turns.createAndShowGUI();
         }
-        else if(action.equals("Goals")){
-            goal = true;
-            repaint();
+        else if(action.equals("claim")){
+            ClaimingRoutes.createAndShowGUI();
         }
         else{
-            end = true;
-            repaint();
+            EndGame.createAndShowGUI();
         }
-    }
-
-    public void components(Graphics g){
-
-    }
-
-    public void gamePlay(Graphics g){
-
-    }
-
-    public void endGame(Graphics g){
-
-    }
-
-    public void goals(Graphics g){
-
     }
 
     /**
-     * Creates the JFrame for the Help window
+     * Creates the JFrame for the Rules window
      */
     protected static void createAndShowGUI() 
     {
