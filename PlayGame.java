@@ -26,6 +26,8 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
     private Board board;
     private JLabel viewDestCards;
     private ImageIcon destCard;
+    
+    private JButton helpButton;
     /**
      * Constructor for objects of class playGame
      */
@@ -57,6 +59,28 @@ public class PlayGame extends JPanel implements MouseListener, MouseMotionListen
         setLayout(null);
         dealDestinationCards();
         drawFirstFour();
+        
+        helpButton = new JButton("Help");
+        helpButton.setFont(new Font("Arial", Font.BOLD, 20));
+        helpButton.setBackground(Color.RED);
+        helpButton.setBorder(BorderFactory.createLineBorder(Color.black));
+        helpButton.setBounds(1100,850,100,50);
+        add(helpButton);
+        helpButton.addActionListener(this);
+        helpButton.setActionCommand("Help");
+    }
+
+    /**
+     * Called when actionListeners are triggered
+     * 
+     * @param e The action calling the event
+     */
+    public void actionPerformed(ActionEvent e)
+    {
+        String action = e.getActionCommand();
+        if(action.equals("Help")){
+            Rules.createAndShowGUI();
+        }	
     }
 
     public void paintComponent(Graphics g) 
