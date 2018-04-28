@@ -2,16 +2,18 @@ import java.awt.*;
 import javax.swing.*;
 import java.io.*;
 import java.util.*;
+import java.awt.event.*;
 /**
  * Write a description of class DestinationCardPanel here.
  *
  * @author (Patrick Barber)
  * @version (4/26/2018)
  */
-public class DestinationCardPanel extends JPanel
+public class DestinationCardPanel extends JPanel implements ActionListener
 {
     private static Image woodBackground;
-
+    private JButton nextButton;
+    private int count;
     DestinationCardPanel()
     {
         woodBackground = new ImageIcon("Images" + File.separator + "WoodPaneling.jpg").getImage();
@@ -21,6 +23,29 @@ public class DestinationCardPanel extends JPanel
         setMaximumSize(size);
         setSize(size);
         setLayout(null);
+        nextButton = new JButton("Next");
+        nextButton.setFont(new Font("Arial", Font.BOLD, 20));
+        nextButton.setBackground(Color.RED);
+        nextButton.setBorder(BorderFactory.createLineBorder(Color.black));
+        nextButton.setBounds(1050,700,100,50);
+        add(nextButton);
+        nextButton.addActionListener(this);
+        nextButton.setActionCommand("Next");
+        count = 0;
+    }
+
+    /**
+     * Called when actionListeners are triggered
+     * 
+     * @param e The action calling the event
+     */
+    public void actionPerformed(ActionEvent e)
+    {
+        String action = e.getActionCommand();
+        if(action.equals("Next")){
+            count = 10;
+            repaint();
+        }	
     }
 
     protected static void createAndShowGUI() {
@@ -43,16 +68,22 @@ public class DestinationCardPanel extends JPanel
         playersDestinationCards = PlayGame.currentPlayer.destinations;
         int x = 20;
         int y = 5;
-        
-        for(int i = 0; i< playersDestinationCards.size();i++)
+
+        for(int i = count; i< playersDestinationCards.size();i++)
         {
             g.drawImage(playersDestinationCards.get(i).getPicture(),x,y,null);
             x+=220;
-            if(i==3)
+            if(i==4 || i==14)
             {
-             x=20;
-             y=350;
+                x=20;
+                y=350;
             }
+            
+            if(i==19 || i== 19)
+            {
+                break;
+            }
+            
 
         }
     }
