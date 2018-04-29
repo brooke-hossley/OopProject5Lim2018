@@ -1,23 +1,30 @@
 import java.awt.*;
 import javax.swing.*;
 import java.util.*;
-import java.awt.event.*;
 import java.awt.image.*;
 import java.awt.font.*;
 import java.io.*;
 /**
- * Write a description of class ClaimingRoutes here.
+ * A class to help with displaying how to take your turn
+ * aspect of the rules
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Brooke Hossley
+ * @version Spring 2018
  */
 public class Turns extends JPanel 
 {
     //Images
     protected Image pic;
-    public Turns(){
-        pic = new ImageIcon("Images" + File.separator + "Turns.PNG").getImage();
-        Dimension size = new Dimension(pic.getWidth(null), pic.getHeight(null));
+    
+    /**
+     * Default constructor for the Turns class
+     */
+    public Turns()
+    {
+        pic = new ImageIcon("Images" + File.separator + 
+            "Turns.PNG").getImage();
+        Dimension size = new Dimension(pic.getWidth(null), 
+            pic.getHeight(null));
         setPreferredSize(size);
         setMinimumSize(size);
         setMaximumSize(size);
