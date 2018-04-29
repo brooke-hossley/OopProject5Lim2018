@@ -1,23 +1,27 @@
 import java.awt.*;
 import javax.swing.*;
 import java.util.*;
-import java.awt.event.*;
 import java.awt.image.*;
 import java.awt.font.*;
 import java.io.*;
 /**
- * Write a description of class ClaimingRoutes here.
+ * A class to help with displaying the Objective
+ * aspect of the rules
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Brooke Hossley
+ * @version Spring 2018
  */
 public class Objectives extends JPanel 
 {
     //Images
     protected Image pic;
-
+    
+    /**
+     * Default constructor for the Objectives class
+     */
     public Objectives(){
-        pic = new ImageIcon("Images" + File.separator + "Objectives.PNG").getImage();
+        pic = new ImageIcon("Images" + File.separator + 
+            "Objectives.PNG").getImage();
         Dimension size = new Dimension(pic.getWidth(null), pic.getHeight(null));
         setPreferredSize(size);
         setMinimumSize(size);
