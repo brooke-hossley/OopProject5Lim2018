@@ -39,8 +39,7 @@ MouseMotionListener, ActionListener
     {
         //Getting the number of players for the game
         players = Driver.getPlayers();
-
-        
+        currentPlayer = players.get(0);
         //Creating the deck and board used for the game
         deck = new Deck();
         board = new Board();
