@@ -1,23 +1,30 @@
 import java.awt.*;
 import javax.swing.*;
 import java.util.*;
-import java.awt.event.*;
 import java.awt.image.*;
 import java.awt.font.*;
 import java.io.*;
 /**
- * Write a description of class ClaimingRoutes here.
+ * A class to help with displaying how the game will end
+ * aspect of the rules
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Brooke Hossley
+ * @version Spring 2018
  */
 public class EndGame extends JPanel 
 {  
     //Image
     private Image pic;
-    public EndGame(){
-        pic = new ImageIcon("Images" + File.separator + "EndGame.PNG").getImage();
-        Dimension size = new Dimension(pic.getWidth(null), pic.getHeight(null));
+    
+    /**
+     * Default constructor of the EndGame class
+     */
+    public EndGame()
+    {
+        pic = new ImageIcon("Images" + File.separator + 
+            "EndGame.PNG").getImage();
+        Dimension size = new Dimension(pic.getWidth(null), 
+            pic.getHeight(null));
         setPreferredSize(size);
         setMinimumSize(size);
         setMaximumSize(size);
@@ -34,7 +41,7 @@ public class EndGame extends JPanel
     {
         super.paintComponent(g);
         g.drawImage(pic, 0, 0, null);
-    }	
+    }   
 
     /**
      * Creates the JFrame for the ClaimingRoutes window
