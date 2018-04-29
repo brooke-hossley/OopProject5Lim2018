@@ -1,9 +1,9 @@
-////////////////////////////////////////////////////////////////////////////////
 /**
- * Enumeration class RouteColor - write a description of the enum class here
+ * Enumeration class for Route colors
  *
- * @author (your name here)
- * @version (version number or date here)
+ * @author Alissa Ronca, Patrick Baraber, Brooke Hossley,
+ * Hieu Le, Chris Adams
+ * @version Spring 2018
  */
 public enum RouteColor
 {

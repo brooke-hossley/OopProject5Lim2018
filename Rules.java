@@ -6,10 +6,11 @@ import java.awt.image.*;
 import java.awt.font.*;
 import java.io.*;
 /**
- * Write a description of class Rules here.
+ * A class that displays the rules split up into 4 different
+ * buttons for easy navigation
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Brooke Hossley
+ * @version Spring 2018
  */
 public class Rules extends JPanel implements ActionListener
 {
@@ -26,11 +27,19 @@ public class Rules extends JPanel implements ActionListener
     protected boolean play;
     protected boolean end;
     protected boolean route;
-    public Rules(){
+
+    /**
+     * Default constructor for the Rules class
+     */
+    public Rules()
+    {
         //Images 
-        background = new ImageIcon("Images" + File.separator + "homescreenbackground.jpg").getImage();
-        rules = new ImageIcon("Images" + File.separator + "rules.png").getImage();
-        objectPic = new ImageIcon("Images" + File.separator + "Objectives.png").getImage();
+        background = new ImageIcon("Images" + File.separator + 
+            "homescreenbackground.jpg").getImage();
+        rules = new ImageIcon("Images" + File.separator + 
+            "rules.png").getImage();
+        objectPic = new ImageIcon("Images" + File.separator + 
+            "Objectives.png").getImage();
         //Setting up the starting window
         Dimension size = new Dimension(800, 600);
         setPreferredSize(size);
@@ -38,7 +47,6 @@ public class Rules extends JPanel implements ActionListener
         setMaximumSize(size);
         setSize(size);
         setLayout(null);
-
         //Setting up buttons 
         objectives = new JButton("Objectives");
         objectives.setFont(new Font("Arial", Font.BOLD, 40));
@@ -85,25 +93,32 @@ public class Rules extends JPanel implements ActionListener
     public void paintComponent(Graphics g) 
     {
         super.paintComponent(g);
-
         g.drawImage(background, 0, 0, null);
         g.drawImage(rules, 300, 40, null);
-
     }
 
+    /**
+     * Called when actionListeners are triggered
+     * 
+     * @param e The action calling the event
+     */
     public void actionPerformed(ActionEvent e)
     {
         String action = e.getActionCommand();
-        if(action.equals("obj")){
+        if(action.equals("obj"))
+        {
             Objectives.createAndShowGUI();
         }
-        else if(action.equals("Turn")){
+        else if(action.equals("Turn"))
+        {
             Turns.createAndShowGUI();
         }
-        else if(action.equals("claim")){
+        else if(action.equals("claim"))
+        {
             ClaimingRoutes.createAndShowGUI();
         }
-        else{
+        else
+        {
             EndGame.createAndShowGUI();
         }
     }
@@ -123,5 +138,4 @@ public class Rules extends JPanel implements ActionListener
         frame.pack();
         frame.setVisible(true);
     }
-
 }
