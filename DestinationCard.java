@@ -1,60 +1,76 @@
-import java.nio.file.*;
 import java.io.File;
 import java.awt.*;
 import javax.swing.*;
 /**
- * Write a description of class DestinationCard here.
+ * Class for Destination Card information
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Alissa Ronca, Patrick Baraber, Brooke Hossley,
+ * Hieu Le, Chris Adams
+ * @version Spring 2018
  */
-public class DestinationCard //extends Card
+public class DestinationCard 
 {
+    //Names of the cities on the card
     protected String city1;
     protected String city2;
+    //Point value
     protected int points;
+    //Image
     protected Image picture;
     /**
-     * Constructor for DestinationCard Class 
-     * @param 
+     * Constructor with parameters for the DestinationCard Class 
+     * 
+     * @param c1 One of the cities on the destination card
+     * @param c2 The other city on the destination card
+     * @param p The point value of the destination 
+     * @param fileName The file name for the image
      */
-    public DestinationCard(String c1, String c2, int p, String fileName) {
+    public DestinationCard(String c1, String c2, int p, String fileName) 
+    {
         city1 = c1; 
         city2 = c2;
         points = p;
-        //Path f = Paths.get("." + "Images\\).toAbsolutePath();
-        picture = Toolkit.getDefaultToolkit().getImage("Images" + File.separator + fileName);
-        
+        picture = Toolkit.getDefaultToolkit().getImage("Images" + 
+            File.separator + fileName);
     }
-    
+
     /**
-     * Returns this Card's picture
+     * Returns card picture
+     * 
+     * @return The image associated with the destination card
      */
-    public Image getPicture() {
+    protected Image getPicture() 
+    {
         return picture;
     }
-    
+
     /**
-     * Returns this Card's value
-     * @return this.value
+     * Returns the card point value
+     * 
+     * @return Point value of the destination
      */
-    public int getPoints() {
+    protected int getPoints() 
+    {
         return points;
     }
 
     /**
-     * Returns string representation of this DestinationCard
-     * @return  string representation of this DestinationCard
-     *
+     * Returns a string representation of a Destination Card
+     * 
+     * @return A string representation of a Destination Card
      */
-    public String toString() {
+    public String toString()
+    {
         return city1 + "-" + city2;
     }
 
     /**
-     * gets a copy of citynames
+     * Gets a copy of city names on the destination ticket 
+     * 
+     * @return An array of city names
      */
-    public String[] getCityNames() {
+    public String[] getCityNames() 
+    {
         return new String[] {city1, city2};
     }
 }
