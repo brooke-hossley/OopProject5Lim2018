@@ -1,27 +1,47 @@
 import java.awt.*;
 import javax.swing.*;
-////////////////////////////////////////////////////////////////////////////////
 /**
- * Write a description of class Card here.
+ * Class for Train Card information
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Alissa Ronca, Patrick Baraber, Brooke Hossley,
+ * Hieu Le, Chris Adams
+ * @version Spring 2018
  */
-public class TrainCard //extends Card
+public class TrainCard 
 {
+    //Color of the train card
     protected TrainColor tColor;
+    //Index of the card
     protected int arrIndex;
+    //Image
     protected Image picture;
-    public TrainCard(TrainColor color, int index, Image pic){
+
+    /**
+     * Constructor with parameters for the TrainCard class
+     * 
+     * @param color The color of the train card
+     * @param index The index of the train card
+     * @param pic The image of the train card
+     */
+    public TrainCard(TrainColor color, int index, Image pic)
+    {
         tColor = color;
         arrIndex = index;
         picture = pic;
     }
-    
-    public TrainCard(TrainColor color, Image pic){
+
+    /**
+     * Constructor with parameters for the TrainCard class
+     * 
+     * @param color The color of the train card
+     * @param pic The image of the train card
+     */
+    public TrainCard(TrainColor color, Image pic)
+    {
         tColor = color;
         picture = pic;
-        switch(tColor){
+        switch(tColor)
+        {
             case YELLOW: arrIndex = 0; break;
             case BLUE: arrIndex = 1; break;
             case GREEN: arrIndex = 2; break;
@@ -34,49 +54,60 @@ public class TrainCard //extends Card
         }
     }
 
-    public TrainColor getTrainCardColor(){
-        return tColor;
-    }
-
-    public Image getPicture(){
-        return picture;
-    }
-
-    public int getArrIndex(){
-        return arrIndex;
-    }
-    
-    public boolean equals(Object o) {
+    /**
+     * Determines if the two train cards are the
+     * same color
+     * 
+     * Question: ^?
+     * 
+     * @param o The object to be compared
+     * @return If the cards colors are equal
+     */
+    public boolean equals(Object o) 
+    {
         TrainCard tcard = (TrainCard) o;
         return tcard.tColor == this.tColor;
     }
-    
-    protected boolean isRainbow() {
-        return tColor == TrainColor.RAINBOW;
+
+    /**
+     * Returns the train cards color
+     * 
+     * @return The color of the train card
+     */
+    protected TrainColor getTrainCardColor()
+    {
+        return tColor;
     }
 
-    // //Alissa's idea, assign each color a int so it's easier to assign colors. Need more development 
-    // public TrainCard(int x){
-    // switch(x){
-    // case 0: tColor = TrainColor.YELLOW;
-    // break;
-    // case 1: tColor = TrainColor.BLUE;
-    // break;
-    // case 2: tColor = TrainColor.GREEN;
-    // break;
-    // case 3: tColor = TrainColor.PINK;
-    // break;
-    // case 4: tColor = TrainColor.RED;
-    // break;
-    // case 5: tColor = TrainColor.BLACK;
-    // break;        
-    // case 6: tColor = TrainColor.ORANGE;
-    // break;  
-    // case 7: tColor = TrainColor.WHITE;
-    // break;   
-    // case 8: tColor = TrainColor.RAINBOW;
-    // break;        
-    // }
-    // }
+    /**
+     * Returns the image associated with the train card
+     * 
+     * @return The image associated with the train card
+     */
+    protected Image getPicture()
+    {
+        return picture;
+    }
 
+    /**
+     * Returns the index of the train card
+     * in an array of train cards
+     * 
+     * @return The index of the train card 
+     */
+    protected int getArrIndex()
+    {
+        return arrIndex;
+    }
+
+    /**
+     * Determins if the train card is a 
+     * locomotive card
+     * 
+     * @return If the train card is a locomotive card
+     */
+    protected boolean isRainbow() 
+    {
+        return tColor == TrainColor.RAINBOW;
+    }
 }
