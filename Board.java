@@ -2,36 +2,38 @@ import java.util.*;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
-
+import java.io.*;
 /**
- * Write a description of class Board here.
+ * Class for board information 
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Alissa Ronca, Patrick Baraber, Brooke Hossley,
+ * Hieu Le, Chris Adams
+ * @version Spring 2018
  */
 public class Board extends JPanel
 {
-    //get rid of these later
+    //Images
     private static Image board, blackBackground;
-    
-    
-    // instance variables - replace the example below with your own
+    //ArrayList of routes and a HashMap of the city names
     protected ArrayList<Route> routes;
     protected HashMap<String, City> allCities;
 
     /**
-     * Constructor for objects of class Board
+     * Default constructor for the Board class
      */
     public Board()
     {
         ArrayList<Integer> meepleIndexes = new ArrayList<Integer>(60);
-        for (int i = 0; i < 6; i++) {
-            for (int j = 0; j < 10; j++) {
+        for(int i = 0; i < 6; i++) 
+        {
+            for(int j = 0; j < 10; j++) 
+            {
                 meepleIndexes.add(i);
             }
         }
+        //To randomize the colors of the Meeples per city
         Collections.shuffle(meepleIndexes);
-        
+        //Construction of the hash map
         allCities = new HashMap<String, City>();
         allCities.put("Augsburg", new City(meepleIndexes, "Augsburg"));
         allCities.put("Berlin", new City(meepleIndexes, "Berlin"));
@@ -73,7 +75,7 @@ public class Board extends JPanel
         allCities.put("Stuttgart", new City(meepleIndexes, "Stuttgart"));
         allCities.put("Ulm", new City(meepleIndexes, "Ulm"));
         allCities.put("Wurzburg", new City(meepleIndexes, "Wurzburg"));
-        
+        //Construction of the routes
         routes = new ArrayList<Route>();
         routes.add(new Route("Danemark","Kiel", allCities));
         routes.add(new Route("Danemark","Bremerhaven", allCities));
@@ -118,7 +120,7 @@ public class Board extends JPanel
         routes.add(new Route("Leipzig","Chemnitz", allCities));
         routes.add(new Route("Dresden","Chemnitz", allCities));
         routes.add(new Route("Dresden","Regensburg", allCities));
-        
+
         routes.add(new Route("Chemnitz","Leipzig", allCities));
         routes.add(new Route("Chemnitz","Erfurt", allCities));
         routes.add(new Route("Chemnitz","Regensburg", allCities));
@@ -165,88 +167,21 @@ public class Board extends JPanel
         routes.add(new Route("Konstanz","Lindau", allCities));
         routes.add(new Route("Lindau","Schweiz", allCities));
         routes.add(new Route("Lindau","Osterreich", allCities));
-        
-        for (Route r: routes) {
-            for (City c: r.twoCities) {
-                //System.out.println(r);
+        //Question: ?
+        for (Route r : routes) 
+        {
+            for (City c : r.twoCities) 
+            {
                 c.connectedRoutes.add(r); 
             }
         }
-    }
 
-    //at the end of the game traverse graph to figure out which destination cards are completed
-    protected void traverseDestinations(Player p) {
-        for (DestinationCard card: p.destinations) {
-            boolean done = false;
-            ArrayList<City> reachableCities = new ArrayList<City>();
-            while (!done) {
-                done = true; 
-                
-                //problem: never adding first city. how to decide?
-                for (Route route: p.controlledRoutes) {
-                    City city1 = route.twoCities.get(0);
-                    City city2 = route.twoCities.get(1);
-                    
-                    if (reachableCities.isEmpty()){
-                        if (allCities.get(card.city1).equals(city1) || allCities.get(card.city2).equals(city1)) {
-                            reachableCities.add(city1);
-                            done = false;
-                        }
-                        else if (allCities.get(card.city1).equals(city2) || allCities.get(card.city2).equals(city2)) {
-                            reachableCities.add(city2);
-                            done = false;
-                        }
-                    }
-                    else if (!city1.isCountry && reachableCities.contains(city1) && !reachableCities.contains(city2)) {
-                        reachableCities.add(city2);
-                        done = false;
-                    }
-                    else if (!city2.isCountry && reachableCities.contains(city2) && !reachableCities.contains(city1)) {
-                        reachableCities.add(city1);
-                        done = false;
-                    }
-                }
-            }
-            
-            // System.out.println(p.name);
-            // System.out.println(card);
-            // for (City c: reachableCities) {
-                // System.out.println(c.name);
-            // }
-            
-            //check if both card cities are reachable to complete card
-            if (reachableCities.contains(allCities.get(card.city1)) && 
-            reachableCities.contains(allCities.get(card.city2))) {
-                p.completedDestinations.add(card);
-            }
-        }
-        
-        for (DestinationCard completed: p.completedDestinations) {
-            p.destinations.remove(completed);
-        }
-    }
-    
-    // public static void main (String args[]) {
-        // Board b = new Board();
-        // int count = 0;
-        // for (Route r: b.routes) {
-            // System.out.println(r);
-            // count ++;
-            // if (count >15) break;
-        // }
-        // System.out.println("");
-        // City c1 = b.allCities.get("Berlin");
-        // for (Route r1: c1.connectedRoutes) {
-            // System.out.println(r1);
-        // }
-    // }
-    
-    public Board(int i)
-    {
-        String dir = "Images//";
-        board = new ImageIcon(dir + "Board.JPG").getImage();
-        blackBackground = new ImageIcon(dir + "blackBackground.JPG").getImage();
-        Dimension size = new Dimension(blackBackground.getWidth(null), board.getHeight(null));
+        board = new ImageIcon("Images" + File.separator + 
+            "Board.JPG").getImage();
+        blackBackground = new ImageIcon("Images" + File.separator + 
+            "blackBackground.jpg").getImage();
+        Dimension size = new Dimension(blackBackground.getWidth(null), 
+            board.getHeight(null));
         setPreferredSize(size);
         setMinimumSize(size);
         setMaximumSize(size);
@@ -254,51 +189,97 @@ public class Board extends JPanel
         setLayout(null);
     }
 
+    /**
+     * Method for traversing the graph to figure out
+     * which destination cards are completed for each player
+     * 
+     * @param p Player
+     */
+    protected void traverseDestinations(Player p) 
+    {
+        for (DestinationCard card : p.destinations) 
+        {
+            boolean done = false;
+            ArrayList<City> reachableCities = new ArrayList<City>();
+            while (!done) 
+            {
+                done = true; 
+                for (Route route : p.controlledRoutes) 
+                {
+                    City city1 = route.twoCities.get(0);
+                    City city2 = route.twoCities.get(1);
+                    if(reachableCities.isEmpty())
+                    {
+                        if(allCities.get(card.city1).equals(city1) || 
+                        allCities.get(card.city2).equals(city1)) 
+                        {
+                            reachableCities.add(city1);
+                            done = false;
+                        }
+                        else if(allCities.get(card.city1).equals(city2) || 
+                        allCities.get(card.city2).equals(city2)) 
+                        {
+                            reachableCities.add(city2);
+                            done = false;
+                        }
+                    }
+                    else if(!city1.isCountry && 
+                        reachableCities.contains(city1) && 
+                        !reachableCities.contains(city2)) 
+                    {
+                        reachableCities.add(city2);
+                        done = false;
+                    }
+                    else if(!city2.isCountry && 
+                        reachableCities.contains(city2) &&
+                        !reachableCities.contains(city1)) 
+                    {
+                        reachableCities.add(city1);
+                        done = false;
+                    }
+                }
+            }
+            //Check if both card cities are reachable to complete card
+            if(reachableCities.contains(allCities.get(card.city1)) && 
+            reachableCities.contains(allCities.get(card.city2))) 
+            {
+                p.completedDestinations.add(card);
+            }
+        }
+
+        for(DestinationCard completed : p.completedDestinations) 
+        {
+            p.destinations.remove(completed);
+        }
+    }
+
+    /**
+     * Panel's paint method to manage the graphics
+     * 
+     * @param g The Graphics reference
+     * @see javax.swing.JComponent
+     */
+    @Override
+    protected void paintComponent(Graphics g)
+    {
+        super.paintComponent(g);
+        g.drawImage(blackBackground,0,0,null);
+        g.drawImage(board,270,0,null);
+    }
+
+    /**
+     * Creates the JFrame for the Board window
+     */
     private static void createAndShowGUI() {
         //Create and set up the window.
         JFrame frame = new JFrame("Ticket To Ride");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        Board panel = new Board(1);
+        Board panel = new Board();
         frame.getContentPane().add(panel);
 
         //Display the window.
         frame.pack();
         frame.setVisible(true);
-    }
-
-    public static void main(String[] args) {
-        //Schedule a job for the event-dispatching thread:
-        //creating and showing this application's GUI.
-        javax.swing.SwingUtilities.invokeLater(new Runnable() {
-                public void run() {
-                    createAndShowGUI();
-                }
-            });
-    }
-
-    @Override
-    public void paintComponent(Graphics g){
-        // As we learned in the last lesson,
-        // the origin (0,0) is at the upper left corner.
-        // x increases to the right, and y increases downward.
-        // add 270 to be on board, board ends at 890
-        super.paintComponent(g);
-
-        g.drawImage(blackBackground,0,0,null);
-        g.drawImage(board,270,0,null);
-
-        //used to find coordinates
-        g.setColor(Color.BLUE);
-        
-        Board b = new Board();
-        for (City c: b.allCities.values()) {
-            if (c.cityShape != null) {
-                //show a box with city name and meeple counts 
-                //the city's meeple counts will be in c.meeples which is an int[]
-                g.fillPolygon(c.cityShape);
-            }
-        }
-        
     }
 }
