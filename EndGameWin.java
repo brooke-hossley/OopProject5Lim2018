@@ -1,27 +1,35 @@
 import java.awt.*;
 import javax.swing.*;
 import java.util.*;
-import java.awt.event.*;
 import java.awt.image.*;
 import java.awt.font.*;
 import java.io.*;
 /**
- * Write a description of class ClaimingRoutes here.
+ * A class to help with displaying the end
+ * aspect of the game
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Brooke Hossley
+ * @version Spring 2018
  */
 public class EndGameWin extends JPanel 
 {
     //Images
     protected Image pic, fireworks, celebrate;
 
+    /**
+     * Default constructor for the EndGameWin class
+     */
     public EndGameWin(){
-        pic = new ImageIcon("Images" + File.separator + "EndScreen.jpg").getImage();
-        fireworks = new ImageIcon("Images" + File.separator + "fireworks2.gif").getImage();
-        celebrate = new ImageIcon("Images" + File.separator + "celebrate.gif").getImage();
-        celebrate = celebrate.getScaledInstance(pic.getWidth(null), pic.getHeight(null), Image.SCALE_DEFAULT);
-        Dimension size = new Dimension(pic.getWidth(null), pic.getHeight(null));
+        pic = new ImageIcon("Images" + File.separator +
+            "EndScreen.jpg").getImage();
+        fireworks = new ImageIcon("Images" + File.separator + 
+            "fireworks2.gif").getImage();
+        celebrate = new ImageIcon("Images" + File.separator + 
+            "celebrate.gif").getImage();
+        celebrate = celebrate.getScaledInstance(pic.getWidth(null),
+            pic.getHeight(null), Image.SCALE_DEFAULT);
+        Dimension size = new Dimension(pic.getWidth(null), 
+                pic.getHeight(null));
         setPreferredSize(size);
         setMinimumSize(size);
         setMaximumSize(size);
@@ -53,28 +61,31 @@ public class EndGameWin extends JPanel
         g.drawString(text, x, y);
         g.setFont(new Font("Monospaced", Font.BOLD, 30));
         x = 30; y = 200;
-        //for(Player p : PlayGame.players){
-        //String text2 = p.name;
-        String text2 = "Player 1";
-        g.setColor(Color.WHITE);
-        g.drawString(text2, ShiftWest(x, 1), ShiftNorth(y, 1));
-        g.drawString(text2, ShiftWest(x, 1), ShiftSouth(y, 1));
-        g.drawString(text2, ShiftEast(x, 1), ShiftNorth(y, 1));
-        g.drawString(text2, ShiftEast(x, 1), ShiftSouth(y, 1));
-        g.setColor(Color.BLUE);
-        g.drawString(text2, x, y);
+        for(Player p : PlayGame.players){
+            String text2 = p.name;
+            //String text2 = "Player 1";
+            g.setColor(Color.WHITE);
+            g.drawString(text2, ShiftWest(x, 1), ShiftNorth(y, 1));
+            g.drawString(text2, ShiftWest(x, 1), ShiftSouth(y, 1));
+            g.drawString(text2, ShiftEast(x, 1), ShiftNorth(y, 1));
+            g.drawString(text2, ShiftEast(x, 1), ShiftSouth(y, 1));
+            g.setColor(p.color);
+            g.drawString(text2, x, y);
 
-        //String text3 = p.score + " points";
-        String text3 = "150 points";
-        x = 230;
-        g.setColor(Color.WHITE);
-        g.drawString(text3, ShiftWest(x, 1), ShiftNorth(y, 1));
-        g.drawString(text3, ShiftWest(x, 1), ShiftSouth(y, 1));
-        g.drawString(text3, ShiftEast(x, 1), ShiftNorth(y, 1));
-        g.drawString(text3, ShiftEast(x, 1), ShiftSouth(y, 1));
-        g.setColor(Color.GREEN);
-        g.drawString(text3, x, y);
-
+            String text3 = p.score + " points";
+            //String text3 = "150 points";
+            x = 230;
+            g.setColor(Color.WHITE);
+            g.drawString(text3, ShiftWest(x, 1), ShiftNorth(y, 1));
+            g.drawString(text3, ShiftWest(x, 1), ShiftSouth(y, 1));
+            g.drawString(text3, ShiftEast(x, 1), ShiftNorth(y, 1));
+            g.drawString(text3, ShiftEast(x, 1), ShiftSouth(y, 1));
+            g.setColor(Color.GREEN);
+            g.drawString(text3, x, y);
+            
+            y += 50;
+            x = 30;
+        }
         //         if(p.globeTrotter){
         //             String text4 = "Globe Trotter!";
         //             x = 330;
