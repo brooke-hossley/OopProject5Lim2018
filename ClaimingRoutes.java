@@ -1,23 +1,30 @@
 import java.awt.*;
 import javax.swing.*;
 import java.util.*;
-import java.awt.event.*;
 import java.awt.image.*;
 import java.awt.font.*;
 import java.io.*;
 /**
- * Write a description of class ClaimingRoutes here.
+ * A class to help with displaying how to claim routes
+ * aspect of the rules
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Brooke Hossley
+ * @version Spring 2018
  */
 public class ClaimingRoutes extends JPanel 
 {
     //Images
     private Image pic;
-    public ClaimingRoutes(){
-        pic = new ImageIcon("Images" + File.separator + "ClaimingRoutes.PNG").getImage();
-        Dimension size = new Dimension(pic.getWidth(null), pic.getHeight(null));
+    
+    /**
+     * Default constructor for the ClaimingRoutes class
+     */
+    public ClaimingRoutes()
+    {
+        pic = new ImageIcon("Images" + File.separator + 
+            "ClaimingRoutes.PNG").getImage();
+        Dimension size = new Dimension(pic.getWidth(null), 
+            pic.getHeight(null));
         setPreferredSize(size);
         setMinimumSize(size);
         setMaximumSize(size);
