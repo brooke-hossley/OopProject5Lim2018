@@ -24,7 +24,8 @@ MouseMotionListener, ActionListener
     //Images and JFrame 
     private static Image boardPic, blackBackground, TicketToRidePic;
     private static JFrame frame;
-    private Image shortDest, globeTrotter, longDest, trainCardBack,yellowMeeple, greenMeeple,blueMeeple, whiteMeeple,blackMeeple, redMeeple;
+    private Image shortDest, globeTrotter, longDest, trainCardBack,
+    yellowMeeple, greenMeeple,blueMeeple, whiteMeeple,blackMeeple, redMeeple;
     //Game components 
     private boolean secondClick, choosingTrainCard, finalTurn;
     private Deck deck;
@@ -61,6 +62,20 @@ MouseMotionListener, ActionListener
         //Setting up window size
         Dimension size = new Dimension(blackBackground.getWidth(null), 
                 boardPic.getHeight(null));
+
+        blackMeeple = new ImageIcon("Images" + File.separator 
+        + "blackMeeple.PNG").getImage();
+        redMeeple = new ImageIcon("Images" + File.separator 
+        + "redMeeple.PNG").getImage();
+        greenMeeple = new ImageIcon("Images" + File.separator 
+        + "greenMeeple.PNG").getImage();
+        whiteMeeple = new ImageIcon("Images" + File.separator 
+        + "whiteMeeple.PNG").getImage();
+        blueMeeple = new ImageIcon("Images" + File.separator 
+        + "blueMeeple.PNG").getImage();
+        yellowMeeple = new ImageIcon("Images" + File.separator 
+        + "yellowMeeple.PNG").getImage();
+
         setPreferredSize(size);
         setMinimumSize(size);
         setMaximumSize(size);
@@ -114,7 +129,7 @@ MouseMotionListener, ActionListener
         paintPlayerRoutes(g);
         paintMeepleCount(g);
     }
-    
+
     public void paintMeepleCount(Graphics g)
     {
         g.drawImage(redMeeple,5,590,null);
@@ -412,7 +427,7 @@ MouseMotionListener, ActionListener
                     "Other Card Color:", cardColor};
 
             String option = JOptionPane.showInputDialog(null, message, 
-                "Choose Cards", JOptionPane.OK_CANCEL_OPTION);
+                    "Choose Cards", JOptionPane.OK_CANCEL_OPTION);
 
             //Graphically ask user which cards to use if there's a choice
             //if its one color only need to ask about locomotive number
@@ -715,19 +730,19 @@ MouseMotionListener, ActionListener
             for(int y = 0; y < 6; y++)
             {
                 if(players.get(0).meeples[y] > 
-                    players.get(1).meeples[y])
+                players.get(1).meeples[y])
                 {
                     players.get(0).score += 20;
                     players.get(1).score += 10;
                 }
                 else if(players.get(0).meeples[y] == 
-                    players.get(1).meeples[y])
+                players.get(1).meeples[y])
                 {
                     players.get(0).score += 20;
                     players.get(1).score += 20;
                 }
                 else if(players.get(0).meeples[y] < 
-                    players.get(1).meeples[y])
+                players.get(1).meeples[y])
                 {
                     players.get(0).score += 10;
                     players.get(1).score += 20;
@@ -747,13 +762,13 @@ MouseMotionListener, ActionListener
                         players.get(1).score += 10;
                     }
                     else if(players.get(1).meeples[z] == 
-                        players.get(2).meeples[z])
+                    players.get(2).meeples[z])
                     {
                         players.get(1).score += 10;
                         players.get(2).score += 10;
                     }
                     else if(players.get(1).meeples[z] < 
-                        players.get(2).meeples[z])
+                    players.get(2).meeples[z])
                     {
                         players.get(2).score += 10;
                     }
@@ -767,13 +782,13 @@ MouseMotionListener, ActionListener
                         players.get(0).score += 10;
                     }
                     else if(players.get(0).meeples[z] == 
-                        players.get(2).meeples[z])
+                    players.get(2).meeples[z])
                     {
                         players.get(0).score += 10;
                         players.get(2).score += 10;
                     }
                     else if(players.get(0).meeples[z] < 
-                        players.get(2).meeples[z])
+                    players.get(2).meeples[z])
                     {
                         players.get(2).score += 10;
                     }
@@ -783,68 +798,68 @@ MouseMotionListener, ActionListener
                 {
                     players.get(2).score += 20;
                     if(players.get(0).meeples[z] > 
-                        players.get(1).meeples[z])
+                    players.get(1).meeples[z])
                     {
                         players.get(0).score += 10;
                     }
                     else if(players.get(0).meeples[z] == 
-                        players.get(1).meeples[z])
+                    players.get(1).meeples[z])
                     {
                         players.get(0).score += 10;
                         players.get(1).score += 10;
                     }
                     else if(players.get(0).meeples[z] < 
-                        players.get(1).meeples[z])
+                    players.get(1).meeples[z])
                     {
                         players.get(1).score += 10;
                     }
                 }
                 else if(players.get(0).meeples[z] == 
-                    players.get(1).meeples[z] &&
-                    players.get(0).meeples[z] > 
-                    players.get(2).meeples[z])
+                players.get(1).meeples[z] &&
+                players.get(0).meeples[z] > 
+                players.get(2).meeples[z])
                 {
                     players.get(0).score += 20;
                     players.get(1).score += 20;
                 }
                 else if(players.get(0).meeples[z] == 
-                    players.get(2).meeples[z] &&
-                    players.get(0).meeples[z] > 
-                    players.get(1).meeples[z])
+                players.get(2).meeples[z] &&
+                players.get(0).meeples[z] > 
+                players.get(1).meeples[z])
                 {
                     players.get(0).score += 20;
                     players.get(2).score += 20;
                 }
                 else if(players.get(1).meeples[z] == 
-                    players.get(2).meeples[z] &&
-                    players.get(1).meeples[z] > 
-                    players.get(0).meeples[z])
+                players.get(2).meeples[z] &&
+                players.get(1).meeples[z] > 
+                players.get(0).meeples[z])
                 {
                     players.get(1).score += 20;
                     players.get(2).score += 20;
                 }
                 else if(players.get(0).meeples[z] == 
-                    players.get(1).meeples[z] &&
-                    players.get(0).meeples[z] < 
-                    players.get(2).meeples[z])
+                players.get(1).meeples[z] &&
+                players.get(0).meeples[z] < 
+                players.get(2).meeples[z])
                 {
                     players.get(0).score += 10;
                     players.get(1).score += 10;
                     players.get(2).score += 20;
                 }
                 else if(players.get(0).meeples[z] == 
-                    players.get(2).meeples[z] &&
-                    players.get(0).meeples[z] < 
-                    players.get(1).meeples[z])
+                players.get(2).meeples[z] &&
+                players.get(0).meeples[z] < 
+                players.get(1).meeples[z])
                 {
                     players.get(0).score += 10;
                     players.get(1).score += 20;
                     players.get(2).score += 10;
                 }
                 else if(players.get(1).meeples[z] == 
-                    players.get(2).meeples[z] &&
-                    players.get(1).meeples[z] < 
-                    players.get(0).meeples[z])
+                players.get(2).meeples[z] &&
+                players.get(1).meeples[z] < 
+                players.get(0).meeples[z])
                 {
                     players.get(0).score += 20;
                     players.get(1).score += 10;
