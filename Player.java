@@ -12,8 +12,8 @@ public class Player
 {
     //Player name, color, and points
     protected static boolean globeTrotter = false;
+    protected static Color color;
     protected String name;
-    protected Color color;
     protected int score;
     protected int carsRemaining;
     protected boolean isLastTurn = false;
