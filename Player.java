@@ -12,7 +12,7 @@ public class Player
 {
     //Player name, color, and points
     protected static boolean globeTrotter = false;
-    protected static Color color;
+    protected Color color;
     protected String name;
     protected int score;
     protected int carsRemaining;
@@ -40,7 +40,7 @@ public class Player
     {
         name = pName;
         score = 0;
-        carsRemaining = 3;
+        carsRemaining = 45;
         //Set the player color 
         if (pColor.equalsIgnoreCase("Purple"))
         {

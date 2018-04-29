@@ -8,22 +8,22 @@ import javax.swing.*;
  * Hieu Le, Chris Adams
  * @version Spring 2018
  */
-public class City extends JPanel	
+public class City
 {
     //Name of the city
-    protected static String name;
+    protected String name;
     protected boolean isCountry;
     //Routes connecting to the city
     protected ArrayList<Route> connectedRoutes;
     //will be used for hover functionality over city
-    //Question: how to?
     protected Polygon cityShape;
     /*This array holds each of the 6 colored meeples. 
     Each time a meeple is added/subtracted, the
     location of that specific color in the array 
     is incremented or decremented */
     protected int[] meeples = new int[6]; 
-    protected int meepleAmount;
+    //number of total meeples in city, default is 1
+    protected int meepleAmount = 1;
     /**
      * Constructor with parameters for the City class
      * 
@@ -34,9 +34,8 @@ public class City extends JPanel
     {
         name = nameIn;
         isCountry = false;
-        meepleAmount = 1; //Default Meeple amount 
         connectedRoutes = new ArrayList<Route>();
-        //Draw the city polygons
+        //Construct the city polygons
         if(name.equals("Augsburg")) 
         {
             int[] b1 = {628,636,637,629,620,616,616,620};
@@ -289,6 +288,7 @@ public class City extends JPanel
             int [] b78 = {595,601,611,617,616,607,598,593};
             cityShape = new Polygon(b77,b78,8);
         }
+        
         //Add meeples
         int indexNum;
         for (int i = 0; i < meepleAmount; i++) 

@@ -16,16 +16,16 @@ import java.lang.String;
 public class PlayGame extends JPanel implements MouseListener, 
 MouseMotionListener, ActionListener
 {
-    public static String info;
     // initializes the players
-    protected static int numberOfPlayers;
-    protected static ArrayList<Player> players = new ArrayList<Player>();
-    protected static Player currentPlayer;
+    protected int numberOfPlayers;
+    protected ArrayList<Player> players = new ArrayList<Player>();
+    protected Player currentPlayer;
     //Images and JFrame 
     private static Image boardPic, blackBackground, TicketToRidePic;
     private static JFrame frame;
-    private Image shortDest, globeTrotter, longDest, trainCardBack,
-    yellowMeeple, greenMeeple,blueMeeple, whiteMeeple,blackMeeple, redMeeple;
+    private Image shortDest, globeTrotter, longDest, trainCardBack;
+    private Image yellowMeeple, greenMeeple, blueMeeple, whiteMeeple;
+    private Image blackMeeple, redMeeple;
     //Game components 
     private boolean secondClick, choosingTrainCard, finalTurn;
     private Deck deck;
@@ -33,6 +33,9 @@ MouseMotionListener, ActionListener
     private JLabel viewDestCards;
     private ImageIcon destCard;
     private JButton helpButton;
+
+    private City hoverCity;
+    private int hoverX, hoverY;
     /**
      * Default constructor for the PlayGame class
      */
@@ -40,10 +43,13 @@ MouseMotionListener, ActionListener
     {
         //Getting the number of players for the game
         players = Driver.getPlayers();
+        numberOfPlayers = players.size();
         currentPlayer = players.get(0);
         //Creating the deck and board used for the game
         deck = new Deck();
         board = new Board();
+        
+        //Load in images
         boardPic = new ImageIcon("Images" + File.separator 
             + "Board.JPG").getImage();
         blackBackground = new ImageIcon("Images" + File.separator 
@@ -59,23 +65,23 @@ MouseMotionListener, ActionListener
             + "OrangeDest.JPG").getImage();
         trainCardBack = new ImageIcon("Images" + File.separator 
             + "TrainCardBack.JPG").getImage();
+
+        blackMeeple = new ImageIcon("Images" + File.separator 
+            + "blackMeeple.PNG").getImage();
+        redMeeple = new ImageIcon("Images" + File.separator 
+            + "redMeeple.PNG").getImage();
+        greenMeeple = new ImageIcon("Images" + File.separator 
+            + "greenMeeple.PNG").getImage();
+        whiteMeeple = new ImageIcon("Images" + File.separator 
+            + "whiteMeeple.PNG").getImage();
+        blueMeeple = new ImageIcon("Images" + File.separator 
+            + "blueMeeple.PNG").getImage();
+        yellowMeeple = new ImageIcon("Images" + File.separator 
+            + "yellowMeeple.PNG").getImage();
+
         //Setting up window size
         Dimension size = new Dimension(blackBackground.getWidth(null), 
                 boardPic.getHeight(null));
-
-        blackMeeple = new ImageIcon("Images" + File.separator 
-        + "blackMeeple.PNG").getImage();
-        redMeeple = new ImageIcon("Images" + File.separator 
-        + "redMeeple.PNG").getImage();
-        greenMeeple = new ImageIcon("Images" + File.separator 
-        + "greenMeeple.PNG").getImage();
-        whiteMeeple = new ImageIcon("Images" + File.separator 
-        + "whiteMeeple.PNG").getImage();
-        blueMeeple = new ImageIcon("Images" + File.separator 
-        + "blueMeeple.PNG").getImage();
-        yellowMeeple = new ImageIcon("Images" + File.separator 
-        + "yellowMeeple.PNG").getImage();
-
         setPreferredSize(size);
         setMinimumSize(size);
         setMaximumSize(size);
@@ -96,6 +102,7 @@ MouseMotionListener, ActionListener
         //Enabeling the mouse
         addMouseListener(this);
         addMouseMotionListener(this);
+
     }
 
     /**
@@ -127,27 +134,91 @@ MouseMotionListener, ActionListener
         paintPlayerInfo(g);
         paintDestinationCardBack(g);
         paintPlayerRoutes(g);
+        paintHoverCity(g);
         paintMeepleCount(g);
     }
 
+    /**
+     * Panel's paint method to paint player's meeple info
+     * 
+     * Question: Merge the paint classes?
+     * 
+     * @param g The Graphics reference 
+     */
     public void paintMeepleCount(Graphics g)
     {
-        g.drawImage(redMeeple,5,590,null);
+        g.drawImage(redMeeple, 5, 590, null);
         g.drawImage(blackMeeple, 46, 590, null);
-        g.drawImage(greenMeeple, 87,590,null);
-        g.drawImage(yellowMeeple, 128,590,null);
-        g.drawImage(blueMeeple, 169,590,null);
-        g.drawImage(whiteMeeple, 210,590,null);
+        g.drawImage(greenMeeple, 87, 590, null);
+        g.drawImage(yellowMeeple, 128, 590, null);
+        g.drawImage(blueMeeple, 169, 590, null);
+        g.drawImage(whiteMeeple, 210, 590, null);
         int a = 13;
         int b = 610;
-        for(int i = 0 ; i <=5;i++)
+        Font font = new Font("Verdana", 0, 15);
+        g.setFont(font);
+        for(int i = 0 ; i < 6; i++)
         {
+            int num = currentPlayer.meeples[i];
             g.setColor(new Color(25, 25, 25));
-            g.fillRect(a, b, 20, 20);
+            g.fillRect(a, b, 24, 18);
             g.setColor(Color.white);
-            g.drawRect(a, b, 20, 20);
-            g.drawString("" + currentPlayer.meeples[i], a+4, b+18);
+            g.drawRect(a, b, 24, 18);
+            g.drawString("" + num, a+4, b+15);
             a+=41;
+        }
+    }
+
+    /**
+     * Panel's paint method to paint the info box 
+     * when hovering over a city
+     * 
+     * Question: Merge the paint classes?
+     * 
+     * @param g The Graphics reference 
+     */
+    protected void paintHoverCity(Graphics g)
+    {
+        if (hoverCity == null) return;
+        int x1 = hoverX + 10;
+        int y1 = hoverY - 20;
+        boolean hasMeeples = false;
+
+        Font font1 = new Font("Verdana", Font.BOLD, 15);
+        g.setFont(font1);
+        g.setColor(new Color(190, 190, 210));
+        g.fillRect(x1, y1, 120, 50);
+        g.setColor(Color.BLACK);
+        g.drawRect(x1, y1, 120, 50);
+        x1 += 5;
+
+        g.drawString(hoverCity.name, x1, y1 + 20);
+        y1 += 42;
+
+        Font font2 = new Font("Verdana", Font.BOLD, 12);
+        g.setFont(font2);
+        g.drawString("Meeples: ", x1, y1);
+        x1 += 58;
+
+        for (int index = 0; index < 6; index++ ) 
+        {
+            int count = hoverCity.meeples[index]; 
+            if (count > 0) 
+            {
+                //if (!hasMeeples) 
+                if (index == 0) g.setColor(Color.red);
+                else if (index == 1) g.setColor(Color.black);
+                else if (index == 2) g.setColor (new Color(0, 150, 20));
+                else if (index == 3) g.setColor (Color.yellow);
+                else if (index == 4) g.setColor (Color.blue);
+                else g.setColor (Color.white);
+                g.drawString("" + count, x1, y1);
+                x1 += 10;
+                hasMeeples = true;
+            }
+        }
+        if (!hasMeeples) {
+            g.drawString("none", x1, y1);
         }
     }
 
@@ -165,8 +236,7 @@ MouseMotionListener, ActionListener
         Font font = new Font("Verdana", Font.BOLD, 20);
         g.setFont(font);
         g.setColor(Color.WHITE);
-        g.drawString("View your", 50, 670);
-        g.drawString("destination cards", 50, 690);
+        g.drawString("View my cards", 50, 690);
     }
 
     /**
@@ -235,9 +305,6 @@ MouseMotionListener, ActionListener
             y += 55;
             x += 10;
         }
-
-        //When deck is empty bad things happen
-        //Question: Fixed?
     }
 
     /**
@@ -260,23 +327,28 @@ MouseMotionListener, ActionListener
             g.setColor(p.color);
             g.drawString(p.name + ": "+ p.score, x, y);
             y += 25;
+
         }
 
         g.setColor(currentPlayer.color);
-        g.drawString(currentPlayer.name + " has " + 3 + " train pieces", 10,22);
+        g.drawString(currentPlayer.name + " has " + 
+            currentPlayer.carsRemaining + " train pieces", 10, 22);
 
         ////to do: display meeple counts. Question: Pat, done?
 
         //Draw the train cards the player has
-        x = 73;
+        x = 70;
         y = 77;
         for (int count: currentPlayer.trainCounts) 
         {
             g.setColor(new Color(25, 25, 25));
-            g.fillRect(x, y, 24, 24);
+            g.fillRect(x, y, 32, 24);
             g.setColor(Color.white);
-            g.drawRect(x, y, 24, 24);
-            g.drawString("" + count, x + 6, y + 20);
+            g.drawRect(x, y, 32, 24);
+            if (count > 9)
+                g.drawString("" + count, x + 2, y + 20);
+            else 
+                g.drawString("" + count, x + 10, y + 20);
             y += 55;
             x += 10;
         }
@@ -477,18 +549,19 @@ MouseMotionListener, ActionListener
         ////////////////To do:///////////////
         //check if mouse location is within boundaries of a city
         //if so paint a little box for the city info like name and meeples
+        hoverCity = null;
         for (City c : board.allCities.values()) 
         {
             if (c.cityShape != null && 
             c.cityShape.contains(e.getX(), e.getY())) 
             {
-                //show a box with city name and meeple counts 
-                /*the city's meeple counts will
-                be in c.meeples which is an int[]*/
-                setToolTipText(c.name);
-                return;
+                hoverCity = c;
+                hoverX = e.getX();
+                hoverY = e.getY();
+                break;
             }
         }
+        repaint();
     }
 
     /**
@@ -604,9 +677,7 @@ MouseMotionListener, ActionListener
                 currentPlayer.canTakeRoute(possibleR)) 
                 {
                     claimRouteDialogue(possibleR);
-                    /*deck.discardTrainCard
-                     * (currentPlayer.removeTrainCard(the index)) 
-                    for each card Question: works? */
+                    //Question: works?
                     currentPlayer.addRoute(possibleR);
                     repaint();
                     //TO DO: let player choose meeples Question: pat, done?
@@ -620,7 +691,7 @@ MouseMotionListener, ActionListener
         if(e.getX() >=50 && e.getX() <= 200 && 
         e.getY() >= 700 && e.getY() <= 790)
         {
-            DestinationCardPanel.createAndShowGUI();
+            DestinationCardPanel.createAndShowGUI(currentPlayer);
         }
     }
 
@@ -881,9 +952,9 @@ MouseMotionListener, ActionListener
             int sub = p.getNegDestScore();
             p.score += add;
             p.score += sub;
-            EndGameWin.createAndShowGUI();
         }
         addBonusPoints();
+        EndGameWin.createAndShowGUI(players);
     }
 
     /**

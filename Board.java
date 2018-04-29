@@ -10,10 +10,8 @@ import java.io.*;
  * Hieu Le, Chris Adams
  * @version Spring 2018
  */
-public class Board extends JPanel
+public class Board
 {
-    //Images
-    private static Image board, blackBackground;
     //ArrayList of routes and a HashMap of the city names
     protected ArrayList<Route> routes;
     protected HashMap<String, City> allCities;
@@ -75,6 +73,7 @@ public class Board extends JPanel
         allCities.put("Stuttgart", new City(meepleIndexes, "Stuttgart"));
         allCities.put("Ulm", new City(meepleIndexes, "Ulm"));
         allCities.put("Wurzburg", new City(meepleIndexes, "Wurzburg"));
+        
         //Construction of the routes
         routes = new ArrayList<Route>();
         routes.add(new Route("Danemark","Kiel", allCities));
@@ -167,7 +166,9 @@ public class Board extends JPanel
         routes.add(new Route("Konstanz","Lindau", allCities));
         routes.add(new Route("Lindau","Schweiz", allCities));
         routes.add(new Route("Lindau","Osterreich", allCities));
+        
         //Question: ?
+        // Connect cities to their routes
         for (Route r : routes) 
         {
             for (City c : r.twoCities) 
@@ -175,18 +176,6 @@ public class Board extends JPanel
                 c.connectedRoutes.add(r); 
             }
         }
-
-        board = new ImageIcon("Images" + File.separator + 
-            "Board.JPG").getImage();
-        blackBackground = new ImageIcon("Images" + File.separator + 
-            "blackBackground.jpg").getImage();
-        Dimension size = new Dimension(blackBackground.getWidth(null), 
-            board.getHeight(null));
-        setPreferredSize(size);
-        setMinimumSize(size);
-        setMaximumSize(size);
-        setSize(size);
-        setLayout(null);
     }
 
     /**
@@ -251,35 +240,5 @@ public class Board extends JPanel
         {
             p.destinations.remove(completed);
         }
-    }
-
-    /**
-     * Panel's paint method to manage the graphics
-     * 
-     * @param g The Graphics reference
-     * @see javax.swing.JComponent
-     */
-    @Override
-    protected void paintComponent(Graphics g)
-    {
-        super.paintComponent(g);
-        g.drawImage(blackBackground,0,0,null);
-        g.drawImage(board,270,0,null);
-    }
-
-    /**
-     * Creates the JFrame for the Board window
-     */
-    private static void createAndShowGUI() {
-        //Create and set up the window.
-        JFrame frame = new JFrame("Ticket To Ride");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        Board panel = new Board();
-        frame.getContentPane().add(panel);
-
-        //Display the window.
-        frame.pack();
-        frame.setVisible(true);
     }
 }

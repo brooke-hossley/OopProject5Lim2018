@@ -15,12 +15,14 @@ public class DestinationCardPanel extends JPanel implements ActionListener
     private static Image woodBackground;
     private JButton nextButton;
     private int count;
+    Player player;
 
     /**
      * Default constructor of the DestinationCardPanel class
      */
-    DestinationCardPanel()
+    DestinationCardPanel(Player p)
     {
+        player = p;
         woodBackground = new ImageIcon("Images" + File.separator + 
             "WoodPaneling.jpg").getImage();
         Dimension size = new Dimension(woodBackground.getWidth(null), 
@@ -68,7 +70,7 @@ public class DestinationCardPanel extends JPanel implements ActionListener
         g.drawImage(woodBackground,0,0,null);
         //Draw the players destination tickets 
         ArrayList<DestinationCard> playersDestinationCards = new ArrayList(); 
-        playersDestinationCards = PlayGame.currentPlayer.destinations;
+        playersDestinationCards = player.destinations;
         int x = 20;
         int y = 5;
         for(int i = count; i < playersDestinationCards.size(); i++)
@@ -90,12 +92,12 @@ public class DestinationCardPanel extends JPanel implements ActionListener
     /**
      * Creates the JFrame for the DestinationCardPanel window
      */
-    protected static void createAndShowGUI() 
+    protected static void createAndShowGUI(Player p) 
     {
         //Create and set up the window.
-        JFrame frame = new JFrame(PlayGame.currentPlayer.name + "'s Destination Tickets");
+        JFrame frame = new JFrame(p.name + "'s Destination Tickets");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        DestinationCardPanel panel = new DestinationCardPanel();
+        DestinationCardPanel panel = new DestinationCardPanel(p);
         frame.getContentPane().add(panel);
         //Display the window.
         frame.pack();

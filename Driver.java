@@ -22,7 +22,7 @@ public class Driver extends JPanel implements ActionListener
     private JButton threePlayers;
     private JButton rules;
     //Player ArrayList
-    private static ArrayList<Player> list = new ArrayList<Player>();;
+    private static ArrayList<Player> playerList = new ArrayList<Player>();;
 
     //The frame to display the menu on
     protected static JFrame frame;
@@ -210,87 +210,57 @@ public class Driver extends JPanel implements ActionListener
     public void actionPerformed(ActionEvent e)
     {
         String action = e.getActionCommand();
+        int numPlayers = 0;
         int count = 1;
-        if(action.equals("Two")) 
+        if (action.equals("Rules")) {
+            Rules.createAndShowGUI();
+            return;
+        }
+        else if(action.equals("Two")) 
         {
-            PlayGame.numberOfPlayers = 2;
-            String[] possibleValues = { "Purple", "Yellow", "Red", "White", "Black" };
-            ArrayList<String> possibleVals = new ArrayList(5);
-            possibleVals.add("Purple");
-            possibleVals.add("Yellow");
-            possibleVals.add("Red");
-            possibleVals.add("White");
-            possibleVals.add("Black");
-
-            while(count < 3){
-                String name = JOptionPane.showInputDialog(frame, "Enter in Player " + count + 
-                        " name:");
-                Object colors = JOptionPane.showInputDialog(null,
-                        "Choose one", "Input",
-                        JOptionPane.INFORMATION_MESSAGE, null,
-                        possibleValues, possibleValues[0]);
-
-                String color = (String) colors;
-                possibleVals.remove(color);
-
-                String temp[] = new String[possibleValues.length - 1];
-                for (int i = 0; i < possibleVals.size(); i++) {
-                    temp[i] = possibleVals.get(i);
-                }
-                possibleValues = temp;
-
-                Player x = new Player(name, color);
-                list.add(x);
-                count++;
-            }
-            PlayGame.createAndShowGUI();
-            frame.dispose();
+            numPlayers = 2;
         }
         else if(action.equals("Three"))
         {
-            PlayGame.numberOfPlayers = 3;
-            String[] possibleValues = { "Purple", "Yellow", "Red", "White", "Black" };
-            ArrayList<String> possibleVals = new ArrayList(5);
-            possibleVals.add("Purple");
-            possibleVals.add("Yellow");
-            possibleVals.add("Red");
-            possibleVals.add("White");
-            possibleVals.add("Black");
+            numPlayers = 3;
+        }
+        
+        String[] possibleValues = { "Purple", "Yellow", "Red", "White", "Blue" };
+        ArrayList<String> possibleVals = new ArrayList(5);
+        possibleVals.add("Purple");
+        possibleVals.add("Yellow");
+        possibleVals.add("Red");
+        possibleVals.add("White");
+        possibleVals.add("Blue");
 
-            while(count < 4){
-                String name = JOptionPane.showInputDialog(frame, "Enter in Player " + count + 
-                        " name:");
-                Object colors = JOptionPane.showInputDialog(null,
-                        "Choose one", "Input",
-                        JOptionPane.INFORMATION_MESSAGE, null,
-                        possibleValues, possibleValues[0]);
+        String colorSelected;
+        while(count <= numPlayers){
+            String name = JOptionPane.showInputDialog(frame, "Enter in Player " + count + 
+                    " name:");
+            Object colors = JOptionPane.showInputDialog(null,
+                    "Choose one", "Input",
+                    JOptionPane.INFORMATION_MESSAGE, null,
+                    possibleValues, possibleValues[0]);
 
-                String color = (String) colors;
-                possibleVals.remove(color);
+            colorSelected = (String) colors;
+            possibleVals.remove(colorSelected);
 
-                String temp[] = new String[possibleValues.length - 1];
-                for (int i = 0; i < possibleVals.size(); i++) {
-                    temp[i] = possibleVals.get(i);
-                }
-                possibleValues = temp;
-
-                Player x = new Player(name, color);
-                list.add(x);
-                count++;
+            String temp[] = new String[possibleValues.length - 1];
+            for (int i = 0; i < possibleVals.size(); i++) {
+                temp[i] = possibleVals.get(i);
             }
-            PlayGame.createAndShowGUI();
-            frame.dispose();
+            possibleValues = temp;
+            playerList.add(new Player(name, colorSelected));
+            count++;
         }
-        else
-        {
-            Rules.createAndShowGUI();
-        }
+        PlayGame.createAndShowGUI();
+        frame.dispose();
     }
 
     //Make a getPlayers() to return arraylist
     public static ArrayList<Player> getPlayers()
     {
-        return list;
+        return playerList;
     }
 
     /**
