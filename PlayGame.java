@@ -24,7 +24,7 @@ MouseMotionListener, ActionListener
     //Images and JFrame 
     private static Image boardPic, blackBackground, TicketToRidePic;
     private static JFrame frame;
-    private Image shortDest, globeTrotter, longDest, trainCardBack;
+    private Image shortDest, globeTrotter, longDest, trainCardBack,yellowMeeple, greenMeeple,blueMeeple, whiteMeeple,blackMeeple, redMeeple;
     //Game components 
     private boolean secondClick, choosingTrainCard, finalTurn;
     private Deck deck;
@@ -112,6 +112,28 @@ MouseMotionListener, ActionListener
         paintPlayerInfo(g);
         paintDestinationCardBack(g);
         paintPlayerRoutes(g);
+        paintMeepleCount(g);
+    }
+    
+    public void paintMeepleCount(Graphics g)
+    {
+        g.drawImage(redMeeple,5,590,null);
+        g.drawImage(blackMeeple, 46, 590, null);
+        g.drawImage(greenMeeple, 87,590,null);
+        g.drawImage(yellowMeeple, 128,590,null);
+        g.drawImage(blueMeeple, 169,590,null);
+        g.drawImage(whiteMeeple, 210,590,null);
+        int a = 13;
+        int b = 610;
+        for(int i = 0 ; i <=5;i++)
+        {
+            g.setColor(new Color(25, 25, 25));
+            g.fillRect(a, b, 20, 20);
+            g.setColor(Color.white);
+            g.drawRect(a, b, 20, 20);
+            g.drawString("" + currentPlayer.meeples[i], a+4, b+18);
+            a+=41;
+        }
     }
 
     /**
