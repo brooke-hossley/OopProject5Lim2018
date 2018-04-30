@@ -96,9 +96,9 @@ MouseMotionListener, ActionListener
         //Adding the help button to the board
         helpButton = new JButton("Help");
         helpButton.setFont(new Font("Arial", Font.BOLD, 20));
-        helpButton.setBackground(Color.RED);
+        helpButton.setBackground(new Color(51, 205, 200));
         helpButton.setBorder(BorderFactory.createLineBorder(Color.black));
-        helpButton.setBounds(1100, 850, 100, 50);
+        helpButton.setBounds(87, 835, 100, 50);
         add(helpButton);
         helpButton.addActionListener(this);
         helpButton.setActionCommand("Help");
@@ -151,7 +151,7 @@ MouseMotionListener, ActionListener
     public void paintMeepleCount(Graphics g)
     {
         int a = 12;
-        int b = 610;
+        int b = 620;
         for (Image pic: meeplePics) {
             g.drawImage(pic, a, b, null);
             a += 41;
@@ -238,11 +238,11 @@ MouseMotionListener, ActionListener
      */
     protected void paintDestinationCardBack(Graphics g)
     {
-        g.drawImage(shortDest, 50, 700, null);
+        g.drawImage(shortDest, 60, 720, null);
         Font font = new Font("Verdana", Font.BOLD, 20);
         g.setFont(font);
         g.setColor(Color.white);
-        g.drawString("View my cards", 45, 690);
+        g.drawString("View my cards", 50, 710);
     }
 
     /**
@@ -777,8 +777,8 @@ MouseMotionListener, ActionListener
             }
         }
 
-        if(e.getX() >=50 && e.getX() <= 200 && 
-        e.getY() >= 700 && e.getY() <= 790)
+        if(e.getX() >=60 && e.getX() <= 210 && 
+        e.getY() >= 720 && e.getY() <= 810)
         {
             DestinationCardPanel.createAndShowGUI(currentPlayer);
         }
