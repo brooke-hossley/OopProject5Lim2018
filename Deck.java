@@ -335,14 +335,15 @@ public class Deck
      */
     protected boolean onlyRainbows(int cardIndex) 
     {
+        ///TO DO: fix this///
         for (int i = 0; i < faceUpTrainCards.size(); i++)  
         {
             TrainCard t = faceUpTrainCards.get(i);
             if (i != cardIndex && !t.isRainbow()) 
                 return false;
         }
-        return trainCards.isEmpty() && 
-        faceUpTrainCards.get(cardIndex).isRainbow();
+        return trainCards.size() < 1;
+        //&& faceUpTrainCards.get(cardIndex).isRainbow();
     }
 
     /**

@@ -406,7 +406,7 @@ MouseMotionListener, ActionListener
 
         while (!takeAll && !validCombo) {
             SpinnerNumberModel shortModel = 
-                new SpinnerNumberModel(0, 0, maxShort, 1);
+                new SpinnerNumberModel(maxShort, 0, maxShort, 1);
             JSpinner shortSpinner = new JSpinner(shortModel);
 
             SpinnerNumberModel longModel = 
@@ -578,7 +578,8 @@ MouseMotionListener, ActionListener
             String colorRemove = (String) cardColor.getSelectedItem();
             numOtherToRemove = route.length - numRainbowsToRemove;
             otherColorIndex = getColorIndex(colorRemove);
-            validCombo = numOtherToRemove <= currentPlayer.trainCounts[otherColorIndex];
+            validCombo = numOtherToRemove >= 0 && numOtherToRemove 
+            <= currentPlayer.trainCounts[otherColorIndex];
         }
         for (int i = 0; i < numRainbowsToRemove; i++) {
             cardsToRemove.add(8);
@@ -673,7 +674,7 @@ MouseMotionListener, ActionListener
             }
             return;
         }
-        
+
         int cardIndex = 0;
         //x and y of the bottom most, face up train card
         if(e.getX() >= 905 && e.getX() <= 1055 && e.getY() >= 520 && 
@@ -713,8 +714,15 @@ MouseMotionListener, ActionListener
 
         if (choosingTrainCard) 
         {
-            if(deck.faceUpTrainCards.get(cardIndex).isRainbow() || 
-            deck.onlyRainbows(cardIndex)) 
+            if (deck.onlyRainbows(cardIndex))
+            {
+                if (!secondClick) 
+                {
+                    //Can't choose a second card now so set secondclick to true
+                    secondClick = true;
+                }
+            }
+            else if(deck.faceUpTrainCards.get(cardIndex).isRainbow()) 
             {
                 if (secondClick) 
                 {
