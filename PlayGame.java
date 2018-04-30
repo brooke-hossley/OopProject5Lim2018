@@ -224,7 +224,7 @@ MouseMotionListener, ActionListener
             }
         }
         if (!hasMeeples) {
-            g.drawString("none", x1, y1);
+            g.drawString(" none", x1, y1);
         }
     }
 
@@ -827,7 +827,7 @@ MouseMotionListener, ActionListener
         int index = 0;
         for(Player p : players)
         {
-            playerTotal[index] += p.getPosDestScore();
+            playerTotal[index] += p.numCompletedDest;
             index++;
         }
         int max;
@@ -839,9 +839,10 @@ MouseMotionListener, ActionListener
             {
                 if(playerTotal[x] > max)
                 {
-                    max = playerTotal[x]; index = x;
+                    max = playerTotal[x]; 
+                    index = x;
                 }
-                else if(playerTotal[x] == max)
+                else if(playerTotal[x] == max && playerTotal[x] != 0)
                 { 
                     players.get(0).score += 15;
                     players.get(1).score += 15;
@@ -889,7 +890,17 @@ MouseMotionListener, ActionListener
         {
             for(int y = 0; y < 6; y++)
             {
-                if(players.get(0).meeples[y] > 
+                if(players.get(0).meeples[y] == 0 && 
+                players.get(1).meeples[y] != 0)
+                {
+                    players.get(1).score += 20;
+                }
+                else if(players.get(0).meeples[y] != 0 && 
+                players.get(1).meeples[y] == 0)
+                {
+                    players.get(0).score += 20;
+                }
+                else if(players.get(0).meeples[y] > 
                 players.get(1).meeples[y])
                 {
                     players.get(0).score += 20;
@@ -913,7 +924,82 @@ MouseMotionListener, ActionListener
         {
             for(int z = 0; z < 6; z++)
             {
-                if(players.get(0).meeples[z] > players.get(1).meeples[z] &&
+                if(players.get(0).meeples[z] == 0 &&
+                players.get(2).meeples[z] == 0)
+                {
+                    players.get(1).score += 20;
+                }
+                else if(players.get(0).meeples[z] == 0 &&
+                players.get(1).meeples[z] == 0)
+                {
+                    players.get(2).score += 20;
+                }
+                else if(players.get(1).meeples[z] == 0 &&
+                players.get(2).meeples[z] == 0)
+                {
+                    players.get(0).score += 20;
+                }
+                else if(players.get(0).meeples[z] == 0)
+                {
+                    if(players.get(1).meeples[z] > players.get(2).meeples[z])
+                    {
+                        players.get(1).score += 20;
+                        players.get(2).score += 10;
+                    }
+                    else if(players.get(1).meeples[z] == 
+                    players.get(2).meeples[z])
+                    {
+                        players.get(1).score += 20;
+                        players.get(2).score += 20;
+                    }
+                    else if(players.get(1).meeples[z] < 
+                    players.get(2).meeples[z])
+                    {
+                        players.get(1).score += 10;
+                        players.get(2).score += 20;
+                    }
+                }
+                else if(players.get(1).meeples[z] == 0)
+                {
+                    if(players.get(0).meeples[z] > players.get(2).meeples[z])
+                    {
+                        players.get(0).score += 20;
+                        players.get(2).score += 10;
+                    }
+                    else if(players.get(0).meeples[z] == 
+                    players.get(2).meeples[z])
+                    {
+                        players.get(0).score += 20;
+                        players.get(2).score += 20;
+                    }
+                    else if(players.get(0).meeples[z] < 
+                    players.get(2).meeples[z])
+                    {
+                        players.get(0).score += 10;
+                        players.get(2).score += 20;
+                    }
+                }
+                else if(players.get(2).meeples[z] == 0)
+                {
+                    if(players.get(0).meeples[z] > players.get(1).meeples[z])
+                    {
+                        players.get(0).score += 20;
+                        players.get(1).score += 10;
+                    }
+                    else if(players.get(0).meeples[z] == 
+                    players.get(1).meeples[z])
+                    {
+                        players.get(0).score += 20;
+                        players.get(1).score += 20;
+                    }
+                    else if(players.get(0).meeples[z] < 
+                    players.get(1).meeples[z])
+                    {
+                        players.get(0).score += 10;
+                        players.get(1).score += 20;
+                    }
+                }
+                else if(players.get(0).meeples[z] > players.get(1).meeples[z] &&
                 players.get(0).meeples[z] > players.get(2).meeples[z])
                 {
                     players.get(0).score += 20;
@@ -1040,7 +1126,7 @@ MouseMotionListener, ActionListener
             int add = p.getPosDestScore();
             int sub = p.getNegDestScore();
             p.score += add;
-            p.score += sub;
+            p.score -= sub;
         }
         addBonusPoints();
         EndGameWin.createAndShowGUI(players);

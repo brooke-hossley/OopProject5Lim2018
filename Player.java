@@ -11,12 +11,12 @@ import java.awt.*;
 public class Player
 {
     //Player name, color, and points
-    protected static boolean globeTrotter = false;
     protected Color color;
     protected String name;
     protected int score;
     protected int carsRemaining;
     protected boolean isLastTurn = false;
+    protected int numCompletedDest;
     //Array of different color tain cards with how many the player has
     protected int[] trainCounts = new int[9];
     protected ArrayList<TrainCard> trainCards = new ArrayList();
@@ -40,7 +40,7 @@ public class Player
     {
         name = pName;
         score = 0;
-        carsRemaining = 45;
+        carsRemaining = 20;
         //Set the player color 
         if (pColor.equalsIgnoreCase("Purple"))
         {

@@ -233,6 +233,7 @@ public class Board
             reachableCities.contains(allCities.get(card.city2))) 
             {
                 p.completedDestinations.add(card);
+                p.numCompletedDest++;
             }
         }
 
