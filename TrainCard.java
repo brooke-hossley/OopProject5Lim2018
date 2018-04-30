@@ -36,22 +36,21 @@ public class TrainCard
      * @param color The color of the train card
      * @param pic The image of the train card
      */
-    public TrainCard(TrainColor color, Image pic)
+    public String toString()
     {
-        tColor = color;
-        picture = pic;
         switch(tColor)
         {
-            case YELLOW: arrIndex = 0; break;
-            case BLUE: arrIndex = 1; break;
-            case GREEN: arrIndex = 2; break;
-            case PINK: arrIndex = 3; break;
-            case RED: arrIndex = 4; break;
-            case BLACK: arrIndex = 5; break;   
-            case ORANGE: arrIndex = 6; break;
-            case WHITE: arrIndex = 7; break;
-            case RAINBOW: arrIndex = 8;  
+            case YELLOW: return "a Yellow";
+            case BLUE: return "a Blue";
+            case GREEN: return "a Green";
+            case PINK: return "a Pink";
+            case RED: return "a Red";
+            case BLACK: return "a Black";   
+            case ORANGE: return "an Orange";
+            case WHITE: return "a White";
+            case RAINBOW: return "a Rainbow";  
         }
+        return "";
     }
 
     /**

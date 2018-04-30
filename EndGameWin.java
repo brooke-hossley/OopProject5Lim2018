@@ -15,11 +15,13 @@ public class EndGameWin extends JPanel
 {
     //Images
     protected Image pic, fireworks, celebrate;
+    ArrayList<Player> allPlayers;
 
     /**
      * Default constructor for the EndGameWin class
      */
-    public EndGameWin(){
+    public EndGameWin(ArrayList<Player> players){
+        allPlayers = players;
         pic = new ImageIcon("Images" + File.separator +
             "EndScreen.jpg").getImage();
         fireworks = new ImageIcon("Images" + File.separator + 
@@ -61,7 +63,7 @@ public class EndGameWin extends JPanel
         g.drawString(text, x, y);
         g.setFont(new Font("Monospaced", Font.BOLD, 30));
         x = 30; y = 200;
-        for(Player p : PlayGame.players){
+        for(Player p : allPlayers){
             String text2 = p.name;
             //String text2 = "Player 1";
             g.setColor(Color.WHITE);
@@ -119,12 +121,12 @@ public class EndGameWin extends JPanel
     /**
      * Creates the JFrame for the ClaimingRoutes window
      */
-    protected static void createAndShowGUI() 
+    protected static void createAndShowGUI(ArrayList<Player> players) 
     {
         //Create and set up the window.
         JFrame frame = new JFrame("Score Board");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        EndGameWin panel = new EndGameWin();
+        EndGameWin panel = new EndGameWin(players);
         frame.getContentPane().add(panel);
 
         //Display the window.

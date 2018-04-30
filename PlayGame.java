@@ -25,7 +25,7 @@ MouseMotionListener, ActionListener
     private static JFrame frame;
     private Image shortDest, globeTrotter, longDest, trainCardBack;
     private Image yellowMeeple, greenMeeple, blueMeeple, whiteMeeple;
-    private Image blackMeeple, redMeeple;
+    private Image blackMeeple, redMeeple, meeplePics[];
     //Game components 
     private boolean secondClick, choosingTrainCard, finalTurn;
     private Deck deck;
@@ -48,7 +48,7 @@ MouseMotionListener, ActionListener
         //Creating the deck and board used for the game
         deck = new Deck();
         board = new Board();
-        
+
         //Load in images
         boardPic = new ImageIcon("Images" + File.separator 
             + "Board.JPG").getImage();
@@ -67,17 +67,20 @@ MouseMotionListener, ActionListener
             + "TrainCardBack.JPG").getImage();
 
         blackMeeple = new ImageIcon("Images" + File.separator 
-            + "blackMeeple.PNG").getImage();
+            + "blackMeeple.png").getImage();
         redMeeple = new ImageIcon("Images" + File.separator 
-            + "redMeeple.PNG").getImage();
+            + "redMeeple.png").getImage();
         greenMeeple = new ImageIcon("Images" + File.separator 
-            + "greenMeeple.PNG").getImage();
+            + "greenMeeple.png").getImage();
         whiteMeeple = new ImageIcon("Images" + File.separator 
-            + "whiteMeeple.PNG").getImage();
+            + "whiteMeeple.png").getImage();
         blueMeeple = new ImageIcon("Images" + File.separator 
-            + "blueMeeple.PNG").getImage();
+            + "blueMeeple.png").getImage();
         yellowMeeple = new ImageIcon("Images" + File.separator 
-            + "yellowMeeple.PNG").getImage();
+            + "yellowMeeple.png").getImage();
+        Image[] meeplePics = {redMeeple, blackMeeple, greenMeeple, 
+                yellowMeeple, blueMeeple, whiteMeeple};
+        this.meeplePics = meeplePics;
 
         //Setting up window size
         Dimension size = new Dimension(blackBackground.getWidth(null), 
@@ -147,24 +150,28 @@ MouseMotionListener, ActionListener
      */
     public void paintMeepleCount(Graphics g)
     {
-        g.drawImage(redMeeple, 5, 590, null);
-        g.drawImage(blackMeeple, 46, 590, null);
-        g.drawImage(greenMeeple, 87, 590, null);
-        g.drawImage(yellowMeeple, 128, 590, null);
-        g.drawImage(blueMeeple, 169, 590, null);
-        g.drawImage(whiteMeeple, 210, 590, null);
-        int a = 13;
+        int a = 12;
         int b = 610;
-        Font font = new Font("Verdana", 0, 15);
+        for (Image pic: meeplePics) {
+            g.drawImage(pic, a, b, null);
+            a += 41;
+        }
+
+        a = 22;
+        b += 20;
+        Font font = new Font("Arial", Font.BOLD, 15);
         g.setFont(font);
         for(int i = 0 ; i < 6; i++)
         {
             int num = currentPlayer.meeples[i];
             g.setColor(new Color(25, 25, 25));
-            g.fillRect(a, b, 24, 18);
+            g.fillRect(a, b, 20, 18);
             g.setColor(Color.white);
-            g.drawRect(a, b, 24, 18);
-            g.drawString("" + num, a+4, b+15);
+            g.drawRect(a, b, 20, 18);
+            if (num > 9)
+                g.drawString("" + num, a + 2, b + 15);
+            else 
+                g.drawString("" + num, a + 7, b + 15);
             a+=41;
         }
     }
@@ -186,7 +193,7 @@ MouseMotionListener, ActionListener
 
         Font font1 = new Font("Verdana", Font.BOLD, 15);
         g.setFont(font1);
-        g.setColor(new Color(190, 190, 210));
+        g.setColor(new Color(170, 190, 240));
         g.fillRect(x1, y1, 120, 50);
         g.setColor(Color.BLACK);
         g.drawRect(x1, y1, 120, 50);
@@ -205,12 +212,11 @@ MouseMotionListener, ActionListener
             int count = hoverCity.meeples[index]; 
             if (count > 0) 
             {
-                //if (!hasMeeples) 
                 if (index == 0) g.setColor(Color.red);
                 else if (index == 1) g.setColor(Color.black);
                 else if (index == 2) g.setColor (new Color(0, 150, 20));
                 else if (index == 3) g.setColor (Color.yellow);
-                else if (index == 4) g.setColor (Color.blue);
+                else if (index == 4) g.setColor (new Color(0, 20, 220));
                 else g.setColor (Color.white);
                 g.drawString("" + count, x1, y1);
                 x1 += 10;
@@ -235,8 +241,8 @@ MouseMotionListener, ActionListener
         g.drawImage(shortDest, 50, 700, null);
         Font font = new Font("Verdana", Font.BOLD, 20);
         g.setFont(font);
-        g.setColor(Color.WHITE);
-        g.drawString("View my cards", 50, 690);
+        g.setColor(Color.white);
+        g.drawString("View my cards", 45, 690);
     }
 
     /**
@@ -297,7 +303,7 @@ MouseMotionListener, ActionListener
             }
         }
         //Draw the train cards
-        x = 10;
+        x = 15;
         y = 50;
         for (Image pic : deck.trainCardPics) 
         {
@@ -319,9 +325,9 @@ MouseMotionListener, ActionListener
         g.setColor(Color.WHITE);
 
         int x = 905;
-        int y = 50;
+        int y = 52;
 
-        g.drawString("Player Scores", x, 22);
+        g.drawString("Player Scores", x, 24);
         for(Player p : players) 
         {
             g.setColor(p.color);
@@ -330,14 +336,8 @@ MouseMotionListener, ActionListener
 
         }
 
-        g.setColor(currentPlayer.color);
-        g.drawString(currentPlayer.name + " has " + 
-            currentPlayer.carsRemaining + " train pieces", 10, 22);
-
-        ////to do: display meeple counts. Question: Pat, done?
-
-        //Draw the train cards the player has
-        x = 70;
+        //Draw the train card counts the player has
+        x = 75;
         y = 77;
         for (int count: currentPlayer.trainCounts) 
         {
@@ -352,6 +352,11 @@ MouseMotionListener, ActionListener
             y += 55;
             x += 10;
         }
+
+        g.setFont(new Font("Verdana", Font.BOLD, 23));
+        g.setColor(currentPlayer.color);
+        g.drawString(currentPlayer.name + ": " + 
+            currentPlayer.carsRemaining + " train pieces", 10, 32);
     }
 
     /**
@@ -387,22 +392,62 @@ MouseMotionListener, ActionListener
      * @param p The player choosing the destination card
      * @param keep How many destination tickets the player is keeping
      */
-    protected void chooseDestinationCards(Player p, int keep){
+    protected boolean chooseDestinationCards(Player p, int keep){
         /*////////TO DO: add functionality for player 
         to choose which combo of cards to take//////////*/
         //Question: Progress?
+        boolean validCombo = false;
+        int numShort = deck.shortCards.size();
+        int numLong = deck.longCards.size();
+        int otherColorIndex = 0;
+        boolean takeAll = numShort + numLong <= 4;
+        int maxShort = Math.min(4, numShort);
+        int maxLong = Math.min(4, numLong);
+
+        while (!takeAll && !validCombo) {
+            SpinnerNumberModel shortModel = 
+                new SpinnerNumberModel(0, 0, maxShort, 1);
+            JSpinner shortSpinner = new JSpinner(shortModel);
+
+            SpinnerNumberModel longModel = 
+                new SpinnerNumberModel(0, 0, maxLong, 1);
+            JSpinner longSpinner = new JSpinner(longModel);
+
+            Object[] message = {
+                    "Number of short cards:", shortSpinner,
+                    "Number of long cards:", longSpinner};
+
+            int option = JOptionPane.showOptionDialog(null, message, 
+                    "Choose 4 cards to claim ", JOptionPane.OK_CANCEL_OPTION, 
+                    JOptionPane.QUESTION_MESSAGE, null, null, null);
+
+            if (option == JOptionPane.CANCEL_OPTION)
+            {
+                return false;
+            }
+
+            numShort = (int) shortSpinner.getValue();
+            numLong = (int) longSpinner.getValue();
+
+            validCombo = numShort + numLong == 4;
+        }        
 
         JOptionPane.showMessageDialog(null, "Dealing " +
             p.name + "'s destination tickets!");
         //Players options for their destination cards (3 short and 1 long)
         DestinationCard[] cards = new DestinationCard[4];
-        //Adds three destination cards
-        for(int k = 0; k < 3; k++) 
+        int k = 0;
+        //Adds short destination cards
+        for(k = 0; k < numShort; k++) 
         {
             cards[k] = deck.drawShortCard();
         }
-        //Adds one long destination card
-        cards[3] = deck.drawLongCard();
+        //Adds long destination cards
+        for(int j = 0; j < numLong; j++) 
+        {
+            cards[j + k] = deck.drawLongCard();
+        } 
+
         //Check boxes for the players options
         JCheckBox[] boxes = new JCheckBox[4];
         //Creates a list of options in a JOption pain
@@ -411,9 +456,10 @@ MouseMotionListener, ActionListener
             boxes[i] = new JCheckBox(cards[i].toString() + 
                 " for " + cards[i].getPoints() + " points");
         }   
+
         //Count for numbers of check boxes clicked
         int count = 0;
-        //Makes sure at least 2 cards are chosen
+        //Makes sure at least "keep" parameter cards are chosen
         do {
             count = 0;
             JOptionPane.showMessageDialog(null, boxes, "Pick your "
@@ -442,6 +488,7 @@ MouseMotionListener, ActionListener
                 else deck.addLongCard(cards[j]);
             }
         }
+        return true;
     }
 
     /**
@@ -458,11 +505,47 @@ MouseMotionListener, ActionListener
     }
 
     /**
+     * Method for taking meeples during route claiming
+     * 
+     * @param route The route being claimed
+     */
+    protected void claimMeepleDialogue(Route route) 
+    {
+        ////////////////To do://///////////// Question: ?
+        int numRainbowsToRemove = 0;
+        int numOtherToRemove = 0;
+        int otherColorIndex = 0;
+        for (City city: route.twoCities) 
+        {
+            String[] meepleOptions = city.getMeepleColors();
+            if (meepleOptions.length > 1) 
+            {
+                JComboBox cardColor = new JComboBox(meepleOptions);
+
+                Object[] message = {"Meeple Color:", cardColor};
+
+                int option = JOptionPane.showOptionDialog(null, message,
+                        "Choose meeple to claim from " + city.name, 
+                        JOptionPane.DEFAULT_OPTION, 
+                        JOptionPane.QUESTION_MESSAGE, null, null, null);
+
+                String meepleColor = (String) cardColor.getSelectedItem();
+                currentPlayer.meeples[city.discardMeeple(meepleColor)]++;
+            }
+            else if (meepleOptions.length == 1) 
+            {
+                String meepleColor = meepleOptions[0];
+                currentPlayer.meeples[city.discardMeeple(meepleColor)]++;
+            }
+        }
+    }
+
+    /**
      * Method for claiming routes
      * 
      * @param route The route being claimed
      */
-    protected void claimRouteDialogue(Route route) 
+    protected boolean claimRouteDialogue(Route route) 
     {
         ////////////////To do://///////////// Question: ?
         ArrayList<Integer> cardsToRemove = new ArrayList();
@@ -471,48 +554,31 @@ MouseMotionListener, ActionListener
         int numOtherToRemove = 0;
         int otherColorIndex = 0;
         while (!validCombo) {
-            //if (currentPlayer.trainCounts[8] > 0) {
-            JSpinner numberSpinner;
             SpinnerNumberModel numberSpinnerModel = 
                 new SpinnerNumberModel(0, 0, currentPlayer.trainCounts[8], 1);
-            numberSpinner = new JSpinner(numberSpinnerModel);
-            //JOptionPane.showMessageDialog(null, numberSpinner);
-            //}
+            JSpinner numberSpinner = new JSpinner(numberSpinnerModel);
 
-            /*/if (route.color.contains(RouteColor.GRAY) 
-            || route.color.size() > 2) {*/
             String[] colorOptions = route.getCardColors();
             JComboBox cardColor = new JComboBox(colorOptions);
-            /* Object selected = JOptionPane.showInputDialog
-            (null, "What card color will you use?", "Card Selection", 
-            JOptionPane.DEFAULT_OPTION, null, values, "0");*/
-            // if ( selected != null ){//null if the user cancels. 
-            // String selectedString = selected.toString();
-            // //do something
-            // }else{
-            // System.out.println("User cancelled");
-            // }
-            //}
 
             Object[] message = {
                     "Number of Locomotives:", numberSpinner,
                     "Other Card Color:", cardColor};
 
-            String option = JOptionPane.showInputDialog(null, message, 
-                    "Choose Cards", JOptionPane.OK_CANCEL_OPTION);
+            int option = JOptionPane.showOptionDialog(null, message, "Choose Cards to claim " 
+                    + route.toString(), JOptionPane.OK_CANCEL_OPTION, 
+                    JOptionPane.QUESTION_MESSAGE, null, null, null);
 
-            //Graphically ask user which cards to use if there's a choice
-            //if its one color only need to ask about locomotive number
-            //use JSpinner for locomotive number
-            //if two colored route ask locomotive # and which of 2 colors to use
-            //if grey route ask locomotive # and which other color to use
+            if (option == JOptionPane.CANCEL_OPTION)
+            {
+                return false;
+            }
 
-            // if (its valid) 
-            validCombo = true;
-            // int numRainbowToRemove = ______
-            // int numOtherToRemove = ______
-            // int otherColorIndex = ______
-
+            numRainbowsToRemove = (int) numberSpinner.getValue();
+            String colorRemove = (String) cardColor.getSelectedItem();
+            numOtherToRemove = route.length - numRainbowsToRemove;
+            otherColorIndex = getColorIndex(colorRemove);
+            validCombo = numOtherToRemove <= currentPlayer.trainCounts[otherColorIndex];
         }
         for (int i = 0; i < numRainbowsToRemove; i++) {
             cardsToRemove.add(8);
@@ -525,7 +591,21 @@ MouseMotionListener, ActionListener
         for (int index: cardsToRemove) {
             deck.discardTrainCard(currentPlayer.removeTrainCard(index));
         }
-        //if invalid combo tell them no and let them try again
+        return true;
+    }
+
+    protected int getColorIndex(String strColor) {
+        switch (strColor) {
+            case "Yellow": return 0;
+            case "Blue": return 1;
+            case "Green": return 2;
+            case "Pink": return 3;
+            case "Red": return 4;
+            case "Black": return 5;
+            case "Orange": return 6;
+            case "White": return 7;
+        }
+        return 0;
     }
 
     public void mouseEntered(MouseEvent e) { }
@@ -579,7 +659,10 @@ MouseMotionListener, ActionListener
             if (deck.trainCards.size() + 
             deck.discardedTrainCards.size() > 0) 
             {
-                currentPlayer.addTrainCard(deck.drawTrainCard());
+                TrainCard cardDrawn = deck.drawTrainCard();
+                currentPlayer.addTrainCard(cardDrawn);
+                JOptionPane.showMessageDialog(null, "You drew " + 
+                    cardDrawn.toString() + " card.");
                 if(secondClick) 
                 {
                     repaint();
@@ -590,6 +673,7 @@ MouseMotionListener, ActionListener
             }
             return;
         }
+        
         int cardIndex = 0;
         //x and y of the bottom most, face up train card
         if(e.getX() >= 905 && e.getX() <= 1055 && e.getY() >= 520 && 
@@ -629,10 +713,8 @@ MouseMotionListener, ActionListener
 
         if (choosingTrainCard) 
         {
-            /*/TO DO: should also check if there's only rainbow 
-            left and no blind deck Question: progress?*/
             if(deck.faceUpTrainCards.get(cardIndex).isRainbow() || 
-            deck.faceUpTrainCards.isEmpty()) 
+            deck.onlyRainbows(cardIndex)) 
             {
                 if (secondClick) 
                 {
@@ -648,7 +730,6 @@ MouseMotionListener, ActionListener
             currentPlayer.addTrainCard(deck.drawFaceupCard(cardIndex));
             if(secondClick) 
             {
-                repaint();
                 nextPlayer();   
             }
             secondClick =! secondClick;
@@ -665,22 +746,22 @@ MouseMotionListener, ActionListener
             if(e.getX() >= 905 && e.getX() <= 1055 && 
             e.getY() >= 720 && e.getY() <= 910 ) 
             {
-                chooseDestinationCards(currentPlayer, 1);
-                repaint();
-                nextPlayer();
-                repaint();
-                return;
+                if (deck.shortCards.size() + deck.longCards.size() > 0) 
+                {
+                    if (!chooseDestinationCards(currentPlayer, 1)) return;
+                    nextPlayer();
+                    repaint();
+                    return;
+                }
             }
             for (Route possibleR : board.routes) 
             {
                 if(possibleR.containsMouse(e.getX(), e.getY()) && 
                 currentPlayer.canTakeRoute(possibleR)) 
                 {
-                    claimRouteDialogue(possibleR);
-                    //Question: works?
+                    if (!claimRouteDialogue(possibleR)) return;
                     currentPlayer.addRoute(possibleR);
-                    repaint();
-                    //TO DO: let player choose meeples Question: pat, done?
+                    claimMeepleDialogue(possibleR);
                     nextPlayer();
                     repaint();
                     return;
@@ -955,6 +1036,7 @@ MouseMotionListener, ActionListener
         }
         addBonusPoints();
         EndGameWin.createAndShowGUI(players);
+        frame.dispose();
     }
 
     /**

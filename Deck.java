@@ -325,6 +325,25 @@ public class Deck
         }
         return count >= 3;
     }
+    
+    /**
+     * Method to determine if there are only locomotives faceup
+     * 
+     * @param cardIndex the index clicking on to ignore its color
+     * @return If there are only Rainbows faceup 
+     * and no cards in blind deck left
+     */
+    protected boolean onlyRainbows(int cardIndex) 
+    {
+        for (int i = 0; i < faceUpTrainCards.size(); i++)  
+        {
+            TrainCard t = faceUpTrainCards.get(i);
+            if (i != cardIndex && !t.isRainbow()) 
+                return false;
+        }
+        return trainCards.isEmpty() && 
+        faceUpTrainCards.get(cardIndex).isRainbow();
+    }
 
     /**
      * Method to handle train card discarding 

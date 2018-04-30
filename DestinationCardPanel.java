@@ -13,8 +13,8 @@ import java.awt.event.*;
 public class DestinationCardPanel extends JPanel implements ActionListener
 {
     private static Image woodBackground;
-    private JButton nextButton;
-    private int count;
+    private JButton nextButton, backButton;
+    private int start;
     Player player;
 
     /**
@@ -41,7 +41,17 @@ public class DestinationCardPanel extends JPanel implements ActionListener
         add(nextButton);
         nextButton.addActionListener(this);
         nextButton.setActionCommand("Next");
-        count = 0;
+        
+        backButton = new JButton("Back");
+        backButton.setFont(new Font("Arial", Font.BOLD, 20));
+        backButton.setBackground(Color.RED);
+        backButton.setBorder(BorderFactory.createLineBorder(Color.black));
+        backButton.setBounds(20, 700, 100, 50);
+        add(backButton);
+        backButton.addActionListener(this);
+        backButton.setActionCommand("Back");
+        
+        start = 0;
     }
 
     /**
@@ -52,11 +62,16 @@ public class DestinationCardPanel extends JPanel implements ActionListener
     public void actionPerformed(ActionEvent e)
     {
         String action = e.getActionCommand();
-        if(action.equals("Next"))
+        if(action.equals("Next") && start + 10 < player.destinations.size())
         {
-            count = 10;
+            start += 10;
             repaint();
-        }   
+        } 
+        else if(action.equals("Back") && start > 0)
+        {
+            start -= 10;
+            repaint();
+        } 
     }
 
     /**
@@ -69,20 +84,19 @@ public class DestinationCardPanel extends JPanel implements ActionListener
         super.paintComponent(g);
         g.drawImage(woodBackground,0,0,null);
         //Draw the players destination tickets 
-        ArrayList<DestinationCard> playersDestinationCards = new ArrayList(); 
-        playersDestinationCards = player.destinations;
+        ArrayList<DestinationCard> playersDestinationCards = player.destinations;
         int x = 20;
         int y = 5;
-        for(int i = count; i < playersDestinationCards.size(); i++)
+        for(int i = start; i < playersDestinationCards.size(); i++)
         {
             g.drawImage(playersDestinationCards.get(i).getPicture(), x, y, null);
             x += 220;
-            if(i == 4 || i == 14)
+            if(i % 10 == 4)
             {
                 x = 20;
                 y = 350;
             }
-            if(i == 19 || i == 19)
+            if(i % 10 == 9)
             {
                 break;
             }

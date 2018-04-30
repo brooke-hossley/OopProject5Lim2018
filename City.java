@@ -288,7 +288,7 @@ public class City
             int [] b78 = {595,601,611,617,616,607,598,593};
             cityShape = new Polygon(b77,b78,8);
         }
-        
+
         //Add meeples
         int indexNum;
         for (int i = 0; i < meepleAmount; i++) 
@@ -296,6 +296,62 @@ public class City
             indexNum = meepleIndexes.remove(meepleIndexes.size() -1);
             meeples[indexNum]++;
         }
+    }
+
+    /**
+     * Method that returns and array of colors for user 
+     * to choose from when choosing Meeples
+     * 
+     * @return String[] An array of colors 
+     */
+    protected String[] getMeepleColors()
+    {
+        //Construt array
+        ArrayList<String> meepCol = new ArrayList(5);
+        for (int index = 0; index < 6; index++ ) 
+        {
+            int count = meeples[index]; 
+            if (count > 0) 
+            {
+                switch (index) {
+                    case 0: meepCol.add("Red"); break;
+                    case 1: meepCol.add("Black"); break;
+                    case 2: meepCol.add("Green"); break;
+                    case 3: meepCol.add("Yellow"); break;
+                    case 4: meepCol.add("Blue"); break;
+                    default: meepCol.add("White");
+                }
+            }
+        }
+
+        String[] meepleColors = new String[meepCol.size()];
+        int i = 0;
+        for (String color: meepCol) {
+            meepleColors[i] = color;
+            i++;
+        }
+        return meepleColors;
+    }
+
+    /**
+     * Method to remove a meeple
+     * 
+     * @param strColor The string version of the color to remove
+     */
+    protected int discardMeeple(String strColor)
+    {
+        int index = 0;
+        switch (strColor) 
+        {
+            case "Red": index = 0; break;
+            case "Black": index = 1; break;
+            case "Green": index = 2; break;
+            case "Yellow": index = 3; break;
+            case "Blue": index = 4; break;
+            case "White": index = 5;
+        }
+        meeples[index]--;
+        return index;
     }
 
     /**
