@@ -565,8 +565,9 @@ MouseMotionListener, ActionListener
                     "Number of Locomotives:", numberSpinner,
                     "Other Card Color:", cardColor};
 
-            int option = JOptionPane.showOptionDialog(null, message, "Choose Cards to claim " 
-                    + route.toString(), JOptionPane.OK_CANCEL_OPTION, 
+            int option = JOptionPane.showOptionDialog(null, message, 
+                    "Choose Cards to claim "+ route.toString(), 
+                    JOptionPane.OK_CANCEL_OPTION, 
                     JOptionPane.QUESTION_MESSAGE, null, null, null);
 
             if (option == JOptionPane.CANCEL_OPTION)

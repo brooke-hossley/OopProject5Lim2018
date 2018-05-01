@@ -33,10 +33,14 @@ public class Driver extends JPanel implements ActionListener
     {
         //Images with paths
         //String dir = "Images\\";
-        background = new ImageIcon("Images" + File.separator + "HomeScreen.jpg").getImage();
-        background = background.getScaledInstance(900, 500, Image.SCALE_DEFAULT);
-        background2 = new ImageIcon("Images" + File.separator + "homescreenbackground.jpg").getImage();
-        train = new ImageIcon("Images" + File.separator + "Traingif.gif").getImage();
+        background = new ImageIcon("Images" + File.separator 
+            + "HomeScreen.jpg").getImage();
+        background = background.getScaledInstance(900, 
+            500, Image.SCALE_DEFAULT);
+        background2 = new ImageIcon("Images" + File.separator
+            + "homescreenbackground.jpg").getImage();
+        train = new ImageIcon("Images" + File.separator + 
+            "Traingif.gif").getImage();
         train = train.getScaledInstance(400, 200, Image.SCALE_DEFAULT);
         //Set window to correct size
         Dimension size = new Dimension(1250, 800);
@@ -224,8 +228,9 @@ public class Driver extends JPanel implements ActionListener
         {
             numPlayers = 3;
         }
-        
-        String[] possibleValues = { "Purple", "Yellow", "Red", "White", "Blue" };
+
+        String[] possibleValues = { "Purple", 
+                "Yellow", "Red", "White", "Blue" };
         ArrayList<String> possibleVals = new ArrayList(5);
         possibleVals.add("Purple");
         possibleVals.add("Yellow");
@@ -235,7 +240,8 @@ public class Driver extends JPanel implements ActionListener
 
         String colorSelected;
         while(count <= numPlayers){
-            String name = JOptionPane.showInputDialog(frame, "Enter in Player " + count + 
+            String name = JOptionPane.showInputDialog(frame, 
+                    "Enter in Player " + count + 
                     " name:");
             Object colors = JOptionPane.showInputDialog(null,
                     "Choose one", "Input",
