@@ -4,12 +4,11 @@ Alissa Ronca, Brooke Hossley, Chris Adams, Pat Barber and Hieu Le
 ### Version: Spring 2018
 ## Description
 This program simulates the fun family board game Ticket to ride.
-Challenge your friend to a game that ends all friendships, especially if they were your group members.
-Collect train cards to claim routes and cut people off in destination tickets to the point where your parents kick you out of the house for being an asshole.
-Complete destination tickets to create a monopoly over the entire board like communist Russia. Nothing like the peaceful rise of Germany in the 1930's.
-In the end, determine which of your closest friends you will ask to play this game that you've put way too many hours into in. 
+Challenge your friends to a game that ends all friendships.
+Collect train cards to claim routes and cut people off in destination tickets.
+Complete destination tickets to create a monopoly over the entire board.
 ## Operation Instructions 
-Simply run the main method in the Driver.java file within the BlueJ vertual machine. 
+Simply dowload and run the main method in the Driver.java file within the BlueJ vertual machine. 
 ## Java Files List
 ```
 Board.java
